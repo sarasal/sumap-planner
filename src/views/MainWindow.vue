@@ -51,8 +51,8 @@ export default {
       studyCondition: undefined,
       complexity: undefined,
       taskType: undefined,
-      demoSession: String(import.meta.env.VITE_DEMO_SESSION).toLowerCase() === "true",
-      groupDecisionMaking: String(import.meta.env.VITE_GROUP_DECISION_MAKING).toLowerCase() === "true",
+      demoSession: String(import.meta.env.VITE_DEMO_SESSION).toLowerCase() === "enabled",
+      groupDecisionMaking: String(import.meta.env.VITE_GROUP_DECISION_MAKING).toLowerCase() === "enabled",
       pages: { // todo move it to file
         pretest:{
           show: false,
