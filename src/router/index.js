@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Introduction from '../views/Introduction.vue'
+import ConsentForm from '../views/ConsentForm.vue'
 import PreTest from '../views/PreTest.vue'
 import Test from '../views/Test.vue'
 import MainWindow from '../views/MainWindow.vue'
@@ -15,6 +16,11 @@ const router = new VueRouter({
       path: '/',
       name: 'home',
       component: Introduction
+    },
+    {
+      path: '/consent-form',
+      name: 'ConsentForm',
+      component: ConsentForm
     }, {
       path: '/:userId/preTest',
       alias: ['/:userId/demo', '/:userId/onBoarding', '/:userId/tutorial', '/:userId/training', '/:userId/quiz', '/:userId/waitingRoom', '/:userId/mainTask', '/:userId/postTest', '/:userId/score'],
