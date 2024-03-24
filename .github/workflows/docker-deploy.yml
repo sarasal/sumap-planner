@@ -25,3 +25,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: sarasalim/sumap-planner:latest
+
+      - name: Notify server via webhook
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{"secret_token": "${{ secrets.WEBHOOK_SECRET_TOKEN }}"}' https://sumap.tp.salimzadeh.com/webhook
