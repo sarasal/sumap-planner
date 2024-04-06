@@ -42,6 +42,12 @@ import WaitingRoom from "./WaitingRoom.vue";
 </template>
 
 <script>
+import get_user_training_task from '../samples/requests/get_user_training_task.json';
+
+const sampleResponses = {
+  get_user_training_task : get_user_training_task,
+}
+
 export default {
   name: "MainWindow",
   data() {
@@ -107,7 +113,13 @@ export default {
     }
   },
   methods :{
+    fakeRequest: function (url) {
+      return sampleResponses[url];
+    },
     updateBackend: async function (url, body) {
+      if (this.demoSession){
+        return this.fakeRequest(url);
+      }
       const requestOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -119,6 +131,22 @@ export default {
     getScore: function (){
       return localStorage.getItem(`${this.userId}-score`);
     },
+    saveTrainingTask: function ( res ){
+      const info = {
+        session_id: res.session_id,
+        task_id: res.task_id,
+        study_condition: res.study_condition,
+        scenario: res.scenario,
+        uncertainty: res.uncertainty,
+        framing: res.framing,
+        accuracy: res.accuracy,
+        best_route_id: res.best_route_id,
+        best_cost: res.best_cost,
+        ai_route_id: res.ai_route_id,
+        ai_cost: res.ai_cost,
+      }
+      localStorage.setItem(`${this.userId}-training`, JSON.stringify(info));
+    },
     done: async function ( body ){
       // TODO loading
       let next = this.currentPage.next;
@@ -128,18 +156,13 @@ export default {
       }
 
       if (this.currentPage.next === 'unknown'){
-        const res = await this.updateBackend('get_user_tutorial', body);
+        const res = await this.updateBackend('get_user_training_task', body);
         if (res.status !== 'passed'){
           localStorage.setItem('failed', 'true');
           await this.failed();
           return
         }
-        const info = {
-          study_condition: res.study_condition,
-          complexity: res.complexity,
-          task_type: res.task_type,
-        }
-        localStorage.setItem(`${this.userId}-info`, JSON.stringify(info));
+        this.saveTrainingTask(res);
         next = (this.demoSession)? 'demo' : 'onBoarding';
       }
 
