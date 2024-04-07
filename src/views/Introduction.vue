@@ -50,12 +50,14 @@
 
 <script>
 
+import {store} from "@/store";
+
 export default {
   name: "Introduction",
   data() {
     return {
-      greeting: this.appConfig.GREETING_TEXT,
-      current_session: this.appConfig.CURRENT_SESSION_NUMBER_TEXT,
+      greeting: store.appConfig.GREETING_TEXT,
+      current_session: store.appConfig.CURRENT_SESSION_NUMBER_TEXT,
     }
   },
   methods: {

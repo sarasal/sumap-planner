@@ -7,6 +7,8 @@ import axios from 'axios'
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
 import 'material-icons/iconfont/material-icons.css';
+import { store, mutations } from './store';
+
 
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -22,15 +24,7 @@ Vue.use(Vuesax)
 async function initApp() {
   try {
     const configResponse = await axios.get('/config.json');
-    const appConfig = configResponse.data;
-
-    Vue.mixin({
-      data() {
-        return {
-          appConfig
-        };
-      }
-    });
+    mutations.setAppConfig(configResponse.data);
 
     new Vue({
       router,

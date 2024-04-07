@@ -43,6 +43,7 @@ import WaitingRoom from "./WaitingRoom.vue";
 
 <script>
 import get_user_training_task from '../samples/requests/get_user_training_task.json';
+import {store} from "@/store";
 
 const sampleResponses = {
   get_user_training_task : get_user_training_task,
@@ -57,7 +58,7 @@ export default {
       studyCondition: undefined,
       complexity: undefined,
       taskType: undefined,
-      demoSession: this.appConfig.DEMO_SESSION.toLowerCase() === "enabled",
+      demoSession: store.appConfig.DEMO_SESSION.toLowerCase() === "enabled",
       groupDecisionMaking: String(import.meta.env.VITE_GROUP_DECISION_MAKING).toLowerCase() === "enabled",
       pages: { // todo move it to file
         pretest:{
