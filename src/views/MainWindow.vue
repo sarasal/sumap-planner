@@ -137,6 +137,7 @@ export default {
         task_id: res.task_id,
         study_condition: res.study_condition,
         scenario: res.scenario,
+        ai_info: res.ai_info,
         uncertainty: res.uncertainty,
         framing: res.framing,
         accuracy: res.accuracy,
@@ -145,7 +146,7 @@ export default {
         ai_route_id: res.ai_route_id,
         ai_cost: res.ai_cost,
       }
-      localStorage.setItem(`${this.userId}-training`, JSON.stringify(info));
+      localStorage.setItem(`${this.userId}-info`, JSON.stringify(info));
     },
     done: async function ( body ){
       // TODO loading

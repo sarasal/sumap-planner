@@ -35,24 +35,8 @@ import Quiz from "@/views/Quiz.vue";
           <Clock v-if="userId" :paused="false" :user-id="userId" />
         </b-col>
       </b-row>
-      <b-row v-if="!tutorial">
-        <b-card>
-          <b-button v-if="demoSession && training" style="top: 0; font-size: 13px; padding: 4px 8px 4px;" @click="nextTab()" pill variant="outline-success">Next Tab</b-button>
-          <div ref="scenario" style="font-size: 14px;margin-bottom: 20px" >
-            <span v-html="current_task.scenario"></span>
-          </div>
-          <b-button
-              v-if="(mainTasks && !this.readMe) && !this.groupDecisionMaking"
-              :class="!readMe ? null : 'collapsed'"
-              :aria-expanded="!readMe ? 'true' : 'false'"
-              aria-controls="collapse-1"
-              variant="primary"
-              @click="readMe = true">I read the text</b-button>
-        </b-card>
-      </b-row>
-      <b-collapse id="collapse-1" v-model="readMe || this.groupDecisionMaking" class="mt-2">
       <b-row>
-        <b-col cols="6" class="pr-0 pl-0">
+        <b-col cols="8" class="pr-0 pl-0">
           <b-row>
             <b-embed
                 ref="map"
@@ -82,55 +66,14 @@ import Quiz from "@/views/Quiz.vue";
             </b-row>
           </b-row>
         </b-col>
-        <b-col cols="2" id="myTestRef" ref="routeInfo" class="pr-0 pl-0" @mouseover="hover.routeInfo = true" @mouseleave="hover.routeInfo = false">
-          <b-row v-if="this.route_start_time.length !== 0" style="margin-left: 15%; font-size: 12px; font-weight: bold;">Start time: {{this.route_start_time[this.current_route_index]}}</b-row>
-          <b-row style="font-size: 12px" v-for="(subRoute, index) in this.current_route" :key="subRoute.sub_route_name">
-            <b-col cols="1">
-              <div class="my-icon" ref="transportMode">
-                <b-iconstack>
-                  <b-icon  icon="info-circle-fill" scale="3" :style="`color: ${route_info_styles[index].color}`"></b-icon>
-                  <b-icon  icon="info-circle" scale="3" :style="`color: ${route_info_styles[index].color}`"></b-icon>
-                </b-iconstack>
-                <vs-icon class="transport-icon" :icon="route_info_styles[index].icon" round color="#ffffff"></vs-icon>
-              </div>
-              <div class="vertical-line" :style="`border-left: 4px dashed ${route_info_styles[index].color}`"></div>
-            </b-col>
-            <b-col>
-            <b-row ref="subRouteName" style="margin-top: 5%;padding-bottom: 0;">
-              {{ subRoute.sub_route_name }}
-            </b-row>
-            <b-row ref="capacityLevel" v-if="subRoute.capacity_level !== ''" :style="`color: ${route_info_styles[index].capacityLevelColor};padding-bottom: 0;`">
-              {{capacityLevelText(subRoute.capacity_level)}}
-            </b-row>
-            <b-row ref="estimatedDuration" style="margin-button: 0;padding-bottom: 0;">
-              Sub-Route Base Time : {{ minimumTime(subRoute) }} minutes
-            </b-row>
-            <b-row ref="fareCost" style="margin-button: 0;padding-bottom: 0;">
-              Sub-Route Base Cost: {{ fareCost(subRoute) }}
-            </b-row>
-            </b-col>
-          </b-row>
-          <b-row style="font-size: 12px">
-            <b-col cols="1">
-              <div class="my-icon">
-                <b-iconstack>
-                  <b-icon  icon="info-circle-fill" scale="3" :style="`color: ${route_info_styles[route_info_styles.length-1].color}`"></b-icon>
-                  <b-icon  icon="info-circle" scale="3" :style="`color: ${route_info_styles[route_info_styles.length-1].color}`"></b-icon>
-                </b-iconstack>
-                <vs-icon class="transport-icon" icon="location_on" round color="#ffffff"></vs-icon>
-              </div>
-            </b-col>
-          </b-row>
-        </b-col>
         <b-col cols="4" class="pr-0 pl-0">
           <div ref="generalInfo" @mouseover="hover.generalInfo = true" @mouseleave="hover.generalInfo = false">
-            <GeneralInfoCard
-                             :chance_list="chance_list"
-                             :static_info="static_info"
-                             :task_type="current_task.task_type"
-                             :complexity="current_task.complexity"
-                             :n_transfer="current_task.n_transfer"
-            ></GeneralInfoCard>
+            <b-card title="Scenario" style="font-size: 12px; margin-bottom: 1rem">
+              {{this.task_info.scenario}}
+            </b-card>
+            <b-card title="AI Info" style="font-size: 12px">
+              {{this.task_info.ai_info}}
+            </b-card>
           </div>
         </b-col>
       </b-row>
@@ -211,7 +154,6 @@ import Quiz from "@/views/Quiz.vue";
         </b-card>
 
       </b-row>
-      </b-collapse>
     </b-container>
   </div>
 </template>
@@ -297,6 +239,7 @@ export default {
       current_task_index: 0,
       userFriendlyRouteIndex: 1,
       current_route_index: 0,
+      task_info: null,
       initialDecision: {
         enabled: true,
         value: "",
@@ -326,6 +269,13 @@ export default {
     }
   },
   methods: {
+    handleMessageFromIframe(event) {
+      // Always check the origin for security reasons!
+      // if (event.origin === 'http://the-iframe-origin.com') {
+      console.log('Received message from iframe:', event.data);
+        // Here you can react to the message, update data properties, call methods, etc.
+      // }
+    },
     nextTab: function () {
       if(this.training){
         this.$emit('trainingFinished')
@@ -1011,6 +961,11 @@ export default {
       return this.user_tasks != null ? this.user_tasks[this.current_task_index] : {};
     },
     map_url: function () {
+      const route_index = String(this.current_route_index+1).padStart(2, '0');
+      if(this.demoTab){
+        return this.user_tasks != null ? `${window.location.origin}/maps/route${route_index}_car_index${this.current_route_index}.html` : "";
+      }
+      // todo checkout the following conditions
       if(this.tutorial && this.current_route_index === 0){ // todo remove this if
         return this.user_tasks != null ? `${window.location.origin}/maps/task_${this.current_task.task_id}_route0_tutorial.html` : "";
       }
@@ -1039,13 +994,16 @@ export default {
     }
   },
   created: async function() {
+    window.addEventListener('message', this.handleMessageFromIframe);
+    this.userId =  this.$route.params.userId;
+
     if(this.demoTab){
       this.user_tasks = sample1;
+      this.task_info = JSON.parse(localStorage.getItem(`${this.userId}-info`));
     }
 
-    this.userId =  this.$route.params.userId;
-    this.studyCondition = parseInt(JSON.parse(localStorage.getItem(`${this.userId}-info`)).study_condition);
-    this.roomId = localStorage.getItem('room-id');
+    // this.studyCondition = parseInt(JSON.parse(localStorage.getItem(`${this.userId}-info`)).study_condition);
+    // this.roomId = localStorage.getItem('room-id');
 
     if (this.training || this.tutorial || this.onBoarding){
       const res = await this.updateBackend('get_user_training_task');
