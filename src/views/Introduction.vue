@@ -54,8 +54,8 @@ export default {
   name: "Introduction",
   data() {
     return {
-      greeting: String(window.AppConfig.GREETING_TEXT),
-      current_session: String(window.AppConfig.CURRENT_SESSION_NUMBER_TEXT),
+      greeting: this.$AppConfig.GREETING_TEXT,
+      current_session: this.$AppConfig.CURRENT_SESSION_NUMBER_TEXT,
     }
   },
   methods: {

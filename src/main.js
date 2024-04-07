@@ -13,6 +13,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import './assets/main.css'
 
+Vue.prototype.$AppConfig = window.AppConfig;
+
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.use(Vuesax)

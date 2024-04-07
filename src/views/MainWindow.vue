@@ -57,7 +57,7 @@ export default {
       studyCondition: undefined,
       complexity: undefined,
       taskType: undefined,
-      demoSession: String(window.AppConfig.VITE_DEMO_SESSION).toLowerCase() === "enabled",
+      demoSession: this.$AppConfig.DEMO_SESSION.toLowerCase() === "enabled",
       groupDecisionMaking: String(import.meta.env.VITE_GROUP_DECISION_MAKING).toLowerCase() === "enabled",
       pages: { // todo move it to file
         pretest:{
