@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import App from './App.vue'
 import router from './router'
+import axios from 'axios'
 
 import Vuesax from 'vuesax'
 import 'vuesax/dist/vuesax.css'
@@ -13,14 +14,32 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import './assets/main.css'
 
-Vue.prototype.$AppConfig = window.AppConfig;
-
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 Vue.use(Vuesax)
 
 
-new Vue({
-  router,
-  render: (h) => h(App)
-}).$mount('#app')
+async function initApp() {
+  try {
+    const configResponse = await axios.get('/config.json');
+    const appConfig = configResponse.data;
+
+    Vue.mixin({
+      data() {
+        return {
+          appConfig
+        };
+      }
+    });
+
+    new Vue({
+      router,
+      render: h => h(App),
+    }).$mount('#app');
+
+  } catch (error) {
+    console.error('Failed to load app configuration:', error);
+  }
+}
+
+initApp().then(r => console.log("Application Loaded"));
