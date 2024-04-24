@@ -10,18 +10,6 @@ import Quiz from "@/views/Quiz.vue";
   <div v-if="finishedLoaded">
     <b-container style="min-width: 100%">
       <b-row v-if="!tutorial && !training" align-h="end" class="pb-1">
-        <b-col cols="2">
-            <b-pagination
-                v-model="currentSample"
-                :total-rows="6"
-                :per-page="1"
-                first-number
-                last-number
-                v-if="demoTab"
-                size="sm"
-                @page-click="nextSample"
-            ></b-pagination>
-        </b-col>
         <b-col v-if="progressBarSize === 7">
           <b-button v-if="demoTab" style="top: 0; font-size: 13px; padding: 4px 8px 4px;" @click="nextTab()" pill variant="outline-success">Next Tab</b-button>
         </b-col>
@@ -53,9 +41,9 @@ import Quiz from "@/views/Quiz.vue";
             <b-row>
               <b-pagination
                 v-model="userFriendlyRouteIndex"
-                :total-rows="route_info_list.length"
+                :total-rows="map_id_list.length"
                 :per-page="1"
-                :limit="route_info_list.length"
+                :limit="map_id_list.length"
                 :hide-goto-end-buttons="true"
                 align="fill"
                 @change="routeChanged"
@@ -68,17 +56,25 @@ import Quiz from "@/views/Quiz.vue";
         </b-col>
         <b-col cols="4" class="pr-0 pl-0">
           <div ref="generalInfo" @mouseover="hover.generalInfo = true" @mouseleave="hover.generalInfo = false">
-            <b-card title="Scenario" style="font-size: 12px; margin-bottom: 1rem">
-              {{this.task_info.scenario}}
+            <b-card ref="scenario" title="Scenario" style="font-size: 12px; margin-bottom: 1rem">
+              As a delivery manager, you manage the delivery of multiple parcels. Your main task is choosing delivery routes associated with the lowest costs. You do this by comparing five available delivery routes from which you need to pick the best one. To identify the optimal route, you must consider the following criteria: <br/>
+              Number of Parcels <br/>
+              Each parcel delivery is rewarded with 100 points. The routes may vary in the number of parcels (between 1 and 10). <br/>
+              Delivery Vehicle <br/>
+              Parcels are delivered by either car or e-bike. Deliveries by e-bike are rewarded with 50 points for each traveled kilometer. Deliveries by car, in contrast, are faster and save time. <br/>
+              Distance <br/>
+              Delivering the parcels creates costs. The longer deliveries are, the more costs are created. The length of a sub-route is displayed when hovering over a particular route. The speed of the car and e-bike is constant, with the car traveling at 70 km/h and the e-bike at 45 km/h. <br/>
+              Delivery handling time <br/>
+              {{this.current_task.task_scenario}}
             </b-card>
-            <b-card title="AI Info" style="font-size: 12px">
-              {{this.task_info.ai_info}}
+            <b-card ref="ai-info" title="AI Info" style="font-size: 12px">
+              {{this.current_task.ai_scenario}}
             </b-card>
           </div>
         </b-col>
       </b-row>
 
-      <b-row v-if="!tutorial">
+      <b-row>
 
         <b-card style="width:100%; padding: 0" no-body ref="chat" v-if="groupDecisionMaking && (roomId !== null || onBoarding)">
           <template #header>
@@ -122,7 +118,7 @@ import Quiz from "@/views/Quiz.vue";
             <h1 style="font-size: 28px">AI Suggestion</h1>
           </template>
           <b-text>
-            AI suggests that the <span style="background-color: yellow;">{{`Route ${Number(this.current_task.ai_route_id) +1}`}}</span> minimizes the commute time and cost.
+            AI suggests that the <span style="background-color: yellow;">{{`Route ${Number(this.current_task.best_route_id) +1}`}}</span> minimizes the commute time and cost.
           </b-text>
         </b-card>
 
@@ -238,7 +234,7 @@ export default {
       readMe: !this.mainTasks,
       current_task_index: 0,
       userFriendlyRouteIndex: 1,
-      current_route_index: 0,
+      current_map_index: 0,
       task_info: null,
       initialDecision: {
         enabled: true,
@@ -285,7 +281,6 @@ export default {
     },
     nextSample: function (bvEvent, page){
       this.user_tasks = samples[page-1];
-      this.regenerate_route_info_style();
       this.finalDecision = "";
       this.initialDecision = {
         enabled: true,
@@ -295,23 +290,7 @@ export default {
     },
     routeChanged: function (page) {
       this.emitBackendEvent('CLICK', this.getCurrentTimestamp(), (page-1));
-      this.current_route_index = page -1;
-      this.regenerate_route_info_style();
-    },
-    regenerate_route_info_style: function (){
-      const styles = []
-      let transport, capacityLevel, capacityLevelColor;
-      for(let i=0; i<this.current_route.length; i++){
-        transport = this.current_route[i].transport;
-        capacityLevel = this.current_route[i].capacity_level;
-        capacityLevelColor = (capacityLevel === '')? '' : capacityLevelMap[capacityLevel].color;
-        styles.push({
-          color: transportMap[transport].color,
-          icon: transportMap[transport].icon,
-          capacityLevelColor: capacityLevelColor,
-        })
-      }
-      this.route_info_styles = styles
+      this.current_map_index = page -1;
     },
     extract_task_ids: function (){
       let ids = [];
@@ -319,48 +298,6 @@ export default {
         ids.push(this.user_tasks[i].task_id)
       }
       return ids
-    },
-    roundNumber: function ( number , precision) {
-      let numberStr = number.toString();
-      let dotPosition = numberStr.indexOf('.')
-      return numberStr.slice(0, (dotPosition + 1) + precision)
-    },
-    fareCost: function (subRoute) {
-      const transport = subRoute.transport
-      const length = subRoute.length
-      const costFares = this.static_info[0]
-      if((costFares[transport] * length) < 0.01){
-        return "0.01 €"
-      }
-      return `${this.roundNumber((costFares[transport] * length), 2)} €`;
-      // return `${(costFares[transport] * length)/1000} €`;
-    },
-    minimumTime: function (subRoute) {
-      if (subRoute === undefined)
-        return "";
-
-      // if (subRoute.transport === 'train') {
-      //   if(this.current_task.task_type !== "diagnostic") {
-      //     return this.roundNumber(subRoute.duration_range[0], 1);
-      //   }
-      //   return this.roundNumber(subRoute.duration, 1);
-      // }
-      
-      // if (subRoute.duration.toString() !== "0") {
-      //   return this.roundNumber(subRoute.duration, 1);
-      // }
-
-      if (subRoute.duration_range.length === 0) {
-        if(subRoute.duration === 0){
-          return "0.1"
-        }
-        return this.roundNumber(subRoute.duration, 1);
-      }
-
-      if(subRoute.duration_range[0]===0 && subRoute.duration_range[1]===0){
-        return "0.0 - 0.1"
-      }
-      return  `${this.roundNumber(subRoute.duration_range[0], 1)} - ${this.roundNumber(subRoute.duration_range[1], 1)}`;
     },
     gotoNextTask: function (){
       this.finalDecision = "";
@@ -370,7 +307,7 @@ export default {
         timestamp: 0,
       }
       this.current_task_index++;
-      this.current_route_index=0;
+      this.current_map_index=0;
       this.userFriendlyRouteIndex=1;
       this.readMe = false;
       localStorage.current_task_index = this.current_task_index;
@@ -449,7 +386,8 @@ export default {
         event_value: `${value}`
       };
 
-      this.updateBackend('submit_event', body);
+      // TODO uncomment the following line
+      // this.updateBackend('submit_event', body);
     },
     updateBackend: async function (url, newBody){
       const rawBody = {
@@ -470,9 +408,6 @@ export default {
       if (url !== 'submit_event'){
         return await res.json();
       }
-    },
-    capacityLevelText: function (capacityLevel){
-      return capacityLevelMap[capacityLevel].text;
     },
     getCurrentTimestamp: function () {
       return Date.now();
@@ -545,81 +480,81 @@ export default {
 
       // todo use this trick to access child
       // console.log(this.$refs.generalInfo.children);
-      const generalInfoRefs = this.$refs.generalInfo.children[0].__vue__.$refs;
-      const transportFareEl = generalInfoRefs.costCard.$refs.transportFare.$el;
+      // const generalInfoRefs = this.$refs.generalInfo.children[0].__vue__.$refs;
+      // const transportFareEl = generalInfoRefs.costCard.$refs.transportFare.$el;
 
-      let subscriptionEl, rainEl, trafficEl, capacityLevel, capacityEl, peakFaresEl, peakFares, distanceBasedDiscount, distanceBasedDiscountEl, limitedTransfersEl, stopEL;
-
-
-      if (this.studyCondition >= 3 ){
-        subscriptionEl = generalInfoRefs.costCard.$refs.subscription.$el;
-        capacityLevel = this.$refs.capacityLevel[0];
-      }
+      // let subscriptionEl, rainEl, trafficEl, capacityLevel, capacityEl, peakFaresEl, peakFares, distanceBasedDiscount, distanceBasedDiscountEl, limitedTransfersEl, stopEL;
 
 
-      if(this.studyCondition === 4 || this.studyCondition === 6){
+      // if (this.studyCondition >= 3 ){
+      //   subscriptionEl = generalInfoRefs.costCard.$refs.subscription.$el;
+      //   capacityLevel = this.$refs.capacityLevel[0];
+      // }
 
+
+      // if(this.studyCondition === 4 || this.studyCondition === 6){
+      //
         // rain
-        if(parseInt(this.chance_list[0]['chance']) >= 60){
-          rainEl = generalInfoRefs.rainHigh;
-        }
-        if(parseInt(this.chance_list[0]['chance']) < 60){
-          rainEl = generalInfoRefs.rainLow;
-        }
+        // if(parseInt(this.chance_list[0]['chance']) >= 60){
+        //   rainEl = generalInfoRefs.rainHigh;
+        // }
+        // if(parseInt(this.chance_list[0]['chance']) < 60){
+        //   rainEl = generalInfoRefs.rainLow;
+        // }
 
 
         // traffic
-        if(parseInt(this.chance_list[1]['chance']) >= 60){
-          trafficEl = generalInfoRefs.trafficHigh;
-        }
-
-        if(parseInt(this.chance_list[1]['chance']) < 60){
-          trafficEl = generalInfoRefs.trafficLow;
-        }
-
-
+        // if(parseInt(this.chance_list[1]['chance']) >= 60){
+        //   trafficEl = generalInfoRefs.trafficHigh;
+        // }
+        //
+        // if(parseInt(this.chance_list[1]['chance']) < 60){
+        //   trafficEl = generalInfoRefs.trafficLow;
+        // }
+        //
+        //
         // capacity
-        if(parseInt(this.chance_list[2]['chance']) >= 60){
-          capacityEl = generalInfoRefs.capacityHigh;
-        }
+        // if(parseInt(this.chance_list[2]['chance']) >= 60){
+        //   capacityEl = generalInfoRefs.capacityHigh;
+        // }
 
-        if(parseInt(this.chance_list[2]['chance']) < 60){
-          capacityEl = generalInfoRefs.capacityLow;
-        }
+        // if(parseInt(this.chance_list[2]['chance']) < 60){
+        //   capacityEl = generalInfoRefs.capacityLow;
+        // }
 
 
         // pick-up point
-        if(parseInt(this.chance_list[3]['chance']) >= 60){
-          stopEL = generalInfoRefs.stopHigh;
-        }
+        // if(parseInt(this.chance_list[3]['chance']) >= 60){
+        //   stopEL = generalInfoRefs.stopHigh;
+        // }
 
-        if(parseInt(this.chance_list[3]['chance']) < 60){
-          stopEL = generalInfoRefs.stopLow;
-        }
+        // if(parseInt(this.chance_list[3]['chance']) < 60){
+        //   stopEL = generalInfoRefs.stopLow;
+        // }
 
-      }
+      // }
 
 
 
-      if(this.studyCondition === 3 || this.studyCondition === 5){
-        rainEl = generalInfoRefs.rainFixed;
-        capacityEl = generalInfoRefs.capacityFixed;
-        trafficEl = generalInfoRefs.trafficFixed;
-      }
+      // if(this.studyCondition === 3 || this.studyCondition === 5){
+      //   rainEl = generalInfoRefs.rainFixed;
+      //   capacityEl = generalInfoRefs.capacityFixed;
+      //   trafficEl = generalInfoRefs.trafficFixed;
+      // }
 
-      if(this.studyCondition === 5){
-        stopEL = generalInfoRefs.stopFixed;
-      }
+      // if(this.studyCondition === 5){
+      //   stopEL = generalInfoRefs.stopFixed;
+      // }
 
       // peak fares, distance-based discount, limited transfers
-      if (this.studyCondition >= 5 ){
-        peakFaresEl = generalInfoRefs.peakFares;
-        peakFares = generalInfoRefs.costCard.$refs.peakFare.$el;
-
-        distanceBasedDiscountEl = generalInfoRefs.distantBasedFare;
-        distanceBasedDiscount = generalInfoRefs.costCard.$refs.distanceBasedDiscount.$el;
-        limitedTransfersEl = generalInfoRefs.limitedTransfers;
-      }
+      // if (this.studyCondition >= 5 ){
+      //   peakFaresEl = generalInfoRefs.peakFares;
+      //   peakFares = generalInfoRefs.costCard.$refs.peakFare.$el;
+      //
+      //   distanceBasedDiscountEl = generalInfoRefs.distantBasedFare;
+      //   distanceBasedDiscount = generalInfoRefs.costCard.$refs.distanceBasedDiscount.$el;
+      //   limitedTransfersEl = generalInfoRefs.limitedTransfers;
+      // }
 
 
       const steps = [
@@ -634,161 +569,47 @@ export default {
           position: 'right',
           studyConditions: [1,2,3,4,5,6],
         },
+        // {
+        //   element: this.$refs.subRouteName[0],
+        //   intro: "The name of each sub-route.",
+        //   position: 'right',
+        //   studyConditions: [1,2,3,4,5,6],
+        // },
         {
-          element: this.$refs.subRouteName[0],
-          intro: "The name of each sub-route.",
-          position: 'right',
-          studyConditions: [1,2,3,4,5,6],
-        },
-        {
-          element: this.$refs.map,
+          element: this.$refs.scenario,
           intro: "The mode of transportation includes a train, taxi, and bus. Each sub-route is indicated by a distinct logo to identify it.",
           position: 'bottom',
           studyConditions: [1,2,3,4,5,6],
         },
+        // {
+        //   element: this.$refs.transportMode[0],
+        //   intro: "The transportation mode is also displayed here.",
+        //   position: 'right',
+        //   studyConditions: [1,2,3,4,5,6],
+        // },
+        // {
+        //   element: transportFareEl,
+        //   intro: "The cost of each transportation mode per kilometer in Euro.",
+        //   position: 'left',
+        //   studyConditions: [1,2,3,4,5,6],
+        // },
+        // {
+          // element: this.$refs.fareCost[0],
+          // intro: "The base cost for each sub-route is determined by multiplying the distance of this sub-route by its corresponding public transport fare per kilometer.",
+          // position: 'right',
+          // studyConditions: [1,2,3,4,5,6],
+        // },
         {
-          element: this.$refs.transportMode[0],
-          intro: "The transportation mode is also displayed here.",
-          position: 'right',
-          studyConditions: [1,2,3,4,5,6],
-        },
-        {
-          element: transportFareEl,
-          intro: "The cost of each transportation mode per kilometer in Euro.",
-          position: 'left',
-          studyConditions: [1,2,3,4,5,6],
-        },
-        {
-          element: this.$refs.fareCost[0],
-          intro: "The base cost for each sub-route is determined by multiplying the distance of this sub-route by its corresponding public transport fare per kilometer.",
-          position: 'right',
-          studyConditions: [1,2,3,4,5,6],
-        },
-        {
-          element: this.$refs.map,
+          element: this.$refs["ai-info"],
           intro: "The shortest time it would take to travel along this sub-route, based solely on the distance and speed of public transportation.",
           position: 'right',
           studyConditions: [1,3,5],
         },
         {
-          element: this.$refs.estimatedDuration[0],
-          intro: "The shortest time is also displayed here.",
+          element: this.$refs.decisions,
+          intro: "The shortest time it would take to travel along this sub-route, based solely on the distance and speed of public transportation.",
           position: 'right',
           studyConditions: [1,3,5],
-        },
-        {
-          element: this.$refs.map,
-          intro: "The range of shortest time it would take to travel along this sub-route, based solely on the distance and speed of public transportation.",
-          position: 'right',
-          studyConditions: [2,4,6],
-        },
-        {
-          element: this.$refs.estimatedDuration[0],
-          intro: "The range of shortest time is also displayed here.",
-          position: 'right',
-          studyConditions: [2,4,6],
-        },
-        {
-          element: this.$refs.map,
-          intro: "The length of each sub-route is presented in kilometers.",
-          position: 'right',
-          studyConditions: [1,2,3,4,5,6],
-        },
-        {
-          element: this.$refs.map,
-          intro: "The seat availability on the train or bus is displayed. In situations where no or limited seats are available, there is a possibility of not catching the intended bus or train, resulting in an additional travel time of 10 (for buses) to 20 minutes (for trains).",
-          position: 'top',
-          studyConditions: [3,4,5,6],
-        },
-        {
-          element: capacityLevel,
-          intro: "The seat availability on the train or bus is also displayed here.",
-          position: 'top',
-          studyConditions: [3,4,5,6],
-        },
-        {
-          element: capacityEl,
-          intro: "The seat availability on the train or bus is also described here.",
-          position: 'left',
-          studyConditions: [3,4,5,6],
-        },
-        {
-          element: rainEl,
-          intro: "Today is rainy. Rain slows down buses and taxi’s, leading to longer commute times by around 40%.",
-          position: 'left',
-          studyConditions: [3,5],
-        },
-        {
-          element: rainEl,
-          intro: "There is a chance of rain. Rain slows down buses and taxi’s, leading to longer commute times by around 40%.",
-          position: 'left',
-          studyConditions: [4,6],
-        },
-        {
-          element: this.$refs.map,
-          intro: "The traffic conditions are classified as normal, moderate, or heavy depending on the level of congestion. When the traffic is determined to be moderate or heavy, the corresponding sub-route will appear in orange or red colors which indicate potential delays for taxis and buses thereby increasing their travel time.",
-          position: 'left',
-          studyConditions: [3,4,5,6],
-        },
-        {
-          element: trafficEl,
-          intro: "The traffic jam is also described here.",
-          position: 'left',
-          studyConditions: [3,4,5,6],
-        },
-        {
-          element: subscriptionEl,
-          intro: "By having a subscription to both taxi and bus services, the passenger is able to enjoy reduced fares at a fixed rate.",
-          position: 'left',
-          studyConditions: [3,4,5,6],
-        },
-        {
-          element: peakFares,
-          intro: "During peak-hour periods, the fare cost is subject to a percentage increase per kilometer traveled.",
-          position: 'left',
-          studyConditions: [5,6],
-        },
-        {
-          element: peakFaresEl,
-          intro: "Peak-hour periods are defined here.",
-          position: 'left',
-          studyConditions: [5,6],
-        },
-        {
-          element: distanceBasedDiscount,
-          intro: "Passengers can receive a percentage discount on their fare when they exceed a certain distance travelled.",
-          position: 'left',
-          studyConditions: [5,6],
-        },
-        {
-          element: distanceBasedDiscountEl,
-          intro: "Kilometer-based discount is also described here.",
-          position: 'left',
-          studyConditions: [5,6],
-        },
-        {
-          element: limitedTransfersEl,
-          intro: "It is highly recommended for passengers to restrict the number of transfers they make during their trip.",
-          position: 'left',
-          studyConditions: [5,6],
-        },
-        {
-          element: this.$refs.map,
-          intro: "The passengers need to collect an item from a specific place during their travel.",
-          position: 'left',
-          studyConditions: [5],
-        },
-        {
-          element: this.$refs.map,
-          intro: "There is a possibility that passengers may need to collect an item from a specific place during their travel. The likelihood of this feature appearing has been estimated at a certain percentage.",
-          position: 'left',
-          studyConditions: [6],
-        },
-        {
-          element: stopEL,
-          intro: "The requirement to cross the certain point is also described here.",
-          position: 'left',
-          studyConditions: [5, 6],
         },
         {
           title: 'congratulation',
@@ -797,7 +618,7 @@ export default {
         },
       ];
 
-      intro.addSteps(steps.filter(step => step.studyConditions.indexOf(task.studyCondition)>=0));
+      intro.addSteps(steps);
 
       intro.setOptions({
         'disableInteraction': true,
@@ -936,7 +757,7 @@ export default {
     },
     generate_route_options: function () {
       let options = [];
-      for (let i = 0; i < this.route_info_list.length; i++) {
+      for (let i = 0; i < this.map_id_list.length; i++) {
         options.push(`Route ${i+1}`)
       }
       return options
@@ -961,18 +782,10 @@ export default {
       return this.user_tasks != null ? this.user_tasks[this.current_task_index] : {};
     },
     map_url: function () {
-      const route_index = String(this.current_route_index+1).padStart(2, '0');
-      if(this.demoTab){
-        return this.user_tasks != null ? `${window.location.origin}/maps/route${route_index}_car_index${this.current_route_index}.html` : "";
-      }
-      // todo checkout the following conditions
-      if(this.tutorial && this.current_route_index === 0){ // todo remove this if
-        return this.user_tasks != null ? `${window.location.origin}/maps/task_${this.current_task.task_id}_route0_tutorial.html` : "";
-      }
-      return this.user_tasks != null ? `${window.location.origin}/maps/task_${this.current_task.task_id}_route${this.current_route_index}.html` : "";
+      return this.user_tasks != null ? `${window.location.origin}/maps/${this.current_task.map_id_list[this.current_map_index]}.html` : "";
     },
-    route_info_list: function () {
-      return this.user_tasks != null ? JSON.parse(this.user_tasks[this.current_task_index].route_info_list.replace(/'/g, '"')) : [];
+    map_id_list: function () {
+      return this.user_tasks != null ? this.user_tasks[this.current_task_index].map_id_list : [];
     },
     route_start_time: function () {
       return this.user_tasks != null ? JSON.parse(this.user_tasks[this.current_task_index].route_start_time.replace(/'/g, '"')) : [];
@@ -984,7 +797,7 @@ export default {
       return this.user_tasks != null ? JSON.parse(this.user_tasks[this.current_task_index].chance_list.replace(/'/g, '"')) : [];
     },
     current_route: function () {
-      return this.user_tasks != null ? this.route_info_list[this.current_route_index].route : {};
+      return this.user_tasks != null ? this.map_id_list[this.current_map_index].route : {};
     },
     route_name: function () {
       return `Route ${this.userFriendlyRouteIndex}`
@@ -997,7 +810,7 @@ export default {
     window.addEventListener('message', this.handleMessageFromIframe);
     this.userId =  this.$route.params.userId;
 
-    if(this.demoTab){
+    if(this.demoTab || this.tutorial || this.mainTasks){
       this.user_tasks = sample1;
       this.task_info = JSON.parse(localStorage.getItem(`${this.userId}-info`));
     }
@@ -1005,30 +818,29 @@ export default {
     // this.studyCondition = parseInt(JSON.parse(localStorage.getItem(`${this.userId}-info`)).study_condition);
     // this.roomId = localStorage.getItem('room-id');
 
-    if (this.training || this.tutorial || this.onBoarding){
+    if (this.training || this.onBoarding){
       const res = await this.updateBackend('get_user_training_task');
       this.user_tasks = [res]
     }
 
-    if (this.mainTasks){
-      const tasks = localStorage.getItem('user-tasks');
-      if(tasks === null){
-        this.result.user_id = this.userId;
-        this.result.study_condition = this.studyCondition;
-        this.result.start_time = this.getCurrentTimestamp();
-        this.user_tasks = await this.updateBackend('get_group_task_instances');
-        this.current_task_index = 0;
-        localStorage.setItem('user-tasks', JSON.stringify(this.user_tasks));
-        localStorage.current_task_index = this.current_task_index;
-      } else {
-        this.user_tasks =  JSON.parse(tasks);
-        this.current_task_index = parseInt(localStorage.current_task_index);
-      }
-    }
+    // if (this.mainTasks){
+    //   const tasks = localStorage.getItem('user-tasks');
+    //   if(tasks === null){
+    //     this.result.user_id = this.userId;
+    //     this.result.study_condition = this.studyCondition;
+    //     this.result.start_time = this.getCurrentTimestamp();
+    //     this.user_tasks = await this.updateBackend('get_group_task_instances');
+    //     this.current_task_index = 0;
+    //     localStorage.setItem('user-tasks', JSON.stringify(this.user_tasks));
+    //     localStorage.current_task_index = this.current_task_index;
+    //   } else {
+    //     this.user_tasks =  JSON.parse(tasks);
+    //     this.current_task_index = parseInt(localStorage.current_task_index);
+    //   }
+    // }
 
     this.taskIdList = this.extract_task_ids()
     this.route_options = this.generate_route_options();
-    this.regenerate_route_info_style();
     this.finishedLoaded=true;
   },
 }

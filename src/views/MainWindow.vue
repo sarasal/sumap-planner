@@ -12,7 +12,7 @@ import WaitingRoom from "./WaitingRoom.vue";
       <b-tab :title="this.currentPage.title" >
         <PreTest v-if="pages.pretest.show" :demoSession="demoSession" @submit="done"></PreTest>
         <Test v-else-if="pages.demo.show" :demoSession="demoSession" :demoTab="true" :groupDecisionMaking="groupDecisionMaking" @nextTab="done"></Test>
-        <Test v-else-if="pages.onboarding.show" :demoSession="demoSession" :onBoarding="true" :groupDecisionMaking="groupDecisionMaking" @onBoardingFinished="done"></Test>
+<!--        <Test v-else-if="pages.onboarding.show" :demoSession="demoSession" :onBoarding="true" :groupDecisionMaking="groupDecisionMaking" @onBoardingFinished="done"></Test>-->
         <Test v-else-if="pages.tutorial.show" :demoSession="demoSession" :tutorial="true" :groupDecisionMaking="groupDecisionMaking" @tutorialFinished="done"></Test>
         <Test v-else-if="pages.training.show" :demoSession="demoSession" :training="true" :groupDecisionMaking="groupDecisionMaking" @trainingFinished="done"></Test>
         <Quiz v-else-if="pages.quiz.show" :demoSession="demoSession" :userId="userId" :studyCondition="studyCondition" @submit="done"></Quiz>
@@ -69,17 +69,12 @@ export default {
         demo:{
           show: false,
           title: 'Demo',
-          next: 'onBoarding',
-        },
-        onboarding:{
-          show: false,
-          title: 'OnBoarding',
           next: 'tutorial',
         },
         tutorial:{
           show: false,
           title: 'Tutorial',
-          next: 'training',
+          next: 'maintask',
         },
         training:{
           show: false,
@@ -165,7 +160,7 @@ export default {
           return
         }
         this.saveTrainingTask(res);
-        next = (this.demoSession)? 'demo' : 'onBoarding';
+        next = (this.demoSession)? 'demo' : 'tutorial';
       }
 
       if (this.currentPage.next === 'score') {
