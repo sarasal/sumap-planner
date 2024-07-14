@@ -74,7 +74,7 @@ export default {
         tutorial:{
           show: false,
           title: 'Tutorial',
-          next: 'maintask',
+          next: 'training',
         },
         training:{
           show: false,
@@ -113,9 +113,9 @@ export default {
       return sampleResponses[url];
     },
     updateBackend: async function (url, body) {
-      if (this.demoSession){
-        return this.fakeRequest(url);
-      }
+      // if (this.demoSession){
+      //   return this.fakeRequest(url);
+      // }
       const requestOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -132,15 +132,14 @@ export default {
         session_id: res.session_id,
         task_id: res.task_id,
         study_condition: res.study_condition,
-        scenario: res.scenario,
-        ai_info: res.ai_info,
-        uncertainty: res.uncertainty,
-        framing: res.framing,
-        accuracy: res.accuracy,
+        task_scenario: res.task_scenario,
+        ai_scenario: res.ai_scenario,
+        best_transport: res.best_transport,
         best_route_id: res.best_route_id,
         best_cost: res.best_cost,
         ai_route_id: res.ai_route_id,
         ai_cost: res.ai_cost,
+        ai_transport: res.ai_transport,
       }
       localStorage.setItem(`${this.userId}-info`, JSON.stringify(info));
     },

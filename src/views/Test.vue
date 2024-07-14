@@ -813,7 +813,7 @@ export default {
     window.addEventListener('message', this.handleMessageFromIframe);
     this.userId =  this.$route.params.userId;
 
-    if(this.demoTab || this.tutorial || this.mainTasks){
+    if(this.demoTab || this.tutorial || this.training || this.mainTasks){
       this.user_tasks = sample1;
       this.task_info = JSON.parse(localStorage.getItem(`${this.userId}-info`));
     }
@@ -821,10 +821,10 @@ export default {
     // this.studyCondition = parseInt(JSON.parse(localStorage.getItem(`${this.userId}-info`)).study_condition);
     // this.roomId = localStorage.getItem('room-id');
 
-    if (this.training || this.onBoarding){
-      const res = await this.updateBackend('get_user_training_task');
-      this.user_tasks = [res]
-    }
+    // if (this.training){
+    //   const res = await this.updateBackend('get_user_training_task');
+    //   this.user_tasks = [res]
+    // }
 
     // if (this.mainTasks){
     //   const tasks = localStorage.getItem('user-tasks');
