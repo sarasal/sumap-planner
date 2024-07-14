@@ -14,8 +14,8 @@ import Quiz from "@/views/Quiz.vue";
           <b-button v-if="demoTab" style="top: 0; font-size: 13px; padding: 4px 8px 4px;" @click="nextTab()" pill variant="outline-success">Next Tab</b-button>
         </b-col>
         <b-col :cols="progressBarSize" ref="progressBar" class="pr-1 pl-0">
-          <ProgressBar v-if="!mainTasks" :max="3" :value="1" />
-          <ProgressBar v-if="mainTasks" :max="this.user_tasks.length" :value="this.current_task_index" />
+          <ProgressBar v-if="!mainTasks" :max="3" :value="1" :animated="animatedProgressBar" />
+          <ProgressBar v-if="mainTasks" :max="this.user_tasks.length" :value="this.current_task_index" :animated="animatedProgressBar"/>
         </b-col>
         <b-col cols="1">
         </b-col>
@@ -230,6 +230,7 @@ export default {
   },
   data() {
     return {
+      animatedProgressBar: store.appConfig.ANIMATED_PROGRESS_BAR.toLowerCase() === "enabled",
       timerEnabled: store.appConfig.TIMER_ENABLED.toLowerCase() === "enabled",
       finishedLoaded: false,
       currentSample: 1,
