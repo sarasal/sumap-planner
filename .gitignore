@@ -130,3 +130,7 @@ dist
 .pnp.*
 
 .idea/
+
+public/config.json
+
+.DS_Store

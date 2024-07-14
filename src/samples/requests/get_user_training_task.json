@@ -1,0 +1,15 @@
+{
+  "session_id": 1,
+  "task_id": "01",
+  "study_condition": 4,
+  "scenario": "Hello Scenario!",
+  "ai_info" : "Hi, AI info!",
+  "uncertainty": 1,
+  "framing": 1,
+  "accuracy": 1,
+  "best_route_id": 3,
+  "best_cost": 3,
+  "ai_route_id": 3,
+  "ai_cost": 3,
+  "status": "passed"
+}

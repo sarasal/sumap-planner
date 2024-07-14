@@ -1,5 +1,5 @@
 <template>
-  <b-progress :max="max" height="30px" animated>
+  <b-progress :max="max" height="30px" :animated="animated">
     <b-progress-bar :value="value + finished" height="30px" variant="success" >
       <span>Answered: <strong>{{ value + finished}} / {{ max }}</strong></span>
     </b-progress-bar>
@@ -11,6 +11,10 @@
 export default {
   name: "ProgressBar",
   props:{
+    animated:{
+      type: Boolean,
+      default: false,
+    },
     max: {
       type: Number,
       required: true,

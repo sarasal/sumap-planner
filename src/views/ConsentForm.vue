@@ -42,15 +42,28 @@
 </template>
 
 <script>
+import {store} from "@/store";
 
 export default {
   name: "Introduction",
   data() {
     return {
       prolificId: undefined,
+      sessionId: Number(store.appConfig.CURRENT_SESSION_NUMBER),
+      demoSession: store.appConfig.DEMO_SESSION.toLowerCase() === "enabled",
     }
   },
   methods: {
+    selectNextPage: function (){
+      if (this.sessionId === 1)
+        return 'pretest';
+
+      if(this.demoSession){
+        return 'demo';
+      }
+
+      return 'tutorial';
+    },
     proceedToTask: async function (){
       if (this.prolificId == null){
         this.$vs.notify({
@@ -64,9 +77,13 @@ export default {
 
       const user_id = this.prolificId;
       this.saveUserId(user_id);
-      this.saveUserProgress(user_id);
 
-      let url = '/' + user_id + '/preTest';
+      let nextPage = this.selectNextPage() ;
+
+      this.saveUserProgress(user_id, nextPage);
+
+      const url = '/' + user_id + '/' + nextPage;
+
       await this.$router.push(url);
     },
     saveUserId(user_id) {
@@ -75,8 +92,8 @@ export default {
       }
       localStorage.setItem(user_id, JSON.stringify(data));
     },
-    saveUserProgress: function (userId){
-      localStorage.setItem(`${userId}-progress`, 'pretest');
+    saveUserProgress: function (userId, page){
+      localStorage.setItem(`${userId}-progress`, page);
     },
   }
 }

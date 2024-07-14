@@ -50,7 +50,10 @@ import Range from '../components/Range.vue'
 </template>
 
 <script>
-import questions from '../questions/pre_test.json';
+import allQuestions from '../questions/questions.json';
+import {store} from "@/store";
+
+const questions = allQuestions.pre_task
 
 export default {
   name: "PreTest",
@@ -66,6 +69,7 @@ export default {
       becomeRedIfEmpty: false,
       user_id: null,
       questions: questions,
+      sessionId: Number(store.appConfig.CURRENT_SESSION_NUMBER),
       answers: new Array(questions.length).fill(-1),
     }
   },
@@ -108,7 +112,8 @@ export default {
 
       return {
         "user_id": this.user_id,
-        "pre_test": JSON.stringify(result)
+        "session_id": String(this.sessionId),
+        "pre_test": result
       };
     },
     submit: async function () {

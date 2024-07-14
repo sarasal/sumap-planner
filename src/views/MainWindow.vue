@@ -12,7 +12,7 @@ import WaitingRoom from "./WaitingRoom.vue";
       <b-tab :title="this.currentPage.title" >
         <PreTest v-if="pages.pretest.show" :demoSession="demoSession" @submit="done"></PreTest>
         <Test v-else-if="pages.demo.show" :demoSession="demoSession" :demoTab="true" :groupDecisionMaking="groupDecisionMaking" @nextTab="done"></Test>
-        <Test v-else-if="pages.onboarding.show" :demoSession="demoSession" :onBoarding="true" :groupDecisionMaking="groupDecisionMaking" @onBoardingFinished="done"></Test>
+<!--        <Test v-else-if="pages.onboarding.show" :demoSession="demoSession" :onBoarding="true" :groupDecisionMaking="groupDecisionMaking" @onBoardingFinished="done"></Test>-->
         <Test v-else-if="pages.tutorial.show" :demoSession="demoSession" :tutorial="true" :groupDecisionMaking="groupDecisionMaking" @tutorialFinished="done"></Test>
         <Test v-else-if="pages.training.show" :demoSession="demoSession" :training="true" :groupDecisionMaking="groupDecisionMaking" @trainingFinished="done"></Test>
         <Quiz v-else-if="pages.quiz.show" :demoSession="demoSession" :userId="userId" :studyCondition="studyCondition" @submit="done"></Quiz>
@@ -42,6 +42,13 @@ import WaitingRoom from "./WaitingRoom.vue";
 </template>
 
 <script>
+import get_user_training_task from '../samples/requests/get_user_training_task.json';
+import {store} from "@/store";
+
+const sampleResponses = {
+  get_user_training_task : get_user_training_task,
+}
+
 export default {
   name: "MainWindow",
   data() {
@@ -51,22 +58,17 @@ export default {
       studyCondition: undefined,
       complexity: undefined,
       taskType: undefined,
-      demoSession: String(import.meta.env.VITE_DEMO_SESSION).toLowerCase() === "enabled",
+      demoSession: store.appConfig.DEMO_SESSION.toLowerCase() === "enabled",
       groupDecisionMaking: String(import.meta.env.VITE_GROUP_DECISION_MAKING).toLowerCase() === "enabled",
       pages: { // todo move it to file
         pretest:{
           show: false,
-          title: 'Pre Test',
+          title: 'Pre Task',
           next: 'unknown',
         },
         demo:{
           show: false,
           title: 'Demo',
-          next: 'onBoarding',
-        },
-        onboarding:{
-          show: false,
-          title: 'OnBoarding',
           next: 'tutorial',
         },
         tutorial:{
@@ -107,7 +109,13 @@ export default {
     }
   },
   methods :{
+    fakeRequest: function (url) {
+      return sampleResponses[url];
+    },
     updateBackend: async function (url, body) {
+      // if (this.demoSession){
+      //   return this.fakeRequest(url);
+      // }
       const requestOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -119,6 +127,22 @@ export default {
     getScore: function (){
       return localStorage.getItem(`${this.userId}-score`);
     },
+    saveTrainingTask: function ( res ){
+      const info = {
+        session_id: res.session_id,
+        task_id: res.task_id,
+        study_condition: res.study_condition,
+        task_scenario: res.task_scenario,
+        ai_scenario: res.ai_scenario,
+        best_transport: res.best_transport,
+        best_route_id: res.best_route_id,
+        best_cost: res.best_cost,
+        ai_route_id: res.ai_route_id,
+        ai_cost: res.ai_cost,
+        ai_transport: res.ai_transport,
+      }
+      localStorage.setItem(`${this.userId}-info`, JSON.stringify(info));
+    },
     done: async function ( body ){
       // TODO loading
       let next = this.currentPage.next;
@@ -128,19 +152,14 @@ export default {
       }
 
       if (this.currentPage.next === 'unknown'){
-        const res = await this.updateBackend('get_user_tutorial', body);
+        const res = await this.updateBackend('get_user_training_task', body);
         if (res.status !== 'passed'){
           localStorage.setItem('failed', 'true');
           await this.failed();
           return
         }
-        const info = {
-          study_condition: res.study_condition,
-          complexity: res.complexity,
-          task_type: res.task_type,
-        }
-        localStorage.setItem(`${this.userId}-info`, JSON.stringify(info));
-        next = (this.demoSession)? 'demo' : 'onBoarding';
+        this.saveTrainingTask(res);
+        next = (this.demoSession)? 'demo' : 'tutorial';
       }
 
       if (this.currentPage.next === 'score') {
