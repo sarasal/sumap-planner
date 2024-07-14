@@ -6,5 +6,6 @@
   "PROLIFIC_ACCEPT_LINK": "<Prolific accept link>",
   "GROUP_DECISION_MAKING": "<enable/disable group decision making>",
   "GREETING_TEXT": "<Greeting text>",
-  "CURRENT_SESSION_NUMBER_TEXT": "<Current session text>"
+  "CURRENT_SESSION_NUMBER_TEXT": "<Current session text>",
+  "CURRENT_SESSION_NUMBER": "<Current session number>"
 }
