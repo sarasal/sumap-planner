@@ -63,7 +63,7 @@ export default {
       pages: { // todo move it to file
         pretest:{
           show: false,
-          title: 'Pre Test',
+          title: 'Pre Task',
           next: 'unknown',
         },
         demo:{

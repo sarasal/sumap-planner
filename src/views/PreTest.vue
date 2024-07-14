@@ -50,7 +50,9 @@ import Range from '../components/Range.vue'
 </template>
 
 <script>
-import questions from '../questions/pre_test.json';
+import allQuestions from '../questions/questions.json';
+
+const questions = allQuestions.pre_task
 
 export default {
   name: "PreTest",
