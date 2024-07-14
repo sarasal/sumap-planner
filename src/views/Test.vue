@@ -20,7 +20,7 @@ import Quiz from "@/views/Quiz.vue";
         <b-col cols="1">
         </b-col>
         <b-col cols="1" ref="clock">
-          <Clock v-if="userId" :paused="false" :user-id="userId" />
+          <Clock v-if="userId && timerEnabled" :paused="false" :user-id="userId" />
         </b-col>
       </b-row>
       <b-row>
@@ -163,6 +163,7 @@ import sample3 from '../samples/sample_tasks_3.json';
 import sample4 from '../samples/sample_tasks_4.json';
 import sample5 from '../samples/sample_tasks_5.json';
 import sample6 from '../samples/sample_tasks_6.json';
+import {store} from "@/store";
 
 const samples = [sample1,sample2,sample3,sample4,sample5,sample6];
 const transportMap = {
@@ -229,6 +230,7 @@ export default {
   },
   data() {
     return {
+      timerEnabled: store.appConfig.TIMER_ENABLED.toLowerCase() === "enabled",
       finishedLoaded: false,
       currentSample: 1,
       readMe: !this.mainTasks,
