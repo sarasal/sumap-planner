@@ -421,8 +421,8 @@ export default {
       const steps = [
         {
           id: 0,
-          title: 'Attention!',
-          intro: 'You should do the training task individually, without collaboration with your partner. You can use the bottom component of the interface to submit your initial and final decisions.'
+          title: '',
+          intro: 'Now you have all the information on the task procedure and the AI system, let’s start with the training task!'
         }
       ]
 
