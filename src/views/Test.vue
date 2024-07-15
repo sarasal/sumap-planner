@@ -37,7 +37,7 @@ import Quiz from "@/views/Quiz.vue";
                 @mouseleave="hover.map = false"
             ></b-embed>
           </b-row>
-          <b-row ref="mapControlPanel">
+          <b-row ref="mapControlPanel" class="d-flex justify-content-center align-items-center">
             <b-row>
               <b-pagination
                 v-model="userFriendlyRouteIndex"
@@ -46,29 +46,37 @@ import Quiz from "@/views/Quiz.vue";
                 :limit="map_id_list.length"
                 :hide-goto-end-buttons="true"
                 align="fill"
+                size="lg"
                 @change="routeChanged"
               ></b-pagination>
-            </b-row>
-            <b-row>
-              <span style="padding-top: 5px">{{ route_name }}</span>
+              <span style="margin-left: 1rem; padding-top: 5px; font-size: 2rem">{{ route_name }}</span>
             </b-row>
           </b-row>
         </b-col>
         <b-col cols="4" class="pr-0 pl-0">
           <div ref="generalInfo" @mouseover="hover.generalInfo = true" @mouseleave="hover.generalInfo = false">
-            <b-card ref="scenario" title="Scenario" style="font-size: 12px; margin-bottom: 1rem">
-              As a delivery manager, you manage the delivery of multiple parcels. Your main task is choosing delivery routes associated with the lowest costs. You do this by comparing five available delivery routes from which you need to pick the best one. To identify the optimal route, you must consider the following criteria: <br/>
-              Number of Parcels <br/>
-              Each parcel delivery is rewarded with 100 points. The routes may vary in the number of parcels (between 1 and 10). <br/>
-              Delivery Vehicle <br/>
-              Parcels are delivered by either car or e-bike. Deliveries by e-bike are rewarded with 50 points for each traveled kilometer. Deliveries by car, in contrast, are faster and save time. <br/>
-              Distance <br/>
-              Delivering the parcels creates costs. The longer deliveries are, the more costs are created. The length of a sub-route is displayed when hovering over a particular route. The speed of the car and e-bike is constant, with the car traveling at 70 km/h and the e-bike at 45 km/h. <br/>
-              Delivery handling time <br/>
-              {{this.current_task.task_scenario}}
+            <b-card ref="scenario" title="Task Scenario" style="font-size: 14px; margin-bottom: 1rem" class="custom-card">
+              <img :src="iconsSrc.deliveryManager" alt="Icon" class="icon-small" /> As a delivery manager, you manage the delivery of multiple parcels. Your main task is choosing delivery routes associated with the lowest costs. You do this by comparing five available delivery routes from which you need to pick the best one. To identify the optimal route, you must consider the following criteria: <br/>
+              <b-list-group class="custom-list-group">
+                <b-list-group-item>
+                  <img :src="iconsSrc.package" alt="Icon" class="icon-small" /> <b>Number of Parcels</b>: Each parcel delivery is rewarded with <b>100</b> points. The routes may vary in the number of parcels (between <b>1</b> and <b>10</b>).
+                </b-list-group-item>
+                <b-list-group-item>
+                  <img :src="iconsSrc.car" alt="Icon" class="icon-small" /> / <img :src="iconsSrc.eBike" alt="Icon" class="icon-small" /> <b>Delivery Vehicle</b>: Parcels are delivered by either <b>car</b> or <b>e-bike</b>. Deliveries by e-bike are rewarded with <b>50</b> points for each traveled kilometer. Deliveries by car, in contrast, are faster and save time. <br/>
+                </b-list-group-item>
+                <b-list-group-item>
+                  <img :src="iconsSrc.distance" alt="Icon" class="icon-small" /> <b>Distance</b>: Delivering the parcels creates costs. The longer deliveries are, the more costs are created. The length of a sub-route is displayed when hovering over a particular route. The speed of the car and e-bike is constant, with the car traveling at <b>70 km/h</b> and the e-bike at <b>45 km/h</b>. <br/>
+                </b-list-group-item>
+                <b-list-group-item>
+                  <img :src="iconsSrc.deliveryTime" alt="Icon" class="icon-small" /> <b>Delivery handling time</b>: {{this.delivery_handling_time}}
+                </b-list-group-item>
+              </b-list-group>
+              <b-card ref="ai-info" title="DeliveryPlanner AI System" style="font-size: 14px" class="delivery-card">
+                {{this.current_task.ai_scenario}}
+              </b-card>
             </b-card>
-            <b-card ref="ai-info" title="AI Info" style="font-size: 12px">
-              {{this.current_task.ai_scenario}}
+            <b-card title="You are tasked to ..." style="font-size: 14px" class="custom-green-card">
+              {{you_are_tasked_to}}
             </b-card>
           </div>
         </b-col>
@@ -165,6 +173,13 @@ import sample5 from '../samples/sample_tasks_5.json';
 import sample6 from '../samples/sample_tasks_6.json';
 import {store} from "@/store";
 
+import carIcon from '@/assets/icons/car.png';
+import eBikeIcon from '@/assets/icons/e-bike.png';
+import deliveryTimeIcon from '@/assets/icons/delivery-time.png';
+import deliveryManagerIcon from '@/assets/icons/delivery-manager.png';
+import distanceIcon from '@/assets/icons/distance.png';
+import packageIcon from '@/assets/icons/package.png';
+
 const samples = [sample1,sample2,sample3,sample4,sample5,sample6];
 const transportMap = {
   train: {
@@ -230,6 +245,14 @@ export default {
   },
   data() {
     return {
+      iconsSrc : {
+        car: carIcon,
+        eBike: eBikeIcon,
+        deliveryTime: deliveryTimeIcon,
+        deliveryManager: deliveryManagerIcon,
+        distance: distanceIcon,
+        package: packageIcon,
+      },
       animatedProgressBar: store.appConfig.ANIMATED_PROGRESS_BAR.toLowerCase() === "enabled",
       timerEnabled: store.appConfig.TIMER_ENABLED.toLowerCase() === "enabled",
       finishedLoaded: false,
@@ -786,6 +809,14 @@ export default {
     },
   },
   computed: {
+    delivery_handling_time: function (){
+      const scenario = this.user_tasks != null ? this.user_tasks[this.current_task_index].task_scenario : {};
+      return scenario.split(" You are tasked to ")[0];
+    },
+    you_are_tasked_to: function (){
+      const scenario = this.user_tasks != null ? this.user_tasks[this.current_task_index].task_scenario : {};
+      return `You are tasked to ${scenario.split(" You are tasked to ")[1]}`;
+    },
     current_task: function () {
       return this.user_tasks != null ? this.user_tasks[this.current_task_index] : {};
     },
@@ -893,5 +924,45 @@ div {
 
 .no-padding >>> div{
   padding: 0;
+}
+
+.custom-list-group .list-group-item {
+  position: relative;
+  padding-left: 1.5em;
+  border: none;
+  background-color: #f5f5f5; /* Custom background color */
+}
+
+.custom-list-group .list-group-item::before {
+  content: '\2022';
+  color: black;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1.5em;
+  background-color: #f5f5f5; /* Custom background color */
+}
+
+.icon-small {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.custom-green-card {
+  border: 0.1rem solid #388e3c; /* Custom border color */
+  background-color: #d0f1d1; /* Custom background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+.custom-card {
+  border: 0.1rem solid #424244; /* Custom border color */
+  background-color: #f5f5f5; /* Custom background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+.delivery-card {
+  border: 2px solid #3f51b5; /* Professional blue border color */
+  background-color: #e8eaf6; /* Light blue-grey background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
 }
 </style>
