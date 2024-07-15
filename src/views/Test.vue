@@ -279,6 +279,7 @@ export default {
       user_tasks: null,
       route_options: [],
       taskIdList: [],
+      showTrainingPopup: true,
       studyCondition: null,
       result: {
         user_id: null,
@@ -320,6 +321,7 @@ export default {
       }
     },
     routeChanged: function (page) {
+      this.showTrainingPopup = false;
       this.emitBackendEvent('CLICK', this.getCurrentTimestamp(), (page-1));
       this.current_map_index = page -1;
     },
@@ -466,7 +468,7 @@ export default {
       intro.start();
     },
     mapLoaded: function (){
-      if(this.training){
+      if(this.training && this.showTrainingPopup){
         this.trainingPopup()
         return
       }

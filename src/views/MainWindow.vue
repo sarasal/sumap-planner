@@ -79,7 +79,7 @@ export default {
         training:{
           show: false,
           title: 'Training',
-          next: 'quiz',
+          next: 'mainTask',
         },
         quiz:{
           show: false,
