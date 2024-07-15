@@ -1,8 +1,8 @@
 <template>
   <b-container class="container">
-    <b-card :img-src="require('@/assets/map_intro.jpeg')"
+    <b-card :img-src="require('@/assets/delivery_planner.jpeg')"
             img-alt="Image"
-            img-height="300rem"
+            img-height="500rem"
             img-top
             class="card"
             title="Consent Form">
@@ -14,18 +14,14 @@
       </b-card-text>
 
       <b-card-text class="indent">
-        1. Voluntary Participation
+        <b> Voluntary Participation: </b>
         Your participation in this study is entirely voluntary, and you have the right to withdraw at any time without penalty or negative consequences. If you choose to withdraw, any data collected from you will be deleted and not included in the final analysis.
 
       </b-card-text>
 
       <b-card-text class="indent">
-        2. Confidentiality and Use, Storage, and Sharing of Data
+        <b> Confidentiality and Use, Storage, and Sharing of Data: </b>
         We will gather and analyse your questionnaire responses, main task completion, and interaction with our platform to improve the user experience. We assure you that no personal information will be collected or stored during this process. The anonymous information will be made available online in the interest of open source.
-      </b-card-text>
-
-      <b-card-text class="indent">
-        3. TBD (anything else that we need to include based on ERB info)
       </b-card-text>
 
       <b-input-group>

@@ -1,8 +1,8 @@
 <template>
   <b-container class="container">
-    <b-card :img-src="require('@/assets/map_intro.jpeg')"
+    <b-card :img-src="require('@/assets/delivery_planner.jpeg')"
             img-alt="Image"
-            img-height="300rem"
+            img-height="500rem"
             img-top
             class="card"
             title="Plan your delivery with us!">
@@ -25,7 +25,7 @@
       <b-card-text class="indent">
         2. This study is divided into four sessions over two weeks. You are currently in the {{current_session}} session.
         We reward you for participating in all sessions in addition to the normal reimbursement. The reimbursement for
-        each completed session will be [X], and the additional “return” bonus will be [X].
+        each completed session will be <b> [X] </b>, and the additional “return” bonus will be <b> [X] </b>.
       </b-card-text>
 
       <b-card-text class="indent">
@@ -35,11 +35,11 @@
       </b-card-text>
 
       <b-card-text class="indent">
-        4. During the experiment, please refrain from pushing the back button in your browser. Instead, use the NEXT buttons found in our system’s interface.
+        4. During the experiment, please refrain from pushing the back button in your browser. Instead, use the <b> NEXT </b> buttons found in our system’s interface.
       </b-card-text>
 
       <b-card-text>
-        Completing this study session will take approximately [X] minutes.
+        Completing this study session will take approximately <b> [X] </b> minutes.
       </b-card-text>
 
       <b-button class="mt-2" align-h="left" @click="gotoConsentForm()" variant="success">Continue</b-button>
