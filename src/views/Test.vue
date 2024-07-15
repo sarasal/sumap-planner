@@ -562,61 +562,67 @@ export default {
 
       const steps = [
         {
-          title: 'welcome',
-          intro: 'This is the task tutorial to understand the different factors that can impact travel times and cost for commuters. Click on the next button to start.',
+          title: 'Welcome',
+          intro: 'Before we start with the main study tasks, we want you to familiarize yourself with a training task. Take the time to read through the descriptions and task features before moving on to the main tasks.',
           studyConditions: [1,2,3,4,5,6],
         },
         {
+          title: this.$refs.scenario,
+          position: 'bottom',
+          intro: 'In this study, your main task is finding the best delivery route out of five options. For this task, you always follow the same four steps:',
+          studyConditions: [1,2,3,4,5,6],
+        },
+        {
+          element: this.$refs.decisions,
+          intro: 'Step 1: You screen the five route options and submit your initial decision',
+          position: 'right',
+          studyConditions: [1,3,5],
+        },
+        {
           element: this.$refs.map,
-          intro: "The name of each sub-route.",
+          intro: 'The Map includes information about the number of parcels, delivery handling time, distances, and vehicle type (which is also visualized by colors and icons in the map). You can access more information by hovering over the parcels or sub-routes.',
           position: 'right',
           studyConditions: [1,2,3,4,5,6],
         },
-        // {
-        //   element: this.$refs.subRouteName[0],
-        //   intro: "The name of each sub-route.",
-        //   position: 'right',
-        //   studyConditions: [1,2,3,4,5,6],
-        // },
+        {
+          element: this.$refs.mapControlPanel,
+          intro: 'With the control buttons, you can change the highlighted route on the map.',
+          position: 'top',
+          studyConditions: [1,2,3,4,5,6],
+        },
+        {
+          title: 'AI Suggestion',
+          intro: 'Step 2: You receive new information about the AI suggestion.',
+          studyConditions: [1,2,3,4,5,6],
+        },
+        {
+          element: this.$refs.submitButton,
+          intro: 'Step 3: You finally submit the route that you believe is the best option. This means you can adjust or confirm your initial decision from Step 1.',
+          position: 'right',
+          studyConditions: [1,2,3,4,5,6],
+        },
+        {
+          title: 'Short Questionnaire',
+          intro: 'Step 4: You finish this task with a short questionnaire before you go to the next task.',
+          studyConditions: [1,2,3,4,5,6],
+        },
+
         {
           element: this.$refs.scenario,
           intro: "The mode of transportation includes a train, taxi, and bus. Each sub-route is indicated by a distinct logo to identify it.",
           position: 'bottom',
           studyConditions: [1,2,3,4,5,6],
         },
-        // {
-        //   element: this.$refs.transportMode[0],
-        //   intro: "The transportation mode is also displayed here.",
-        //   position: 'right',
-        //   studyConditions: [1,2,3,4,5,6],
-        // },
-        // {
-        //   element: transportFareEl,
-        //   intro: "The cost of each transportation mode per kilometer in Euro.",
-        //   position: 'left',
-        //   studyConditions: [1,2,3,4,5,6],
-        // },
-        // {
-          // element: this.$refs.fareCost[0],
-          // intro: "The base cost for each sub-route is determined by multiplying the distance of this sub-route by its corresponding public transport fare per kilometer.",
-          // position: 'right',
-          // studyConditions: [1,2,3,4,5,6],
-        // },
         {
           element: this.$refs["ai-info"],
-          intro: "The shortest time it would take to travel along this sub-route, based solely on the distance and speed of public transportation.",
+          intro: 'During the study task, you are supported by an AI system. Find some details on it here:',
           position: 'right',
-          studyConditions: [1,3,5],
+          studyConditions: [1,2,3,4,5,6],
         },
+
         {
-          element: this.$refs.decisions,
-          intro: "The shortest time it would take to travel along this sub-route, based solely on the distance and speed of public transportation.",
-          position: 'right',
-          studyConditions: [1,3,5],
-        },
-        {
-          title: 'congratulation',
-          intro: 'You have acquired the necessary knowledge to complete this study. Click on the Done button to demonstrate your newfound skills by carrying out a sample task.',
+          title: 'Tutorial Completed',
+          intro: 'Here is where the tasks start. The first task with be training, which can be clicked through for the second/third/last session',
           studyConditions: [1,2,3,4,5,6],
         },
       ];
