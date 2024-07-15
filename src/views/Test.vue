@@ -488,7 +488,6 @@ export default {
 
       // let subscriptionEl, rainEl, trafficEl, capacityLevel, capacityEl, peakFaresEl, peakFares, distanceBasedDiscount, distanceBasedDiscountEl, limitedTransfersEl, stopEL;
 
-
       // if (this.studyCondition >= 3 ){
       //   subscriptionEl = generalInfoRefs.costCard.$refs.subscription.$el;
       //   capacityLevel = this.$refs.capacityLevel[0];
