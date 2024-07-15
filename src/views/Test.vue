@@ -24,6 +24,14 @@ import Quiz from "@/views/Quiz.vue";
         </b-col>
       </b-row>
       <b-row>
+        <b-col cols="12">
+          <b-card class="custom-task-card">
+            <h4 class="task-card-title">You are tasked to ...</h4>
+            <p class="task-card-text">{{you_are_tasked_to}}</p>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row>
         <b-col cols="8" class="pr-0 pl-0">
           <b-row>
             <b-embed
@@ -75,9 +83,6 @@ import Quiz from "@/views/Quiz.vue";
                 {{this.current_task.ai_scenario}}
               </b-card>
             </b-card>
-            <b-card title="You are tasked to ..." style="font-size: 14px" class="custom-green-card">
-              {{you_are_tasked_to}}
-            </b-card>
           </div>
         </b-col>
       </b-row>
@@ -100,7 +105,7 @@ import Quiz from "@/views/Quiz.vue";
             <b-input-group v-if="initialDecision.enabled">
 
               <template #prepend>
-                <b-input-group-text >What is the best plan in terms of minimising commute time and cost?</b-input-group-text>
+                <b-input-group-text >What is the best delivery plan?</b-input-group-text>
               </template>
 
               <b-form-select v-model="initialDecision.value" :options="route_options">
@@ -123,10 +128,10 @@ import Quiz from "@/views/Quiz.vue";
 
         <b-card v-if="!initialDecision.enabled && (!groupDecisionMaking || this.training)" style="width:100%; padding: 0; margin-top: 1rem; margin-bottom: 1rem">
           <template #header>
-            <h1 style="font-size: 28px">AI Suggestion</h1>
+            <h1 style="font-size: 28px">DeliveryPlanner Suggestion</h1>
           </template>
           <b-text>
-            AI suggests that the <span style="background-color: yellow;">{{`Route ${Number(this.current_task.best_route_id) +1}`}}</span> minimizes the commute time and cost.
+            DeliveryPlanner suggests that the <span style="background-color: yellow;">{{`Route ${Number(this.current_task.best_route_id) +1}`}}</span> is the best plan.
           </b-text>
         </b-card>
 
@@ -139,7 +144,7 @@ import Quiz from "@/views/Quiz.vue";
             <b-input-group>
 
               <template #prepend>
-                <b-input-group-text >What is the best plan in terms of minimising commute time and cost?</b-input-group-text>
+                <b-input-group-text >What is the best delivery plan?</b-input-group-text>
               </template>
 
               <b-form-select v-model="finalDecision" :options="route_options">
@@ -948,21 +953,35 @@ div {
   height: 1.5rem;
 }
 
-.custom-green-card {
-  border: 0.1rem solid #388e3c; /* Custom border color */
-  background-color: #d0f1d1; /* Custom background color */
+.custom-task-card {
+  border: 2px solid #1e5e29; /* Warmer green border color */
+  background-color: #f2fff2; /* Custom background color */
+  border-radius: 10px; /* Optional: Rounded corners for a more stylish look */
+  padding: 10px; /* Optional: Padding for better content spacing */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
+}
+
+.task-card-title {
+  color: #2c3e50; /* Navy blue color for the title */
+  font-weight: bold;
+}
+
+.task-card-text {
+  font-size: 16px;
+  color: #34495e; /* Slightly lighter blue-grey color for the text */
 }
 
 .custom-card {
   border: 0.1rem solid #424244; /* Custom border color */
   background-color: #f5f5f5; /* Custom background color */
+  border-radius: 10px; /* Optional: Rounded corners for a more stylish look */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
 }
 
 .delivery-card {
   border: 2px solid #3f51b5; /* Professional blue border color */
   background-color: #e8eaf6; /* Light blue-grey background color */
+  border-radius: 10px; /* Optional: Rounded corners for a more stylish look */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for depth */
 }
 </style>
