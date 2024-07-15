@@ -23,7 +23,7 @@
         <b> Confidentiality and Use, Storage, and Sharing of Data: </b>
         We will gather and analyse your questionnaire responses, main task completion, and interaction with our platform to improve the user experience. We assure you that no personal information will be collected or stored during this process. The anonymous information will be made available online in the interest of open source.
       </b-card-text>
-      
+
       <b-input-group>
         <template #prepend>
           <b-input-group-text variant="outline-info" class="email">Prolific ID</b-input-group-text>
