@@ -1,9 +1,7 @@
 <script setup>
 import ProgressBar from '../components/ProgressBar.vue'
 import Clock from '../components/Clock.vue'
-import GeneralInfoCard from '../components/test/GeneralInfoCard.vue'
 import Chat from "../components/Chat.vue"
-import Quiz from "@/views/Quiz.vue";
 </script>
 
 <template>
@@ -49,9 +47,9 @@ import Quiz from "@/views/Quiz.vue";
             <b-row>
               <b-pagination
                 v-model="userFriendlyRouteIndex"
-                :total-rows="map_id_list.length"
+                :total-rows="maxMapIndex"
                 :per-page="1"
-                :limit="map_id_list.length"
+                :limit="maxMapIndex"
                 :hide-goto-end-buttons="true"
                 align="fill"
                 size="lg"
@@ -260,12 +258,14 @@ export default {
       },
       animatedProgressBar: store.appConfig.ANIMATED_PROGRESS_BAR.toLowerCase() === "enabled",
       timerEnabled: store.appConfig.TIMER_ENABLED.toLowerCase() === "enabled",
+      sessionId: store.appConfig.CURRENT_SESSION_NUMBER,
       finishedLoaded: false,
       currentSample: 1,
       readMe: !this.mainTasks,
       current_task_index: 0,
       userFriendlyRouteIndex: 1,
       current_map_index: 0,
+      maxMapIndex: 5,
       task_info: null,
       initialDecision: {
         enabled: true,
@@ -283,10 +283,11 @@ export default {
       studyCondition: null,
       result: {
         user_id: null,
-        study_condition: null,
+        session_id: store.appConfig.CURRENT_SESSION_NUMBER,
+        training_status: "done", // todo
         start_time: null,
         end_time: null,
-        user_study: [],
+        responses: [],
         decision_times: [],
       },
       hover:{
@@ -376,7 +377,7 @@ export default {
 
       const finalSubmissionTimestamp = this.getCurrentTimestamp();
 
-      this.result.user_study.push({
+      this.result.responses.push({
         task_id: this.current_task.task_id,
         initial_decision: this.routeNameToIndex(this.initialDecision.value),
         final_decision: this.routeNameToIndex(this.finalDecision),
@@ -391,7 +392,8 @@ export default {
       });
 
       if(this.training){
-        this.$emit('trainingFinished');
+        this.result.end_time = finalSubmissionTimestamp;
+        this.$emit('trainingFinished', this.result);
         return;
       }
 
@@ -795,7 +797,7 @@ export default {
     },
     generate_route_options: function () {
       let options = [];
-      for (let i = 0; i < this.map_id_list.length; i++) {
+      for (let i = 0; i < this.maxMapIndex; i++) {
         options.push(`Route ${i+1}`)
       }
       return options
@@ -828,10 +830,9 @@ export default {
       return this.user_tasks != null ? this.user_tasks[this.current_task_index] : {};
     },
     map_url: function () {
-      return this.user_tasks != null ? `${window.location.origin}/maps/${this.current_task.map_id_list[this.current_map_index]}.html` : "";
-    },
-    map_id_list: function () {
-      return this.user_tasks != null ? this.user_tasks[this.current_task_index].map_id_list : [];
+      const taskIndex = (this.training) ? 0 : this.current_task_index+1;
+      const mapName = this.user_tasks != null ? `s${this.sessionId}_${this.current_task.uncertainty.substring(0,4)}_t${taskIndex}_${this.current_map_index}` : "";
+      return this.user_tasks != null ? `${window.location.origin}/maps/pilot/${mapName}.html`: "";
     },
     route_start_time: function () {
       return this.user_tasks != null ? JSON.parse(this.user_tasks[this.current_task_index].route_start_time.replace(/'/g, '"')) : [];
@@ -841,9 +842,6 @@ export default {
     },
     chance_list: function (){
       return this.user_tasks != null ? JSON.parse(this.user_tasks[this.current_task_index].chance_list.replace(/'/g, '"')) : [];
-    },
-    current_route: function () {
-      return this.user_tasks != null ? this.map_id_list[this.current_map_index].route : {};
     },
     route_name: function () {
       return `Route ${this.userFriendlyRouteIndex}`
@@ -855,8 +853,10 @@ export default {
   created: async function() {
     window.addEventListener('message', this.handleMessageFromIframe);
     this.userId =  this.$route.params.userId;
+    this.result.start_time = this.getCurrentTimestamp();
+    this.result.user_id = this.userId;
 
-    if(this.demoTab || this.tutorial || this.training || this.mainTasks){
+    if(this.demoTab){
       this.user_tasks = sample1;
       this.task_info = JSON.parse(localStorage.getItem(`${this.userId}-info`));
     }
@@ -864,26 +864,23 @@ export default {
     // this.studyCondition = parseInt(JSON.parse(localStorage.getItem(`${this.userId}-info`)).study_condition);
     // this.roomId = localStorage.getItem('room-id');
 
-    // if (this.training){
-    //   const res = await this.updateBackend('get_user_training_task');
-    //   this.user_tasks = [res]
-    // }
+    if (this.training || this.tutorial){
+      const tasks = JSON.parse(localStorage.getItem(`${this.userId}-info`));
+      this.user_tasks = [tasks];
+    }
 
-    // if (this.mainTasks){
-    //   const tasks = localStorage.getItem('user-tasks');
-    //   if(tasks === null){
-    //     this.result.user_id = this.userId;
-    //     this.result.study_condition = this.studyCondition;
-    //     this.result.start_time = this.getCurrentTimestamp();
-    //     this.user_tasks = await this.updateBackend('get_group_task_instances');
-    //     this.current_task_index = 0;
-    //     localStorage.setItem('user-tasks', JSON.stringify(this.user_tasks));
-    //     localStorage.current_task_index = this.current_task_index;
-    //   } else {
-    //     this.user_tasks =  JSON.parse(tasks);
-    //     this.current_task_index = parseInt(localStorage.current_task_index);
-    //   }
-    // }
+    if (this.mainTasks){
+      this.user_tasks = JSON.parse(localStorage.getItem(`${this.userId}-user-tasks`));
+      const firstLoad = localStorage.getItem(`${this.userId}-first-load`);
+      if(firstLoad === null){
+        this.result.start_time = this.getCurrentTimestamp();
+        this.current_task_index = 0;
+        localStorage.current_task_index = this.current_task_index;
+        localStorage.setItem(`${this.userId}-first-load`, 'loaded');
+      } else {
+        this.current_task_index = parseInt(localStorage.current_task_index);
+      }
+    }
 
     this.taskIdList = this.extract_task_ids()
     this.route_options = this.generate_route_options();

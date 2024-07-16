@@ -133,6 +133,7 @@ export default {
         task_id: res.task_id,
         study_condition: res.study_condition,
         task_scenario: res.task_scenario,
+        uncertainty: res.uncertainty,
         ai_scenario: res.ai_scenario,
         best_transport: res.best_transport,
         best_route_id: res.best_route_id,
@@ -160,6 +161,11 @@ export default {
         }
         this.saveTrainingTask(res);
         next = (this.demoSession)? 'demo' : 'tutorial';
+      }
+
+      if (this.currentPage.next === 'mainTask'){
+        const res = await this.updateBackend('get_user_task_instances', body);
+        localStorage.setItem(`${this.userId}-user-tasks`, JSON.stringify(res));
       }
 
       if (this.currentPage.next === 'score') {
