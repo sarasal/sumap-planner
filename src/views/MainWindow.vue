@@ -98,7 +98,7 @@ export default {
         },
         posttest:{
           show: false,
-          title: 'Post Test',
+          title: 'Post Task',
           next: 'score',
         },
         score:{
@@ -166,14 +166,6 @@ export default {
       if (this.currentPage.next === 'mainTask'){
         const res = await this.updateBackend('get_user_task_instances', body);
         localStorage.setItem(`${this.userId}-user-tasks`, JSON.stringify(res));
-      }
-
-      if (this.currentPage.next === 'score') {
-        const body = {
-          group_id: localStorage.getItem('room-id')
-        }
-        const res = await this.updateBackend('get_user_study_score', body);
-        localStorage.setItem(`${this.userId}-score`, res.score);
       }
 
       localStorage.setItem(`${this.userId}-progress`, next);

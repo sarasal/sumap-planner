@@ -8,14 +8,14 @@ import CheckBox from '../components/CheckBox.vue'
   <div>
     <b-row style="margin-bottom: 1rem">
       <b-col>
-        <b-button v-if="currentPage !== 6" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
+        <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
       </b-col>
       <b-col align="right" v-if="demoSession">
         <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
       </b-col>
     </b-row>
 
-    <div v-if="currentPage !== 6" id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
+    <div v-if="currentPage !== numberOfPages + 1" id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
       <Radio
           v-if="question.answer_list.length !== 2 && question.answer_list.length !== 0"
           :index="(currentPage-1)* 5 + index"
@@ -46,12 +46,12 @@ import CheckBox from '../components/CheckBox.vue'
       </b-form-group>
     </div>
 
-    <CheckBox v-if="currentPage === 6" :questions="questions" @selectedArrayChanged="selectedArrayChanged"></CheckBox>
+<!--    <CheckBox v-if="currentPage === 6" :questions="questions" @selectedArrayChanged="selectedArrayChanged"></CheckBox>-->
 
     <b-row style="margin-bottom: 1rem">
       <b-col>
-        <b-button v-if="currentPage !== 6" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
-        <b-button v-if="currentPage === 6" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
+        <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
+        <b-button v-if="currentPage === numberOfPages" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
       </b-col>
       <b-col align="right" v-if="demoSession">
         <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
@@ -84,6 +84,7 @@ export default {
       questions: [],
       answers: [],
       checkBoxInitialIndex: 21,
+      numberOfPages: 0,
     }
   },
   methods:{
@@ -147,7 +148,7 @@ export default {
       };
     },
     submit: async function () {
-      if(this.answeredAllQuestions(0,this.checkBoxInitialIndex)){
+      if(this.answeredAllQuestions(0,this.questions.length)){
         const data = this.generateFinalAnswers();
         await this.updateBackend(data);
         this.$emit('submit', data);
@@ -172,15 +173,16 @@ export default {
   },
   computed: {
     currentQuestionsIndexes: function (){
-      if(this.currentPage === 5){
-        return {
-          first: 20,
-          last: 21,
-        }
+      const first = (this.currentPage-1) * 5;
+      let last = (this.currentPage) * 5;
+
+      if ( last > this.questions.length){
+        last = this.questions.length;
       }
+
       return {
-        first: (this.currentPage-1) * 5,
-        last: (this.currentPage) * 5,
+        first: first,
+        last: last,
       }
     }
   },
@@ -188,6 +190,7 @@ export default {
     this.user_id = this.$route.params.userId
     this.questions = allQuestions.post_task.filter(item => item.session_id.includes(this.sessionId));
     this.answers = new Array(this.questions.length).fill(-1);
+    this.numberOfPages = Math.floor(this.questions.length/5) + 1;
   }
 }
 </script>
