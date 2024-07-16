@@ -100,6 +100,7 @@ export default {
     nextTab: function (){
       if(this.demoSession){
         const data = this.generateFinalAnswers();
+        this.updateBackend(data);
         this.$emit('submit', data);
       }
     },
@@ -144,7 +145,8 @@ export default {
 
       return {
         "user_id": this.user_id,
-        "post_test": JSON.stringify(result)
+        "session_id": this.sessionId,
+        "post_test": result,
       };
     },
     submit: async function () {
