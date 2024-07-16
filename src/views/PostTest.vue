@@ -62,7 +62,9 @@ import CheckBox from '../components/CheckBox.vue'
 </template>
 
 <script>
-import questions from '../questions/post_test.json';
+import allQuestions from '../questions/questions.json';
+import {store} from "@/store";
+
 
 export default {
   name: "PreTest",
@@ -76,10 +78,11 @@ export default {
     return {
       currentPage: 1,
       becomeRedIfEmpty: false,
+      sessionId: store.appConfig.CURRENT_SESSION_NUMBER,
       user_id: null,
       text: null,
-      questions: questions,
-      answers: new Array(questions.length).fill(-1),
+      questions: [],
+      answers: [],
       checkBoxInitialIndex: 21,
     }
   },
@@ -183,6 +186,8 @@ export default {
   },
   created: function () {
     this.user_id = this.$route.params.userId
+    this.questions = allQuestions.post_task.filter(item => item.session_id.includes(this.sessionId));
+    this.answers = new Array(this.questions.length).fill(-1);
   }
 }
 </script>
