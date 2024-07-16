@@ -289,6 +289,7 @@ export default {
         end_time: null,
         responses: [],
         decision_times: [],
+        perceptions: [],
       },
       hover:{
         map: false,
@@ -399,8 +400,7 @@ export default {
 
       if(this.current_task_index === this.user_tasks.length -1) {
         this.result.end_time = finalSubmissionTimestamp;
-        const res = await this.updateBackend('submit_user_study', this.result);
-        localStorage.setItem(`${this.userId}-score`, res.score);
+        await this.updateBackend('submit_user_tasks_responses', this.result);
         this.$emit('mainTasksFinished');
         return;
       }
@@ -440,7 +440,7 @@ export default {
       };
 
       const res = await fetch(`${window.location.origin}/api/${url}`, requestOptions);
-      if (url !== 'submit_event'){
+      if (!(url === 'submit_event' || url === 'submit_user_tasks_responses')){
         return await res.json();
       }
     },
