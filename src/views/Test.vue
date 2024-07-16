@@ -22,7 +22,7 @@ import Chat from "../components/Chat.vue"
         </b-col>
       </b-row>
       <b-row>
-        <b-col cols="12">
+        <b-col ref="youAreTasked" cols="12">
           <b-card class="custom-task-card">
             <h4 class="task-card-title">You are tasked to ...</h4>
             <p class="task-card-text">{{you_are_tasked_to}}</p>
@@ -453,7 +453,7 @@ export default {
       const steps = [
         {
           id: 0,
-          title: '',
+          title: 'Training Task',
           intro: 'Now you have all the information on the task procedure and the AI system, let’s start with the training task!'
         }
       ]
@@ -598,53 +598,52 @@ export default {
           studyConditions: [1,2,3,4,5,6],
         },
         {
-          title: this.$refs.scenario,
+          title: 'Instruction',
+          element: this.$refs.youAreTasked,
           position: 'bottom',
           intro: 'In this study, your main task is finding the best delivery route out of five options. For this task, you always follow the same four steps:',
           studyConditions: [1,2,3,4,5,6],
         },
         {
+          title: 'Step 1',
           element: this.$refs.decisions,
-          intro: 'Step 1: You screen the five route options and submit your initial decision',
+          intro: 'You screen the five route options and submit your initial decision',
           position: 'right',
           studyConditions: [1,3,5],
         },
         {
+          title: 'Map',
           element: this.$refs.map,
           intro: 'The Map includes information about the number of parcels, delivery handling time, distances, and vehicle type (which is also visualized by colors and icons in the map). You can access more information by hovering over the parcels or sub-routes.',
           position: 'right',
           studyConditions: [1,2,3,4,5,6],
         },
         {
+          title: 'Control Buttons',
           element: this.$refs.mapControlPanel,
           intro: 'With the control buttons, you can change the highlighted route on the map.',
           position: 'top',
           studyConditions: [1,2,3,4,5,6],
         },
         {
-          title: 'AI Suggestion',
-          intro: 'Step 2: You receive new information about the AI suggestion.',
+          title: 'Step 2',
+          intro: 'You receive new information about the DeliveryPlanner suggestion.',
           studyConditions: [1,2,3,4,5,6],
         },
         {
+          title: 'Step 3',
           element: this.$refs.submitButton,
-          intro: 'Step 3: You finally submit the route that you believe is the best option. This means you can adjust or confirm your initial decision from Step 1.',
+          intro: 'You finally submit the route that you believe is the best option. This means you can adjust or confirm your initial decision from Step 1.',
           position: 'right',
           studyConditions: [1,2,3,4,5,6],
         },
         {
-          title: 'Short Questionnaire',
-          intro: 'Step 4: You finish this task with a short questionnaire before you go to the next task.',
-          studyConditions: [1,2,3,4,5,6],
-        },
-
-        {
-          element: this.$refs.scenario,
-          intro: "The mode of transportation includes a train, taxi, and bus. Each sub-route is indicated by a distinct logo to identify it.",
-          position: 'bottom',
+          title: 'Step 4',
+          intro: 'You finish this task with a short questionnaire before you go to the next task.',
           studyConditions: [1,2,3,4,5,6],
         },
         {
+          title: 'DeliveryPlanner',
           element: this.$refs["ai-info"],
           intro: 'During the study task, you are supported by an AI system. Find some details on it here:',
           position: 'right',
