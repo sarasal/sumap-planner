@@ -2,6 +2,7 @@
 import ProgressBar from '../components/ProgressBar.vue'
 import Clock from '../components/Clock.vue'
 import Chat from "../components/Chat.vue"
+import QuestionModal from "@/components/QuestionModal.vue";
 </script>
 
 <template>
@@ -153,7 +154,7 @@ import Chat from "../components/Chat.vue"
               </b-form-select>
 
               <template #append>
-                <b-button @click="submitFinalDecision()">submit</b-button>
+                <b-button @click="beforeSubmittingFinalDecision()">submit</b-button>
               </template>
             </b-input-group>
           </div>
@@ -162,6 +163,8 @@ import Chat from "../components/Chat.vue"
 
       </b-row>
     </b-container>
+
+    <QuestionModal id="final-decision-modal" @submit="submitFinalDecision"></QuestionModal>
   </div>
 </template>
 
@@ -184,35 +187,6 @@ import distanceIcon from '@/assets/icons/distance.png';
 import packageIcon from '@/assets/icons/package.png';
 
 const samples = [sample1,sample2,sample3,sample4,sample5,sample6];
-const transportMap = {
-  train: {
-    icon: "train",
-    color: "#4361ee",
-  },
-  taxi: {
-    icon: "local_taxi",
-    color: "#7b2cbf",
-  },
-  bus: {
-    icon: "directions_bus",
-    color: "#61a5c2",
-  }
-};
-
-const capacityLevelMap = {
-  green: {
-    text: "Seats Available",
-    color: "#1D931DFF",
-  },
-  orange: {
-    text: "Limited Seats",
-    color: "#ffa500",
-  },
-  red: {
-    text: "No Seats",
-    color: "#dc0c0c",
-  },
-};
 
 export default {
   name: "Test",
@@ -273,6 +247,7 @@ export default {
         timestamp: 0,
       },
       finalDecision: "",
+      finalDecisionSubmissionTimestamp: null,
       route_info_styles:[],
       userId: null,
       roomId: null,
@@ -336,6 +311,7 @@ export default {
     },
     gotoNextTask: function (){
       this.finalDecision = "";
+      this.finalDecisionSubmissionTimestamp = null;
       this.initialDecision = {
         enabled: true,
         value: "",
@@ -345,6 +321,7 @@ export default {
       this.current_map_index=0;
       this.userFriendlyRouteIndex=1;
       this.readMe = false;
+      localStorage.setItem(`${this.userId}-initialDecision`, JSON.stringify(this.initialDecision));
       localStorage.current_task_index = this.current_task_index;
     },
     emitMainTaskFinished: function (){
@@ -361,12 +338,13 @@ export default {
       }
       this.initialDecision.timestamp = this.getCurrentTimestamp();
       this.initialDecision.enabled = false;
+      localStorage.setItem(`${this.userId}-initialDecision`, JSON.stringify(this.initialDecision));
       this.emitBackendEvent('INITIAL_SUBMISSION', this.initialDecision.timestamp, this.routeNameToIndex(this.initialDecision.value));
     },
     routeNameToIndex: function (name){
       return `${parseInt(name.replace('Route ', '')) -1}`;
     },
-    submitFinalDecision: async function (){
+    beforeSubmittingFinalDecision: async function() { // todo, name of this function is misleading, checks final decision is set correctly and then saves the results
       if(this.finalDecision === ""){
         this.$vs.notify({
           title:'Empty Final Decision',
@@ -376,7 +354,7 @@ export default {
         return;
       }
 
-      const finalSubmissionTimestamp = this.getCurrentTimestamp();
+      this.finalDecisionSubmissionTimestamp = this.getCurrentTimestamp();
 
       this.result.responses.push({
         task_id: this.current_task.task_id,
@@ -384,22 +362,43 @@ export default {
         final_decision: this.routeNameToIndex(this.finalDecision),
       });
 
-      this.emitBackendEvent('FINAL_SUBMISSION', finalSubmissionTimestamp, this.routeNameToIndex(this.finalDecision));
+      this.emitBackendEvent('FINAL_SUBMISSION', this.finalDecisionSubmissionTimestamp, this.routeNameToIndex(this.finalDecision));
 
       this.result.decision_times.push({
         task_id: this.current_task.task_id,
         start_decision: this.initialDecision.timestamp,
-        end_decision: finalSubmissionTimestamp,
+        end_decision: this.finalDecisionSubmissionTimestamp,
       });
 
+      if(this.mainTasks){
+        localStorage.setItem(`${this.userId}-result`, JSON.stringify(this.result));
+        this.$bvModal.show('final-decision-modal');
+        localStorage.setItem(`${this.userId}-final-decision-modal`, 'true');
+      } else {
+        await this.submitFinalDecision([]);
+      }
+    },
+    submitFinalDecision: async function (val){ // todo, name of this function is misleading, it receives per_task questions answer and goes to the next task
       if(this.training){
-        this.result.end_time = finalSubmissionTimestamp;
+        this.result.end_time = this.finalDecisionSubmissionTimestamp;
         this.$emit('trainingFinished', this.result);
         return;
       }
 
+      this.result.perceptions.push({
+        task_id: this.current_task.task_id,
+        per_test: val,
+      });
+
+      localStorage.setItem(`${this.userId}-result`, JSON.stringify(this.result));
+      localStorage.setItem(`${this.userId}-final-decision-modal`, 'false');
+
+      if(this.demoSession){
+        console.log(this.result);
+      }
+
       if(this.current_task_index === this.user_tasks.length -1) {
-        this.result.end_time = finalSubmissionTimestamp;
+        this.result.end_time = this.finalDecisionSubmissionTimestamp;
         await this.updateBackend('submit_user_tasks_responses', this.result);
         this.$emit('mainTasksFinished');
         return;
@@ -878,6 +877,14 @@ export default {
         localStorage.setItem(`${this.userId}-first-load`, 'loaded');
       } else {
         this.current_task_index = parseInt(localStorage.current_task_index);
+        this.result = JSON.parse(localStorage.getItem(`${this.userId}-result`));
+        this.initialDecision = JSON.parse(localStorage.getItem(`${this.userId}-initialDecision`));
+        const finalDecisionModal = localStorage.getItem(`${this.userId}-final-decision-modal`) === 'true';
+        if(finalDecisionModal){
+          setTimeout(()=> {
+            this.$bvModal.show('final-decision-modal');
+          }, 200);
+        }
       }
     }
 

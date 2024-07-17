@@ -1,17 +1,19 @@
 <script setup>
-import Radio from '../components/Radio.vue'
+import Range from "@/components/Range.vue";
 </script>
 
 <template>
   <b-modal size="lg" centered :id="id" no-close-on-backdrop no-close-on-esc hide-header-close @ok="submit">
     <div v-for="(question, index) in questions">
-      <Radio
+      <Range
           :index="index"
-          :question="question"
-          :options="options"
+          :question="question.question"
+          :max="question.likert_scale"
+          :beginningLabel="question.answer_list[0]"
+          :endLabel="question.answer_list[1]"
           :becomeRedIfEmpty="becomeRedIfEmpty"
           @selectedChanged="selectedChanged">
-      </Radio>
+      </Range>
     </div>
 
     <template #modal-footer="{ ok }">
@@ -24,25 +26,21 @@ import Radio from '../components/Radio.vue'
 </template>
 
 <script>
+import allQuestions from '@/questions/questions.json';
+const questions = allQuestions.per_task;
+
 export default {
   name: "QuestionModal",
   props: {
-    questions: {
-      type: Array,
-      required: true
-    },
     id: {
       type: String,
       required: true
     },
-    options: {
-      type: Array,
-      required: true
-    }
   },
   data() {
     return {
-      selected:  Array(this.questions.length).fill(-1),
+      questions: questions,
+      selected:  Array(questions.length).fill(-1),
       becomeRedIfEmpty: false,
     }
   },
