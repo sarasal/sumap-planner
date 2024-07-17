@@ -13,33 +13,33 @@
 
       <b-card-text>
         Our study aims to provide new insights into how humans and AI systems collaborate in the area of logistical planning.
-        Before you read more about this experiment, we'd like to draw your attention to four important points.
+        Before you read more about this experiment, we'd like to draw your attention to the following important points.
       </b-card-text>
 
       <b-card-text class="indent">
-        1. We ask you to answer all of our questionnaires truthfully and to the best of your knowledge. We will not penalise
+        We ask you to answer all of our questionnaires truthfully and to the best of your knowledge. We will not penalise
         you for getting a question incorrect. We are merely interested in investigating your experience of using our
         interface while doing the task.
       </b-card-text>
 
-      <b-card-text class="indent">
-        2. This study is divided into four sessions over two weeks. You are currently in the {{current_session}} session.
-        We reward you for participating in all sessions in addition to the normal reimbursement. The reimbursement for
-        each completed session will be <b> [X] </b>, and the additional “return” bonus will be <b> [X] </b>.
-      </b-card-text>
+<!--      <b-card-text class="indent">-->
+<!--        This study is divided into four sessions over two weeks. You are currently in the {{current_session}} session.-->
+<!--        We reward you for participating in all sessions in addition to the normal reimbursement. The reimbursement for-->
+<!--        each completed session will be <b> [X] </b>, and the additional “return” bonus will be <b> [X] </b>.-->
+<!--      </b-card-text>-->
 
       <b-card-text class="indent">
-        3. In our study, you will be asked to solve five tasks (details on the task will follow on the next pages). For each
+        In our study, you will be asked to solve five tasks (details on the task will follow on the next pages). For each
         task, there is a best answer from the five given options. The better you perform, the higher the additional task bonus
         will be. This bonus is again paid in addition to the normal study reimbursement.
       </b-card-text>
 
       <b-card-text class="indent">
-        4. During the experiment, please refrain from pushing the back button in your browser. Instead, use the <b> NEXT </b> buttons found in our system’s interface.
+        During the experiment, please refrain from pushing the back button in your browser. Instead, use the <b> NEXT </b> buttons found in our system’s interface.
       </b-card-text>
 
       <b-card-text>
-        Completing this study session will take approximately <b> [X] </b> minutes.
+        Completing this study session will take approximately <b> 15 - 20 </b> minutes.
       </b-card-text>
 
       <b-button class="mt-2" align-h="left" @click="gotoConsentForm()" variant="success">Continue</b-button>
