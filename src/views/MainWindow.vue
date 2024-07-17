@@ -22,13 +22,10 @@ import WaitingRoom from "./WaitingRoom.vue";
         <div v-else-if="pages.score.show">
           <b-row>
             <b-text style="font-size: 24px">
-              Thank you for taking part in our research! Your total points obtained are <span style="font-weight: bold">{{this.getScore()}}</span>.
+              Thank you for taking part in our research!
             </b-text>
             <br/>
-            <b-text v-if="getScore() !== '0'" style="font-size: 24px">
-              Rest assured that your hard work will not go unrewarded, and we will add a benefit to your prolific account based on your score within two weeks.
-            </b-text>
-            <b-text v-else style="font-size: 24px">
+            <b-text style="font-size: 24px">
               As a participant in the study, you will receive remuneration according to the time invested. This compensation will be provided within two weeks.
             </b-text>
           </b-row>
@@ -103,7 +100,7 @@ export default {
         },
         score:{
           show: false,
-          title: 'Score',
+          title: 'End',
         },
       },
     }
