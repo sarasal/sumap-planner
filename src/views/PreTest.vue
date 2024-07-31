@@ -6,14 +6,25 @@ import Range from '../components/Range.vue'
 <template>
   <div>
     <b-row style="margin-bottom: 1rem">
-      <b-col>
+      <b-col v-if="demoSession">
+        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
+      </b-col>
+      <b-col align="right">
         <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
         <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
       </b-col>
-      <b-col align="right" v-if="demoSession">
-        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
-      </b-col>
     </b-row>
+
+<!--    <b-row style="margin-bottom: 1rem">-->
+<!--      <b-col>-->
+<!--        <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>-->
+<!--        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>-->
+<!--      </b-col>-->
+<!--      <b-col align="right" v-if="demoSession">-->
+<!--        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>-->
+<!--      </b-col>-->
+<!--    </b-row>-->
+
 
     <div id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
       <Radio
@@ -37,14 +48,26 @@ import Range from '../components/Range.vue'
     </div>
 
     <b-row style="margin-bottom: 1rem">
-      <b-col>
+      <b-col v-if="demoSession">
+        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
+      </b-col>
+      <b-col align="right">
         <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
         <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
       </b-col>
-      <b-col align="right" v-if="demoSession">
-        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
-      </b-col>
     </b-row>
+
+
+
+<!--    <b-row style="margin-bottom: 1rem">-->
+<!--      <b-col>-->
+<!--        <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>-->
+<!--        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>-->
+<!--      </b-col>-->
+<!--      <b-col align="right" v-if="demoSession">-->
+<!--        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>-->
+<!--      </b-col>-->
+<!--    </b-row>-->
 
   </div>
 </template>
