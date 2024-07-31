@@ -4,6 +4,9 @@ import Range from '../components/Range.vue'
 </script>
 
 <template>
+
+
+
   <div>
     <b-row style="margin-bottom: 1rem">
       <b-col v-if="demoSession">
@@ -25,6 +28,12 @@ import Range from '../components/Range.vue'
 <!--      </b-col>-->
 <!--    </b-row>-->
 
+
+    <b-card-text class="indent">
+      <h4>
+        Before we start with the study task, we ask you to answer the following questions.
+      </h4>
+    </b-card-text>
 
     <div id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
       <Radio
