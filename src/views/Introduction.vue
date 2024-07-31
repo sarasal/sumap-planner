@@ -12,14 +12,12 @@
       </b-card-text>
 
       <b-card-text>
-        Our study aims to provide new insights into how humans and AI systems collaborate in the area of logistical planning.
-        Before you read more about this experiment, we'd like to draw your attention to the following important points.
+        Our study aims to gain new insights into how humans collaborate with AI systems in the area of logistical planning.
       </b-card-text>
 
       <b-card-text class="indent">
-        We ask you to answer all of our questionnaires truthfully and to the best of your knowledge. We will not penalise
-        you for getting a question incorrect. We are merely interested in investigating your experience of using our
-        interface while doing the task.
+        We ask you to answer all of our questions truthfully and to the best of your knowledge. There is no right and wrong, and we will not penalise
+        you for getting a question incorrect. We are merely interested in your experience while doing the task.
       </b-card-text>
 
 <!--      <b-card-text class="indent">-->
@@ -29,20 +27,24 @@
 <!--      </b-card-text>-->
 
       <b-card-text class="indent">
-        In our study, you will be asked to solve five tasks (details on the task will follow on the next pages). For each
+        You will be asked to solve five delivery tasks (details on the task will follow on the next pages). For each
         task, there is a best answer from the five given options. The better you perform, the higher the additional task bonus
         will be. This bonus is again paid in addition to the normal study reimbursement.
       </b-card-text>
 
       <b-card-text class="indent">
-        During the experiment, please refrain from pushing the back button in your browser. Instead, use the <b> NEXT </b> buttons found in our system’s interface.
+        We would like to draw your attention to the following important points:
+      </b-card-text>
+
+      <b-card-text class="indent">
+        During the experiment, please refrain from pushing the BACK button in your browser. Instead, use the <b> NEXT </b> buttons.
       </b-card-text>
 
       <b-card-text>
         Completing this study session will take approximately <b> 15 - 20 </b> minutes.
       </b-card-text>
 
-      <b-button class="mt-2" align-h="left" @click="gotoConsentForm()" variant="success">Continue</b-button>
+      <b-button class="mt-2" align-h="right" @click="gotoConsentForm()" variant="success">Continue</b-button>
     </b-card>
 
   </b-container>
