@@ -15,11 +15,6 @@
         Our study aims to gain new insights into how humans collaborate with AI systems in the area of logistical planning.
       </b-card-text>
 
-      <b-card-text class="indent">
-        We ask you to answer all of our questions truthfully and to the best of your knowledge. There is no right and wrong, and we will not penalise
-        you for getting a question incorrect. We are merely interested in your experience while doing the task.
-      </b-card-text>
-
 <!--      <b-card-text class="indent">-->
 <!--        This study is divided into four sessions over two weeks. You are currently in the {{current_session}} session.-->
 <!--        We reward you for participating in all sessions in addition to the normal reimbursement. The reimbursement for-->
@@ -37,8 +32,14 @@
       </b-card-text>
 
       <b-card-text class="indent">
-        During the experiment, please refrain from pushing the BACK button in your browser. Instead, use the <b> NEXT </b> buttons.
+        During the experiment, please refrain from pushing the <b> BACK </b> button in your browser. Instead, use the <b> NEXT </b> buttons.
       </b-card-text>
+
+      <b-card-text class="indent">
+        We ask you to answer all of our questions truthfully and to the best of your knowledge. There is no right and wrong, and we will not penalise
+        you for getting a question incorrect. We are merely interested in your experience while doing the task.
+      </b-card-text>
+
 
       <b-card-text>
         Completing this study session will take approximately <b> 15 - 20 </b> minutes.
