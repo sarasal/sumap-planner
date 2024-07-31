@@ -14,15 +14,26 @@
       </b-card-text>
 
       <b-card-text class="indent">
-        <b> Voluntary Participation: </b>
-        Your participation in this study is entirely voluntary, and you have the right to withdraw at any time without penalty or negative consequences. If you choose to withdraw, any data collected from you will be deleted and not included in the final analysis.
-
+        <b> Potential risks and Inconveniences: </b>
+        Your participation in this research project does not involve any physical, legal, or economic risks. You do not have to answer questions that you do not wish to answer. Your participation is voluntary. This means that you may end your participation at any moment you choose by letting the researcher know this. You do not have to explain why you decided to end your participation in the research project. None of this will have any negative consequences for you whatsoever.
       </b-card-text>
 
       <b-card-text class="indent">
-        <b> Confidentiality and Use, Storage, and Sharing of Data: </b>
-        We will gather and analyse your questionnaire responses, main task completion, and interaction with our platform to improve the user experience. We assure you that no personal information will be collected or stored during this process. The anonymous information will be made available online in the interest of open source.
+        <b> Confidentiality, Use, and Storage of Data: </b>
+        We will do everything we can to protect your privacy as best as possible. The research results that will be published will not in any way contain confidential information or personal data from or about you through which anyone can recognize you. The experiment data gathered via Prolific will be stored on an encrypted server of the Human-Technology Interaction Group (Eindhoven University of Technology). The raw and processed research data will be retained for 10 years. The research data will be made available to persons outside the research group if necessary (e.g., to check on scientific integrity), but only in anonymous form.
       </b-card-text>
+
+
+      <b-card-text class="indent">
+        <b> Reimbursement: </b>
+        Participation will take approximately 15 - 20 mins per session. For your participation in this research project, you will receive a compensation of £9,00 / hour. We will refrain from payments for participants who dropped out of the study.
+      </b-card-text>
+
+
+<!--      <b-card-text class="indent">-->
+<!--        <b> Reimbursement: </b>-->
+<!--        Participation will take approximately 15 - 20 mins per session. For your participation in this research project, you will receive a compensation of £9,00 / hour. In addition to this, we pay participants a return (for returning to the second, third and fourth round) & performance bonus, which will be calculated at the end of this study. Both bonus payments will be reimbursed once the study is completed. We will refrain from payments for participants who dropped out of the study.-->
+<!--      </b-card-text>-->
 
       <b-input-group>
         <template #prepend>
@@ -31,7 +42,14 @@
         <b-form-input placeholder="Prolific ID" v-model="prolificId" required/>
       </b-input-group>
 
-      <b-button class="mt-2" align-h="left" @click="proceedToTask()" variant="success">Agree and Continue</b-button>
+      <b-row align-h="end">
+        <b-col cols="6">
+          <b-button class="mt-3" align-h="left" @click="proceedToTask()" variant="success">I agree to the terms of conditions and continue with the study</b-button>
+        </b-col>
+
+      </b-row>
+
+<!--      <b-button class="mt-2" align-h="left" @click="proceedToTask()" variant="success">Agree and Continue</b-button>-->
     </b-card>
 
   </b-container>
