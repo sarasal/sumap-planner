@@ -44,8 +44,13 @@
       <b-card-text>
         Completing this study session will take approximately <b> 15 - 20 </b> minutes.
       </b-card-text>
+      <b-row align-h="end">
+        <b-col cols="2">
+          <b-button @click="gotoConsentForm()" variant="success">Continue</b-button>
+        </b-col>
 
-      <b-button class="mt-2" align-h="right" @click="gotoConsentForm()" variant="success">Continue</b-button>
+      </b-row>
+<!--      <b-button class="mt-2" align-h="around"  @click="gotoConsentForm()" variant="success">Continue</b-button>-->
     </b-card>
 
   </b-container>
