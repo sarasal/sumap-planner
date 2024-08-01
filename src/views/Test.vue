@@ -63,19 +63,19 @@ import QuestionModal from "@/components/QuestionModal.vue";
         <b-col cols="4" class="pr-0 pl-0">
           <div ref="generalInfo" @mouseover="hover.generalInfo = true" @mouseleave="hover.generalInfo = false">
             <b-card ref="scenario" title="Task Scenario" style="font-size: 14px; margin-bottom: 1rem" class="custom-card">
-              <img :src="iconsSrc.deliveryManager" alt="Icon" class="icon-small" /> As a delivery manager, you manage the delivery of multiple parcels. Your main task is choosing delivery routes associated with the lowest costs. You do this by comparing five available delivery routes from which you need to pick the best one. To identify the optimal route, you must consider the following criteria: <br/>
+              <img :src="iconsSrc.deliveryManager" alt="Icon" class="icon-small" /> As a delivery manager, your task is to choose delivery routes with the lowest cost. You do this by comparing five delivery routes options. To identify the optimal route (there is only one optimal per task), you need to consider the following criteria: <br/>
               <b-list-group class="custom-list-group">
                 <b-list-group-item>
-                  <img :src="iconsSrc.package" alt="Icon" class="icon-small" /> <b>Number of Parcels</b>: Each parcel delivery is rewarded with <b>100</b> points. The routes may vary in the number of parcels (between <b>1</b> and <b>10</b>).
+                  <img :src="iconsSrc.package" alt="Icon" class="icon-small" /> <b>Number of Parcels</b>: Each parcel delivery brings you <b>100</b> points. The routes may vary in the number of parcels (between <b>1</b> and <b>10</b>).
                 </b-list-group-item>
                 <b-list-group-item>
-                  <img :src="iconsSrc.car" alt="Icon" class="icon-small" /> / <img :src="iconsSrc.eBike" alt="Icon" class="icon-small" /> <b>Delivery Vehicle</b>: Parcels are delivered by either <b>car</b> or <b>e-bike</b>. Deliveries by e-bike are rewarded with <b>50</b> points for each traveled kilometer. Deliveries by car, in contrast, are faster and save time. <br/>
+                  <img :src="iconsSrc.car" alt="Icon" class="icon-small" /> / <img :src="iconsSrc.eBike" alt="Icon" class="icon-small" /> <b>Delivery Vehicle</b>: Parcels are delivered either by <b>car</b> or <b>e-bike</b>. Deliveries by e-bike are rewarded with <b>50</b> points for each traveled kilometer. Deliveries by car are faster and save time but do not come an additional reward. <br/>
                 </b-list-group-item>
                 <b-list-group-item>
-                  <img :src="iconsSrc.distance" alt="Icon" class="icon-small" /> <b>Distance</b>: Delivering the parcels creates costs. The longer deliveries are, the more costs are created. The length of a sub-route is displayed when hovering over a particular route. The speed of the car and e-bike is constant, with the car traveling at <b>70 km/h</b> and the e-bike at <b>45 km/h</b>. <br/>
+                  <img :src="iconsSrc.distance" alt="Icon" class="icon-small" /> <b>Driving Distance</b>: Delivering the parcels creates costs. The longer deliveries are, the more costs are created. The length of a sub-route is displayed when hovering over a particular route. The speed of the car and e-bike is constant, with the car traveling at <b>70 km/h</b> and the e-bike at <b>45 km/h</b>. <br/>
                 </b-list-group-item>
                 <b-list-group-item>
-                  <img :src="iconsSrc.deliveryTime" alt="Icon" class="icon-small" /> <b>Delivery handling time</b>: {{this.delivery_handling_time}}
+                  <img :src="iconsSrc.deliveryTime" alt="Icon" class="icon-small" /> <b>Delivery Handling Time</b>: {{this.delivery_handling_time}}
                 </b-list-group-item>
               </b-list-group>
               <b-card ref="ai-info" title="DeliveryPlanner AI System" style="font-size: 14px" class="delivery-card">
@@ -97,14 +97,14 @@ import QuestionModal from "@/components/QuestionModal.vue";
 
         <b-card v-if="!groupDecisionMaking || this.training" style="width:100%; padding: 0" no-body ref="decisions">
           <template #header>
-            <h1 style="font-size: 28px">Initial Decision</h1>
+            <h1 style="font-size: 28px">Your Initial Decision</h1>
           </template>
 
           <div class="no-padding">
             <b-input-group v-if="initialDecision.enabled">
 
               <template #prepend>
-                <b-input-group-text >What is the best delivery plan?</b-input-group-text>
+                <b-input-group-text >Select the route which you think is the best.</b-input-group-text>
               </template>
 
               <b-form-select v-model="initialDecision.value" :options="route_options">
@@ -120,7 +120,7 @@ import QuestionModal from "@/components/QuestionModal.vue";
             </b-input-group>
 
             <b-text v-if="!initialDecision.enabled">
-              You initially selected <span style="background-color: yellow;">{{initialDecision.value}}</span> as the best plan.
+              You initially selected <span style="background-color: yellow;">{{initialDecision.value}}</span> as the best option.
             </b-text>
           </div>
         </b-card>
@@ -130,20 +130,20 @@ import QuestionModal from "@/components/QuestionModal.vue";
             <h1 style="font-size: 28px">DeliveryPlanner Suggestion</h1>
           </template>
           <b-text>
-            DeliveryPlanner suggests that the <span style="background-color: yellow;">{{`Route ${Number(this.current_task.best_route_id) +1}`}}</span> is the best plan.
+            DeliveryPlanner suggests that the <span style="background-color: cyan;">{{`Route ${Number(this.current_task.best_route_id) +1}`}}</span> is the best option.
           </b-text>
         </b-card>
 
         <b-card v-if="!initialDecision.enabled && (!groupDecisionMaking || this.training)" style="width:100%; padding: 0;">
           <template #header>
-            <h1 style="font-size: 28px">Final decision</h1>
+            <h1 style="font-size: 28px">Your Final decision</h1>
           </template>
 
           <div class="no-padding">
             <b-input-group>
 
               <template #prepend>
-                <b-input-group-text >What is the best delivery plan?</b-input-group-text>
+                <b-input-group-text >Select the route which you think is the best.</b-input-group-text>
               </template>
 
               <b-form-select v-model="finalDecision" :options="route_options">
@@ -593,67 +593,66 @@ export default {
       const steps = [
         {
           title: 'Welcome',
-          intro: 'Before we start with the main study tasks, we want you to familiarize yourself with a training task. Take the time to read through the descriptions and task features before moving on to the main tasks.',
+          intro: 'Before we start, we want you to familiarize yourself with the task with a training round. Take the time to read through the descriptions and task features before moving on.',
           studyConditions: [1,2,3,4,5,6],
         },
         {
           title: 'Instruction',
           element: this.$refs.youAreTasked,
           position: 'bottom',
-          intro: 'In this study, your main task is finding the best delivery route out of five options. For this task, you always follow the same four steps:',
+          intro: 'Your main task is finding the best delivery route out of five options. For the task, you always follow the same four steps:',
           studyConditions: [1,2,3,4,5,6],
-        },
-        {
-          title: 'Step 1',
-          element: this.$refs.decisions,
-          intro: 'You screen the five route options and submit your initial decision',
-          position: 'right',
-          studyConditions: [1,3,5],
         },
         {
           title: 'Map',
           element: this.$refs.map,
-          intro: 'The Map includes information about the number of parcels, delivery handling time, distances, and vehicle type (which is also visualized by colors and icons in the map). You can access more information by hovering over the parcels or sub-routes.',
+          intro: 'The Map includes information about the number of parcels, delivery handling time, driving distances, and vehicle type (which is also visualized by colors and icons in the map). You can access more information by hovering over the parcels or sub-routes.',
           position: 'right',
           studyConditions: [1,2,3,4,5,6],
         },
         {
           title: 'Control Buttons',
           element: this.$refs.mapControlPanel,
-          intro: 'With the control buttons, you can change the highlighted route on the map.',
+          intro: 'By clicking onto the routes buttons 1 to 5 using the control buttons, you can switch between maps.',
           position: 'top',
           studyConditions: [1,2,3,4,5,6],
         },
         {
-          title: 'Step 2',
-          intro: 'You receive new information about the DeliveryPlanner suggestion.',
-          studyConditions: [1,2,3,4,5,6],
-        },
-        {
-          title: 'Step 3',
-          element: this.$refs.submitButton,
-          intro: 'You finally submit the route that you believe is the best option. This means you can adjust or confirm your initial decision from Step 1.',
+          title: 'Step 1',
+          element: this.$refs.decisions,
+          intro: 'After screening the five route options, you choose and submit your initial route decision',
           position: 'right',
-          studyConditions: [1,2,3,4,5,6],
+          studyConditions: [1,3,5],
         },
         {
-          title: 'Step 4',
-          intro: 'You finish this task with a short questionnaire before you go to the next task.',
+          title: 'Step 2',
+          intro: 'After your initial decision, you learn about the DeliveryPlanner suggestion regarding the best route.',
           studyConditions: [1,2,3,4,5,6],
         },
         {
           title: 'DeliveryPlanner',
           element: this.$refs["ai-info"],
-          intro: 'During the study task, you are supported by an AI system. Find some details on it here:',
+          intro: 'The DeliveryPlanner that supports you with suggestions is a system based on artificial intelligence (AI). Find some details about it.',
           position: 'right',
           studyConditions: [1,2,3,4,5,6],
         },
-
         {
-          title: 'Tutorial Completed',
-          intro: 'Here is where the tasks start. The first task with be training, which can be clicked through for the second/third/last session',
+          title: 'Step 3',
+          element: this.$refs.submitButton,
+          intro: 'After seeing the DeliveryPlanner suggestion, you are asked to submit the route that you believe is the best option. This means you can adjust or confirm your initial decision.',
+          position: 'right',
           studyConditions: [1,2,3,4,5,6],
         },
+        {
+          title: 'Step 4',
+          intro: 'At the end of each task, we ask you to answer three questions before you go to the next one.',
+          studyConditions: [1,2,3,4,5,6],
+        },
+        // {
+        //   title: 'Tutorial Completed',
+        //   intro: 'Here is where the tasks start. The first task with be training, which can be clicked through for the second/third/last session',
+        //   studyConditions: [1,2,3,4,5,6],
+        // },
       ];
 
       intro.addSteps(steps);
@@ -818,11 +817,11 @@ export default {
   computed: {
     delivery_handling_time: function (){
       const scenario = this.user_tasks != null ? this.user_tasks[this.current_task_index].task_scenario : {};
-      return scenario.split(" You are tasked to ")[0];
+      return scenario.split(" Your Task ")[0];
     },
     you_are_tasked_to: function (){
       const scenario = this.user_tasks != null ? this.user_tasks[this.current_task_index].task_scenario : {};
-      return `You are tasked to ${scenario.split(" You are tasked to ")[1]}`;
+      return `Your Task  ${scenario.split(" You are tasked to ")[1]}`;
     },
     current_task: function () {
       return this.user_tasks != null ? this.user_tasks[this.current_task_index] : {};
