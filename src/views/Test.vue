@@ -817,11 +817,11 @@ export default {
   computed: {
     delivery_handling_time: function (){
       const scenario = this.user_tasks != null ? this.user_tasks[this.current_task_index].task_scenario : {};
-      return scenario.split(" You are tasked to ")[0];
+      return scenario.split(" You are tasked ")[0];
     },
     you_are_tasked_to: function (){
       const scenario = this.user_tasks != null ? this.user_tasks[this.current_task_index].task_scenario : {};
-      return `Your task  ${scenario.split(" You are tasked to ")[1]}`;
+      return `Your task  ${scenario.split(" You are tasked ")[1]}`;
     },
     current_task: function () {
       return this.user_tasks != null ? this.user_tasks[this.current_task_index] : {};
