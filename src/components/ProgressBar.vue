@@ -1,7 +1,7 @@
 <template>
   <b-progress :max="max" height="30px" :animated="animated">
     <b-progress-bar :value="value + finished" height="30px" variant="success" >
-      <span>Answered: <strong>{{ value + finished}} / {{ max }}</strong></span>
+      <span>Finished: <strong>{{ value + finished}} / {{ max }}</strong></span>
     </b-progress-bar>
     <b-progress-bar :value="1-finished" variant="warning"></b-progress-bar>
   </b-progress>
