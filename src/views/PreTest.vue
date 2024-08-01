@@ -14,7 +14,7 @@ import Range from '../components/Range.vue'
       </b-col>
       <b-col align="right">
         <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
-        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
+        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Continue with task</b-button>
       </b-col>
     </b-row>
 
@@ -62,7 +62,7 @@ import Range from '../components/Range.vue'
       </b-col>
       <b-col align="right">
         <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
-        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
+        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Continue with task</b-button>
       </b-col>
     </b-row>
 
