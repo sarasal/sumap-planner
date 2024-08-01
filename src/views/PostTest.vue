@@ -7,13 +7,22 @@ import CheckBox from '../components/CheckBox.vue'
 <template>
   <div>
     <b-row style="margin-bottom: 1rem">
-      <b-col>
-        <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
-      </b-col>
-      <b-col align="right" v-if="demoSession">
+      <b-col v-if="demoSession">
         <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
       </b-col>
+      <b-col align="right" >
+        <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
+      </b-col>
     </b-row>
+
+<!--    <b-row style="margin-bottom: 1rem">-->
+<!--      <b-col>-->
+<!--        <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>-->
+<!--      </b-col>-->
+<!--      <b-col align="right" v-if="demoSession">-->
+<!--        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>-->
+<!--      </b-col>-->
+<!--    </b-row>-->
 
     <div v-if="currentPage !== numberOfPages + 1" id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
       <Radio
@@ -49,14 +58,24 @@ import CheckBox from '../components/CheckBox.vue'
 <!--    <CheckBox v-if="currentPage === 6" :questions="questions" @selectedArrayChanged="selectedArrayChanged"></CheckBox>-->
 
     <b-row style="margin-bottom: 1rem">
-      <b-col>
+      <b-col v-if="demoSession">
+        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
+      </b-col>
+      <b-col align="right">
         <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
         <b-button v-if="currentPage === numberOfPages" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
       </b-col>
-      <b-col align="right" v-if="demoSession">
-        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
-      </b-col>
     </b-row>
+
+<!--    <b-row style="margin-bottom: 1rem">-->
+<!--      <b-col>-->
+<!--        <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>-->
+<!--        <b-button v-if="currentPage === numberOfPages" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>-->
+<!--      </b-col>-->
+<!--      <b-col align="right" v-if="demoSession">-->
+<!--        <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>-->
+<!--      </b-col>-->
+<!--    </b-row>-->
 
   </div>
 </template>
