@@ -680,6 +680,19 @@ export default {
 
       intro.start();
     },
+    showMainTaskPopUp: function (){
+      const intro = introJS()
+
+      const steps = [
+        {
+          title: 'Start',
+          intro: 'You can start with your main task now!',
+        }
+      ];
+
+      intro.addSteps(steps);
+      intro.start();
+    },
     run_introJS: function () {
       const task = this;
       let finished = false;
@@ -874,6 +887,7 @@ export default {
         this.current_task_index = 0;
         localStorage.current_task_index = this.current_task_index;
         localStorage.setItem(`${this.userId}-first-load`, 'loaded');
+        this.showMainTaskPopUp();
       } else {
         this.current_task_index = parseInt(localStorage.current_task_index);
         this.result = JSON.parse(localStorage.getItem(`${this.userId}-result`));
