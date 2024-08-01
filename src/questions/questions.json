@@ -188,8 +188,8 @@
 			"questionnaire_type": "cognitive_trust",
 			"question_group": "",
 			"question": "I found the DeliveryPlanner advice to be trustworthy.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 6
 		},
 		{
 			"question_id": "ct_02",
@@ -197,8 +197,8 @@
 			"questionnaire_type": "cognitive_trust",
 			"question_group": "",
 			"question": "The DeliveryPlanner advice seemed reliable to me.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 6
 		},
 		{
 			"question_id": "ct_03",
@@ -206,8 +206,8 @@
 			"questionnaire_type": "cognitive_trust",
 			"question_group": "",
 			"question": "I used the DeliveryPlanner advice as a basis for my decision-making.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 6
 		}
 	],
 	"post_task": [
