@@ -1,19 +1,17 @@
 <script setup>
-import Range from "@/components/Range.vue";
+import Radio from "@/components/Radio.vue";
 </script>
 
 <template>
   <b-modal size="lg" centered :id="id" no-close-on-backdrop no-close-on-esc hide-header-close @ok="submit">
     <div v-for="(question, index) in questions">
-      <Range
+      <Radio
           :index="index"
           :question="question.question"
-          :max="question.likert_scale"
-          :beginningLabel="question.answer_list[0]"
-          :endLabel="question.answer_list[1]"
+          :options="question.answer_list"
           :becomeRedIfEmpty="becomeRedIfEmpty"
           @selectedChanged="selectedChanged">
-      </Range>
+      </Radio>
     </div>
 
     <template #modal-footer="{ ok }">

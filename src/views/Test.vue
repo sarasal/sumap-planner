@@ -887,6 +887,7 @@ export default {
         this.current_task_index = 0;
         localStorage.current_task_index = this.current_task_index;
         localStorage.setItem(`${this.userId}-first-load`, 'loaded');
+        localStorage.setItem(`${this.userId}-result`, JSON.stringify(this.result));
         this.showMainTaskPopUp();
       } else {
         this.current_task_index = parseInt(localStorage.current_task_index);
