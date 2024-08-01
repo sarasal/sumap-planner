@@ -463,7 +463,7 @@ export default {
         'disableInteraction': true,
         'exitOnOverlayClick': false,
         'exitOnEsc': false,
-        'doneLabel': 'OK'
+        'doneLabel': 'Next'
       });
 
       intro.start();
