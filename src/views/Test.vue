@@ -686,7 +686,7 @@ export default {
       const steps = [
         {
           title: 'Start',
-          intro: 'You can start with your main task now!',
+          intro: 'You can now start with the five tasks!',
         }
       ];
 
