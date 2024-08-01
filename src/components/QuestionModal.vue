@@ -19,7 +19,7 @@ import Range from "@/components/Range.vue";
     <template #modal-footer="{ ok }">
       <!-- Emulate built in modal footer ok and cancel button actions -->
       <b-button variant="success" @click="ok">
-        Submit
+        Next
       </b-button>
     </template>
   </b-modal>
