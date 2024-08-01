@@ -22,11 +22,11 @@ import WaitingRoom from "./WaitingRoom.vue";
         <div v-else-if="pages.score.show">
           <b-row>
             <b-text style="font-size: 24px">
-              Thank you for taking part in our research!
+              Thank you for participating in our study. Please exit the study by clicking on this return button. This is important to register you for our study appropriately.
             </b-text>
             <br/>
             <b-text style="font-size: 24px">
-              As a participant in the study, you will receive remuneration according to the time invested. This compensation will be provided within two weeks.
+              As you finished the study, you will be reimbursed according to your study efforts. You will receive the payment within two weeks.
             </b-text>
           </b-row>
           <b-row>
