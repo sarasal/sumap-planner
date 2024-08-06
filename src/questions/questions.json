@@ -158,7 +158,7 @@
 			"session_id": ["1"],
 			"questionnaire_type": "domain_expertise",
 			"question_group": "",
-			"question": "I am familiar with common challenges that workers in the area of logistics planning/transport management have.",
+			"question": " I am familiar with common challenges that workers in the area of logistics planning/transport management have.",
 			"answer_list": ["not at all", "completely"],
 			"likert_scale": 7
 		},
@@ -183,31 +183,31 @@
 	],
 	"per_task": [
 		{
-			"question_id": "ct_01",
+			"question_id": "tbt_01",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "cognitive_trust",
+			"questionnaire_type": "task_based_trust",
 			"question_group": "",
 			"question": "I found the DeliveryPlanner advice to be trustworthy.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 6
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
 		},
 		{
-			"question_id": "ct_02",
+			"question_id": "tbt_02",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "cognitive_trust",
+			"questionnaire_type": "task_based_trust",
 			"question_group": "",
 			"question": "The DeliveryPlanner advice seemed reliable to me.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 6
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
 		},
 		{
-			"question_id": "ct_03",
+			"question_id": "tbt_03",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "cognitive_trust",
+			"questionnaire_type": "task_based_trust",
 			"question_group": "",
-			"question": "I used the DeliveryPlanner advice as a basis for my decision-making.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 6
+			"question": "I have confidence in following the advice of the DeliveryPlanner.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
 		}
 	],
 	"post_task": [
@@ -216,8 +216,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_reliability",
-			"question": "The DeliveryPlanner always provided the advice I needed to make my decision.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "The DeliveryPlanner always provides the advice I require to make my decision.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -225,8 +225,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_reliability",
-			"question": "The DeliveryPlanner performed reliably.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "The DeliveryPlanner performs reliably.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -234,8 +234,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_reliability",
-			"question": "The DeliveryPlanner responded the same way under the same conditions at different times.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "The DeliveryPlanner responds the same way under the same conditions at different times.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -243,8 +243,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_reliability",
-			"question": "I could rely on the DeliveryPlanner to function properly.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": " I can rely on the DeliveryPlanner to function properly.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -252,8 +252,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_reliability",
-			"question": "The DeliveryPlanner analysed the task consistently.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "The DeliveryPlanner analyzed problems consistently.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -261,8 +261,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "faith",
-			"question": "I believed the DeliveryPlanner’s advice even when I didn’t know for certain that it was correct.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": " I believe advice from the DeliveryPlanner even when I don’t know for certain that it is correct.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -270,8 +270,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "faith",
-			"question": "When I was uncertain about a decision, I believed the DeliveryPlanner rather than myself.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "When I am uncertain about a the decision I believe the DeliveryPlanner rather than myself.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -279,8 +279,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "faith",
-			"question": "If I was unsure about a decision, I believed the DeliveryPlanner would provide the best solution.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "If I am not sure about a the decision, I have faith that the DeliveryPlanner will provide the best solution.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -288,8 +288,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "faith",
-			"question": "When the DeliveryPlanner gave unusual advice, I was confident that the advice was correct.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "When the DeliveryPlanner gives unusual advice, I am confident that the advice is correct.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -297,53 +297,53 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "faith",
-			"question": "Even if I had no reason to expect the DeliveryPlanner to be able to solve a difficult problem, I still felt certain that it was.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "Even if I have no reason to expect the DeliveryPlanner to be able to solve a difficult task, I still feel certain that it will.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_11",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "personal_attachment",
-			"question": "I would feel a sense of loss if the DeliveryPlanner was unavailable and I could no longer use it.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_technical_competence",
+			"question": "The DeliveryPlanner uses appropriate methods to reach decisions.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_12",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "personal_attachment",
-			"question": "I feel a sense of attachment to using the DeliveryPlanner.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_technical_competence",
+			"question": "The DeliveryPlanner has sound knowledge about this type of problem built into it.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_13",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "personal_attachment",
-			"question": "I find the DeliveryPlanner suitable to my style of decision making.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_technical_competence",
+			"question": "The advice the DeliveryPlanner produces is as good as that which a highly competent person could produce.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_14",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "personal_attachment",
-			"question": "I like using the DeliveryPlanner for decision making.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_technical_competence",
+			"question": "The DeliveryPlanner correctly uses the information I enter.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_15",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "personal_attachment",
-			"question": "I have a personal preference for making decisions with the DeliveryPlanner.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_technical_competence",
+			"question": "The system uses all the knowledge and information available to it to produce its solution.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -351,36 +351,35 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_technical_competence",
-			"question": "The DeliveryPlanner solved the tasks accurately today.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "The advice the DeliveryPlanner produces is accurate.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_17",
-			
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "perceived_technical_competence",
-			"question": "The DeliveryPlanner was competent to solve the tasks today.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_understandability",
+			"question": "I know what will happen the next time I use the DeliveryPlanner because I understand how it behaves.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_18",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "perceived_technical_competence",
-			"question": "The DeliveryPlanner used all the knowledge and information available to produce a solution to the task.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_understandability",
+			"question": "I understand how the DeliveryPlanner will assist me with decisions I have to make.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "hct_19",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
-			"question_group": "perceived_technical_competence",
-			"question": "The DeliveryPlanner can provide valuable support for the task at hand.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question_group": "perceived_understandability",
+			"question": "Although I may not know exactly how the system works, I know how to use it to make decisions about the task.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -388,35 +387,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_understandability",
-			"question": "I understand how the DeliveryPlanner calculated its advice.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "hct_21",
-			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "human_computer_trust",
-			"question_group": "perceived_understandability",
-			"question": "The decision-making process of the DeliveryPlanner was easy to follow.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "hct_22",
-			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "human_computer_trust",
-			"question_group": "perceived_understandability",
-			"question": "The DeliveryPlanner provided consistent advice throughout the session.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "hct_23",
-			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "human_computer_trust",
-			"question_group": "perceived_understandability",
-			"question": "I feel in control while interacting with the DeliveryPlanner.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "It is easy to follow what the DeliveryPlanner does.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -424,8 +396,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "technology_acceptance_model",
 			"question_group": "perceived_usefulness",
-			"question": "I found the DeliveryPlanner to be useful for the tasks.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "Using the DeliveryPlanner would enabled me to accomplish the tasks more quickly.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -433,8 +405,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "technology_acceptance_model",
 			"question_group": "perceived_usefulness",
-			"question": "The DeliveryPlanner made the tasks easier for me.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "Using the DeliveryPlanner improved my task performance.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -442,8 +414,8 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "technology_acceptance_model",
 			"question_group": "perceived_usefulness",
-			"question": "The DeliveryPlanner improved my task performance.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "Using the DeliveryPlanner increased my task productivity.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
@@ -451,136 +423,210 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "technology_acceptance_model",
 			"question_group": "perceived_usefulness",
-			"question": "The DeliveryPlanner enhanced my task efficiency.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "Using the DeliveryPlanner enhanced my task effectiveness.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ptd_01",
+			"question_id": "tam_05",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "perceived_task_difficulty",
-			"question_group": "",
-			"question": "The steps needed to complete the task were complex.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"questionnaire_type": "technology_acceptance_model",
+			"question_group": "perceived_usefulness",
+			"question": "Using the DeliveryPlanner made it easier to do my task.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ptd_02",
+			"question_id": "ptl_01",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "perceived_task_difficulty",
+			"questionnaire_type": "perceived_task_load",
 			"question_group": "",
-			"question": "I found the task to be challenging.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "How mentally demanding was the task?",
+			"answer_list": ["very low", "very high"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ptd_03",
+			"question_id": "ptl_02",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "perceived_task_difficulty",
+			"questionnaire_type": "perceived_task_load",
 			"question_group": "",
-			"question": "It took me a significant amount of time to complete the tasks.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "How hurried or rushed was the pace of the task?",
+			"answer_list": ["very low", "very high"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ptd_04",
+			"question_id": "ptl_03",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "perceived_task_difficulty",
+			"questionnaire_type": "perceived_task_load",
 			"question_group": "",
-			"question": "Completing the tasks required a lot of effort.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "How successful were you in accomplishing what you were asked to do?",
+			"answer_list": ["failure", "perfect"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ptl_04",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "perceived_task_load",
+			"question_group": "",
+			"question": "How hard did you have to work to accomplish your level of task performance?",
+			"answer_list": ["very low", "very high"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ptl_05",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "perceived_task_load",
+			"question_group": "",
+			"question": "How hard did you have to work to accomplish your level of task performance?",
+			"answer_list": ["very low", "very high"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_01",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": "I prefer to gather all the necessary information before committing to a decision.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_02",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": "I thoroughly evaluate decision alternatives before making a final choice.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_03",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": " I weigh a number of different factors when making decisions.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_04",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": " In decision-making, I take time to contemplate the pros & cons and risks & benefits of a situation.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_05",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": " Investigating the facts is an important part of my decision-making process.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_06",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": "When making decisions, I rely mainly on my gut feelings.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_07",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": "My initial hunch about decisions is generally what I follow.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_08",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": "I weigh feelings more than analysis in making decisions.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_09",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": "I make decisions based on intuition.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "ids_10",
+			"session_id": ["4"],
+			"questionnaire_type": "intuitive_desicion_styles",
+			"question_group": "",
+			"question": " I rely on my first impressions when making decisions.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
 			"question_id": "dms_01",
 			"session_id": ["4"],
 			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "I prefer to gather all the necessary information before committing to a decision.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"question_group": "uncertainty",
+			"question": "When I make an important decision, for me, it is essential to overcome doubtful aspects.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 9
 		},
 		{
 			"question_id": "dms_02",
 			"session_id": ["4"],
 			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "I thoroughly evaluate decision alternatives before making a final choice.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"question_group": "uncertainty",
+			"question": "When I make an important decision, for me, it is essential to quickly change my preferences if things go wrong.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 9
 		},
 		{
 			"question_id": "dms_03",
 			"session_id": ["4"],
 			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "I weigh a number of different factors when making decisions.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"question_group": "uncertainty",
+			"question": "When I make an important decision, for me, it is essential to realize that circumstances may change.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 9
 		},
 		{
 			"question_id": "dms_04",
 			"session_id": ["4"],
 			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "In decision-making, I take time to contemplate the pros and cons and risks and benefits of a situation.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"question_group": "uncertainty",
+			"question": "When I make an important decision, for me, it is essential to become aware if the decision leads to novelties.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 9
 		},
 		{
 			"question_id": "dms_05",
 			"session_id": ["4"],
 			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "Investigating the facts is an important part of my decision-making process.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"question_group": "uncertainty",
+			"question": "When I make an important decision, for me, it is essential to appraise assess the personal risk involved in the decision.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 9
 		},
 		{
 			"question_id": "dms_06",
 			"session_id": ["4"],
 			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "When making decisions, I rely mainly on my gut feelings.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "dms_07",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "My initial hunch about decisions is generally what I follow.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "dms_08",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "I weigh feelings more than analysis in making decisions.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "dms_09",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "I make decisions based on intuition.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "dms_10",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "",
-			"question": "I rely on my first impressions when making decisions.",
-			"answer_list": ["strongly disagree", "strongly agree"],
-			"likert_scale": 7
+			"question_group": "uncertainty",
+			"question": "When I make an important decision, for me, it is essential to know what the decision involves.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 9
 		}
+
+		
 	]
 
 }
