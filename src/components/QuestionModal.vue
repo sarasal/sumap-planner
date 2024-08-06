@@ -3,7 +3,7 @@ import Radio from "@/components/Radio.vue";
 </script>
 
 <template>
-  <b-modal size="lg" centered :id="id" no-close-on-backdrop no-close-on-esc hide-header-close @ok="submit">
+  <b-modal size="xl" centered :id="id" no-close-on-backdrop no-close-on-esc hide-header-close @ok="submit">
     <div v-for="(question, index) in questions">
       <Radio
           :index="index"
