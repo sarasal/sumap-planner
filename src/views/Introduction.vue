@@ -22,9 +22,9 @@
 <!--      </b-card-text>-->
 
       <b-card-text class="indent">
-        You will be asked to solve five delivery tasks (details on the task will follow on the next pages). For each
-        task, there is a best answer from the five given options. The better you perform, the higher the additional task bonus
-        will be. This bonus is again paid in addition to the normal study reimbursement.
+        You will be asked to solve five delivery tasks (details on the task will follow on the next pages).
+        For each task, there is a best answer from the five given options. The better you perform, the higher the additional task bonus will be.
+        This bonus is paid *in addition to* the base payment you will receive on successful completion.
       </b-card-text>
 
       <b-card-text class="indent">
@@ -32,17 +32,16 @@
       </b-card-text>
 
       <b-card-text class="indent">
-        During the experiment, please refrain from pushing the <b> BACK </b> button in your browser. Instead, use the <b> NEXT </b> buttons.
+        During the experiment, please refrain from clicking the <b>*** BACK ***</b> button in your browser. Instead, use the <b>*** NEXT ***</b> buttons provided in the interface.
       </b-card-text>
 
       <b-card-text class="indent">
-        We ask you to answer all of our questions truthfully and to the best of your knowledge. There is no right and wrong, and we will not penalise
-        you for getting a question incorrect. We are merely interested in your experience while doing the task.
+        In the study, we will also gather information about your subjective experience. We encourage you to respond to all questions truthfully and to the best of your knowledge and ability.
       </b-card-text>
 
 
       <b-card-text>
-        Completing this study session will take approximately <b> 15 - 20 </b> minutes.
+        Completing this study session will take approximately <b>*** 15 - 20  ***</b> minutes.
       </b-card-text>
       <b-row align-h="end">
         <b-col cols="2">
