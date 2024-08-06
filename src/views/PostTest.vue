@@ -2,6 +2,7 @@
 import Radio from '../components/Radio.vue'
 import Range from '../components/Range.vue'
 import CheckBox from '../components/CheckBox.vue'
+import ProgressBar from "@/components/ProgressBar.vue";
 </script>
 
 <template>
@@ -9,6 +10,9 @@ import CheckBox from '../components/CheckBox.vue'
     <b-row style="margin-bottom: 1rem">
       <b-col v-if="demoSession">
         <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
+      </b-col>
+      <b-col>
+        <progress-bar :value="currentPage-1" :max="questions.length/5" :animated="false"></progress-bar>
       </b-col>
       <b-col align="right" >
         <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>

@@ -3,7 +3,9 @@
     <b-progress-bar :value="value + finished" height="30px" variant="success" >
       <span>Finished: <strong>{{ value + finished}} / {{ max }}</strong></span>
     </b-progress-bar>
-    <b-progress-bar :value="1-finished" variant="warning"></b-progress-bar>
+    <b-progress-bar :value="1-finished" variant="warning">
+      <span>Current: <strong>{{ value + 1 }}</strong></span>
+    </b-progress-bar>
   </b-progress>
 </template>
 
