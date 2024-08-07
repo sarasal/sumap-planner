@@ -14,10 +14,11 @@ import ProgressBar from "@/components/ProgressBar.vue";
       <b-col cols="3" v-if="!demoSession">
       </b-col>
       <b-col cols="6">
-        <progress-bar :value="currentPage-1" :max="questions.length/5" :animated="false"></progress-bar>
+        <progress-bar :value="currentPage-1" :max="numberOfPages" :animated="false"></progress-bar>
       </b-col>
       <b-col cols="3" align="right" >
         <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
+        <b-button v-if="currentPage === numberOfPages" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Submit</b-button>
       </b-col>
     </b-row>
 
@@ -30,7 +31,7 @@ import ProgressBar from "@/components/ProgressBar.vue";
 <!--      </b-col>-->
 <!--    </b-row>-->
 
-    <div v-if="currentPage !== numberOfPages + 1" id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
+    <div v-if="currentPage !== numberOfPages +1" id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
       <Radio
           v-if="question.answer_list.length !== 2 && question.answer_list.length !== 0"
           :index="(currentPage-1)* 5 + index"
@@ -217,7 +218,7 @@ export default {
     this.user_id = this.$route.params.userId
     this.questions = allQuestions.post_task.filter(item => item.session_id.includes(this.sessionId));
     this.answers = new Array(this.questions.length).fill(-1);
-    this.numberOfPages = Math.floor(this.questions.length/5) + 1;
+    this.numberOfPages = Math.floor(this.questions.length/5) + Math.floor(this.questions.length%5);
   }
 }
 </script>
