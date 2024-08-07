@@ -63,7 +63,7 @@ export default {
 
 .my-input >>> div {
   margin-top: 1rem;
-  margin-right: 1.5rem;
+  margin-right: 2rem;
 }
 
 .my-card {
