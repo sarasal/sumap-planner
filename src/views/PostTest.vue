@@ -7,14 +7,16 @@ import ProgressBar from "@/components/ProgressBar.vue";
 
 <template>
   <div>
-    <b-row style="margin-bottom: 1rem">
-      <b-col v-if="demoSession">
+    <b-row style="margin-bottom: 1rem" align-v="center">
+      <b-col cols="3" v-if="demoSession">
         <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
       </b-col>
-      <b-col>
+      <b-col cols="3" v-if="!demoSession">
+      </b-col>
+      <b-col cols="6">
         <progress-bar :value="currentPage-1" :max="questions.length/5" :animated="false"></progress-bar>
       </b-col>
-      <b-col align="right" >
+      <b-col cols="3" align="right" >
         <b-button v-if="currentPage !== numberOfPages" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
       </b-col>
     </b-row>
