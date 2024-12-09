@@ -277,7 +277,7 @@ export default {
     handleMessageFromIframe(event) {
       // Always check the origin for security reasons!
       // console.log(event)
-      if (event.origin === 'http://localhost:8080') {
+      if (event.origin === 'https://sumap.tp.salimzadeh.com') {
         console.log('Received message from iframe:', event.data);
         // the event api should be called
         // Here you can react to the message, update data properties, call methods, etc.
