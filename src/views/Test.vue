@@ -276,10 +276,12 @@ export default {
   methods: {
     handleMessageFromIframe(event) {
       // Always check the origin for security reasons!
-      // if (event.origin === 'http://the-iframe-origin.com') {
-      console.log('Received message from iframe:', event.data);
+      // console.log(event)
+      if (event.origin === 'http://localhost:8080') {
+        console.log('Received message from iframe:', event.data);
+        // the event api should be called
         // Here you can react to the message, update data properties, call methods, etc.
-      // }
+      }
     },
     nextTab: function () {
       if(this.training){
