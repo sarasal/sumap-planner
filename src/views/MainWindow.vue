@@ -181,10 +181,10 @@ export default {
       })
     },
     backToProlificAccepted: function (){
-      window.location.href = String(import.meta.env.VITE_PROLIFIC_ACCEPT_LINK).toLowerCase();
+      window.location.href = String(store.appConfig.PROLIFIC_ACCEPT_LINK.toLowerCase());
     },
     backToProlificRejected: function (){
-      window.location.href = String(import.meta.env.VITE_PROLIFIC_REJECT_LINK).toLowerCase();
+      window.location.href = String(store.appConfig.PROLIFIC_REJECT_LINK.toLowerCase());
     }
   },
   mounted: async function (){
