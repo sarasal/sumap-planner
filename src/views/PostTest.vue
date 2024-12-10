@@ -31,6 +31,12 @@ import ProgressBar from "@/components/ProgressBar.vue";
 <!--      </b-col>-->
 <!--    </b-row>-->
 
+    <b-card-text class="indent">
+      <h4>
+        Before completing this session, we ask you to answer the following questions.
+      </h4>
+    </b-card-text>
+
     <div v-if="currentPage !== numberOfPages +1" id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
       <Radio
           v-if="question.answer_list.length !== 2 && question.answer_list.length !== 0"
