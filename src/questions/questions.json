@@ -37,6 +37,15 @@
 			"likert_scale": 6
 		},
 		{
+			"question_id": "acpre_01",
+			"session_id": ["1"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select >largely agree< to show you are reading carefully.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 6
+		},
+		{
 			"question_id": "ati_05",
 			"session_id": ["1"],
 			"questionnaire_type": "ati_scale",
@@ -109,6 +118,15 @@
 			"likert_scale": 6
 		},
 		{
+			"question_id": "acpre_02",
+			"session_id": ["1"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select >not at all good< to show you are reading carefully.",
+			"answer_list": ["not at all good", "extremely good"],
+			"likert_scale": 6
+		},
+		{
 			"question_id": "sns_04",
 			"session_id": ["1"],
 			"questionnaire_type": "sns_scale",
@@ -157,7 +175,7 @@
 			"question_id": "de_01",
 			"session_id": ["1"],
 			"questionnaire_type": "domain_expertise",
-			"question_group": "",
+			"question_group": "person_trait",
 			"question": " I am familiar with common challenges that workers in the area of logistics planning/transport management have.",
 			"answer_list": ["not at all", "completely"],
 			"likert_scale": 7
@@ -166,7 +184,7 @@
 			"question_id": "de_02",
 			"session_id": ["1"],
 			"questionnaire_type": "domain_expertise",
-			"question_group": "",
+			"question_group": "person_trait",
 			"question": "I have an educational background in logistics, supply chain management, operations, transport management, or similar.",
 			"answer_list": ["not at all", "completely"],
 			"likert_scale": 7
@@ -175,11 +193,168 @@
 			"question_id": "de_03",
 			"session_id": ["1"],
 			"questionnaire_type": "domain_expertise",
-			"question_group": "",
+			"question_group": "person_trait",
 			"question": "I am/have been working in logistics, such as route planning, delivering goods, or ride-sharing.",
 			"answer_list": ["not at all", "completely"],
 			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_01",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "I prefer to gather all the necessary information before committing to a decision.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_02",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "I thoroughly evaluate decision alternatives before making a final choice.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_03",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "I weigh a number of different factors when making decisions.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_04",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "In decision-making, I take time to contemplate the pros + cons and risks + benefits of a situation.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_05",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "Investigating the facts is an important part of my decision-making process.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_06",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "When making decisions, I rely mainly on my gut feelings.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_07",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "My initial hunch about decisions is generally what I follow.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_08",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "I weigh feelings more than analysis in making decisions.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_09",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "I make decisions based on intuition.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dms_10",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_1",
+			"question": "I rely on my first impressions when making decisions.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "acpre_03",
+			"session_id": ["1"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select >strongly agree< to show you are reading carefully.",
+			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dmq_01",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_2",
+			"question": "When I make an important decision, for me, it is essential to overcome doubtful aspects.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dmq_02",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_2",
+			"question": "When I make an important decision, for me, it is essential to quickly change my preferences if things go wrong.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dmq_03",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_2",
+			"question": "When I make an important decision, for me, it is essential to realize that circumstances may change.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dmq_04",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_2",
+			"question": "When I make an important decision, for me, it is essential to become aware if the decision leads to novelties.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dmq_05",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_2",
+			"question": "When I make an important decision, for me, it is essential to assess the personal risk involved in the decision.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "dmq_06",
+			"session_id": ["1"],
+			"questionnaire_type": "decision_making_style",
+			"question_group": "decision_making_style_2",
+			"question": "When I make an important decision, for me, it is essential to know what the decision involves.",
+			"answer_list": ["not at all important", "very important"],
+			"likert_scale": 7
 		}
+
+
+
+
 	],
 	"per_task": [
 		{
@@ -211,6 +386,17 @@
 		}
 	],
 	"post_task": [
+		
+		{
+			"question_id": "acc_01",
+			"session_id": ["1","2","3","4"],
+			"questionnaire_type": "system_accuracy",
+			"question_group": "system_accuracy",
+			"question": "How accurate would you rate the DeliveryPlanner in today's session?",
+			"answer_list": ["not at all accurate", "completely accurate"],
+			"likert_scale": 10
+		},
+
 		{
 			"question_id": "hct_01",
 			"session_id": ["1","2", "3", "4"],
@@ -270,7 +456,7 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "faith",
-			"question": "When I am uncertain about a the decision I believe the DeliveryPlanner rather than myself.",
+			"question": "When I am uncertain about the the decision I believe the DeliveryPlanner rather than myself.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -279,7 +465,16 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "faith",
-			"question": "If I am not sure about a the decision, I have faith that the DeliveryPlanner will provide the best solution.",
+			"question": "If I am not sure about the the decision, I have faith that the DeliveryPlanner will provide the best solution.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "acpos_01",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select >neither< to show that you are reading carefully.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -338,11 +533,20 @@
 			"likert_scale": 7
 		},
 		{
+			"question_id": "acpos_02",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select >largely agree< to show you are reading carefully.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
 			"question_id": "hct_15",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_technical_competence",
-			"question": "The system uses all the knowledge and information available to it to produce its solution.",
+			"question": "The DeliveryPlanner uses all the knowledge and information available to it to produce its solution.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -378,7 +582,7 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "human_computer_trust",
 			"question_group": "perceived_understandability",
-			"question": "Although I may not know exactly how the system works, I know how to use it to make decisions about the task.",
+			"question": "Although I may not know exactly how the DeliveryPlanner works, I know how to use it to make decisions about the task.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -392,45 +596,63 @@
 			"likert_scale": 7
 		},
 		{
-			"question_id": "tam_01",
+			"question_id": "hct_21",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "technology_acceptance_model",
+			"questionnaire_type": "human_computer_trust",
+			"question_group": "perceived_understandability",
+			"question": "I recognize what I should do to get the advice I need from the DeliveryPlanner the next time I use it.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "pu_01",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "perceived_usefulness",
 			"question_group": "perceived_usefulness",
 			"question": "Using the DeliveryPlanner would enabled me to accomplish the tasks more quickly.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "tam_02",
+			"question_id": "acpos_03",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "technology_acceptance_model",
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please seelct >completely agree< to show you are reading carefully.",
+			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "pu_02",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "perceived_usefulness",
 			"question_group": "perceived_usefulness",
 			"question": "Using the DeliveryPlanner improved my task performance.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "tam_03",
+			"question_id": "pu_03",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "technology_acceptance_model",
+			"questionnaire_type": "perceived_usefulness",
 			"question_group": "perceived_usefulness",
 			"question": "Using the DeliveryPlanner increased my task productivity.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "tam_04",
+			"question_id": "pu_04",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "technology_acceptance_model",
+			"questionnaire_type": "perceived_usefulness",
 			"question_group": "perceived_usefulness",
 			"question": "Using the DeliveryPlanner enhanced my task effectiveness.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "tam_05",
+			"question_id": "pu_05",
 			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "technology_acceptance_model",
+			"questionnaire_type": "perceived_usefulness",
 			"question_group": "perceived_usefulness",
 			"question": "Using the DeliveryPlanner made it easier to do my task.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
@@ -440,7 +662,7 @@
 			"question_id": "ptl_01",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "perceived_task_load",
-			"question_group": "",
+			"question_group": "task_perception",
 			"question": "How mentally demanding was the task?",
 			"answer_list": ["very low", "very high"],
 			"likert_scale": 7
@@ -449,7 +671,7 @@
 			"question_id": "ptl_02",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "perceived_task_load",
-			"question_group": "",
+			"question_group": "task_perception",
 			"question": "How hurried or rushed was the pace of the task?",
 			"answer_list": ["very low", "very high"],
 			"likert_scale": 7
@@ -458,7 +680,7 @@
 			"question_id": "ptl_03",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "perceived_task_load",
-			"question_group": "",
+			"question_group": "task_perception",
 			"question": "How successful were you in accomplishing what you were asked to do?",
 			"answer_list": ["failure", "perfect"],
 			"likert_scale": 7
@@ -467,7 +689,7 @@
 			"question_id": "ptl_04",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "perceived_task_load",
-			"question_group": "",
+			"question_group": "task_perception",
 			"question": "How hard did you have to work to accomplish your level of task performance?",
 			"answer_list": ["very low", "very high"],
 			"likert_scale": 7
@@ -476,155 +698,48 @@
 			"question_id": "ptl_05",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "perceived_task_load",
-			"question_group": "",
-			"question": "How hard did you have to work to accomplish your level of task performance?",
+			"question_group": "task_perception",
+			"question": "How insecure, discouraged, irritated, stressed, and annoyed were you?",
 			"answer_list": ["very low", "very high"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ids_01",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": "I prefer to gather all the necessary information before committing to a decision.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"question_id": "acpos_04",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select >very low< to show you are reading carefully.",
+			"answer_list": ["very low", "very high"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ids_02",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": "I thoroughly evaluate decision alternatives before making a final choice.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"question_id": "pa_01",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "perceived_achievement",
+			"question_group": "task_achievement",
+			"question": "I felt I was good at solving the delivery tasks.",
+			"answer_list": ["strongly disagree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ids_03",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": " I weigh a number of different factors when making decisions.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"question_id": "pa_02",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "perceived_achievement",
+			"question_group": "task_achievement",
+			"question": "I felt capable while solving the delivery tasks.",
+			"answer_list": ["strongly disagree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
-			"question_id": "ids_04",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": " In decision-making, I take time to contemplate the pros & cons and risks & benefits of a situation.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"question_id": "pa_03",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "perceived_achievement",
+			"question_group": "task_achievement",
+			"question": "I felt a sense of mastery while solving the delivery tasks.",
+			"answer_list": ["strongly disagree", "strongly agree"],
 			"likert_scale": 7
-		},
-		{
-			"question_id": "ids_05",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": " Investigating the facts is an important part of my decision-making process.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "ids_06",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": "When making decisions, I rely mainly on my gut feelings.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "ids_07",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": "My initial hunch about decisions is generally what I follow.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "ids_08",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": "I weigh feelings more than analysis in making decisions.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "ids_09",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": "I make decisions based on intuition.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "ids_10",
-			"session_id": ["4"],
-			"questionnaire_type": "intuitive_desicion_styles",
-			"question_group": "",
-			"question": " I rely on my first impressions when making decisions.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
-			"likert_scale": 7
-		},
-		{
-			"question_id": "dms_01",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "uncertainty",
-			"question": "When I make an important decision, for me, it is essential to overcome doubtful aspects.",
-			"answer_list": ["not at all important", "very important"],
-			"likert_scale": 9
-		},
-		{
-			"question_id": "dms_02",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "uncertainty",
-			"question": "When I make an important decision, for me, it is essential to quickly change my preferences if things go wrong.",
-			"answer_list": ["not at all important", "very important"],
-			"likert_scale": 9
-		},
-		{
-			"question_id": "dms_03",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "uncertainty",
-			"question": "When I make an important decision, for me, it is essential to realize that circumstances may change.",
-			"answer_list": ["not at all important", "very important"],
-			"likert_scale": 9
-		},
-		{
-			"question_id": "dms_04",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "uncertainty",
-			"question": "When I make an important decision, for me, it is essential to become aware if the decision leads to novelties.",
-			"answer_list": ["not at all important", "very important"],
-			"likert_scale": 9
-		},
-		{
-			"question_id": "dms_05",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "uncertainty",
-			"question": "When I make an important decision, for me, it is essential to appraise assess the personal risk involved in the decision.",
-			"answer_list": ["not at all important", "very important"],
-			"likert_scale": 9
-		},
-		{
-			"question_id": "dms_06",
-			"session_id": ["4"],
-			"questionnaire_type": "decision_making_style",
-			"question_group": "uncertainty",
-			"question": "When I make an important decision, for me, it is essential to know what the decision involves.",
-			"answer_list": ["not at all important", "very important"],
-			"likert_scale": 9
 		}
+		
 
 		
 	]
