@@ -22,12 +22,27 @@ import WaitingRoom from "./WaitingRoom.vue";
         <div v-else-if="pages.score.show">
           <b-row>
             <b-text style="font-size: 24px">
-              Thank you for participating in our study. Please exit the study by clicking on this return button. This is important to register you for our study appropriately.
+              Thank you again for participating in this study session.
             </b-text>
+
             <br/>
+            <br/>
+
             <b-text style="font-size: 24px">
-              As you finished the study, you will be reimbursed according to your study efforts. You will receive the payment within two weeks.
+              As mentioned earlier, this study includes <b> four sessions </b>. Please make sure that you return to complete
+              all four sessions. We offer a <b>RETURN BONUS </b> that increases with each session:
+              <b> £0.50 </b> for session 2, <b> £0.75 </b> for session 3, <b> £1.00 </b> for session 4
             </b-text>
+
+            <br/>
+
+            <b-text style="font-size: 24px">
+              In addition, you will also receive a <b>PERFORMANCE BONUS</b> based on your task results:
+              <b> £0.50 </b> for finding the best route
+              The performance bonus will be paid after all four sessions are completed, and the return bonus will
+              be paid with your base participation payment shortly after each session.
+            </b-text>
+
           </b-row>
           <b-row>
             <b-button  style="margin-top: 1rem; font-size: 24px; padding: 6px 16px 6px;" @click="backToProlificAccepted" pill variant="outline-success" size="lg">Return to Prolific</b-button>
