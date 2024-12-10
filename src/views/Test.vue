@@ -849,7 +849,7 @@ export default {
     map_url: function () {
       const taskIndex = (this.training) ? 0 : this.current_task_index+1;
       const mapName = this.user_tasks != null ? `s${this.sessionId}_${this.current_task.uncertainty.substring(0,4)}_t${taskIndex}_${this.current_map_index}` : "";
-      return this.user_tasks != null ? `${window.location.origin}/maps/pilot/${mapName}.html`: "";
+      return this.user_tasks != null ? `${window.location.origin}/maps/s1/${mapName}.html`: "";
     },
     route_start_time: function () {
       return this.user_tasks != null ? JSON.parse(this.user_tasks[this.current_task_index].route_start_time.replace(/'/g, '"')) : [];
