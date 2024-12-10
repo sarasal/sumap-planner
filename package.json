@@ -15,6 +15,7 @@
     "vue": "^2.7.7",
     "vue-advanced-chat": "^2.0.7",
     "vue-router": "^3.5.4",
+    "vue-spinners-css": "^1.1.5",
     "vuesax": "^3.12.2"
   },
   "devDependencies": {
