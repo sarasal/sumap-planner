@@ -186,14 +186,14 @@ import deliveryManagerIcon from '@/assets/icons/delivery-manager.png';
 import distanceIcon from '@/assets/icons/distance.png';
 import packageIcon from '@/assets/icons/package.png';
 
-import { AtomSpinner } from "vue-spinners-css";
+import { OrbitalsSpinner } from "vue-spinners-css";
 
 const samples = [sample1,sample2,sample3,sample4,sample5,sample6];
 
 export default {
   name: "Test",
   components: {
-    AtomSpinner, // Correct syntax here
+    OrbitalsSpinner,
   },
   props: {
     onBoarding: {
