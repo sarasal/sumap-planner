@@ -148,11 +148,13 @@ export default {
         uncertainty: res.uncertainty,
         ai_scenario: res.ai_scenario,
         best_transport: res.best_transport,
-        best_route_id: res.best_route_id,
+        best_route_index: res.best_route_index,
         best_cost: res.best_cost,
-        ai_route_id: res.ai_route_id,
+        ai_route_index: res.ai_route_index,
         ai_cost: res.ai_cost,
         ai_transport: res.ai_transport,
+        route_data_list: res.route_data_list,
+        route_quality_list: res.route_quality_list,
       }
       localStorage.setItem(`${this.userId}-info`, JSON.stringify(info));
     },

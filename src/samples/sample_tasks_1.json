@@ -9,7 +9,7 @@
         "accuracy_distribution": "hhhh",
         "task_scenario": "Delivering parcels requires additional time indicated when hovering over the parcels along the delivery route. The delivery handling time creates additional costs that must be considered \u2013 the longer the waiting time, the higher the costs. You are tasked to find the best route for yesterday based on all the given information (number of parcels, delivery vehicle, distance, delivery handling time). Which route would you have chosen as the best delivery route for yesterday?",
         "ai_scenario": "The DeliveryPlanner suggests the best delivery route based on the visual information of the maps including the sub-routes, delivery type, number of parcels, and delivery handling time. The DeliveryPlanner operates as a closed AI system that functions based on predetermined data sets and is therefore not updated with new data.",
-        "best_route_id": 0,
+        "best_route_index": 0,
         "best_transport": "bike",
         "best_cost": 1572,
         "map_id_list": [
@@ -30,7 +30,7 @@
         "accuracy_distribution": "hhhh",
         "task_scenario": "Delivering parcels requires additional time indicated when hovering over the parcels along the delivery route. The delivery handling time creates additional costs that must be considered \u2013 the longer the waiting time, the higher the costs. You are tasked to find the best route for yesterday based on all the given information (number of parcels, delivery vehicle, distance, delivery handling time). Which route would you have chosen as the best delivery route for yesterday?",
         "ai_scenario": "The DeliveryPlanner suggests the best delivery route based on the visual information of the maps including the sub-routes, delivery type, number of parcels, and delivery handling time. The DeliveryPlanner operates as a closed AI system that functions based on predetermined data sets and is therefore not updated with new data.",
-        "best_route_id": 3,
+        "best_route_index": 3,
         "best_transport": "bike",
         "best_cost": 1972,
         "map_id_list": [
@@ -51,7 +51,7 @@
         "accuracy_distribution": "hhhh",
         "task_scenario": "Delivering parcels requires additional time indicated when hovering over the parcels along the delivery route. The delivery handling time creates additional costs that must be considered \u2013 the longer the waiting time, the higher the costs. You are tasked to find the best route for yesterday based on all the given information (number of parcels, delivery vehicle, distance, delivery handling time). Which route would you have chosen as the best delivery route for yesterday?",
         "ai_scenario": "The DeliveryPlanner suggests the best delivery route based on the visual information of the maps including the sub-routes, delivery type, number of parcels, and delivery handling time. The DeliveryPlanner operates as a closed AI system that functions based on predetermined data sets and is therefore not updated with new data.",
-        "best_route_id": 0,
+        "best_route_index": 0,
         "best_transport": "bike",
         "best_cost": 1495,
         "map_id_list": [
@@ -72,7 +72,7 @@
         "accuracy_distribution": "hhhh",
         "task_scenario": "Delivering parcels requires additional time indicated when hovering over the parcels along the delivery route. The delivery handling time creates additional costs that must be considered \u2013 the longer the waiting time, the higher the costs. You are tasked to find the best route for yesterday based on all the given information (number of parcels, delivery vehicle, distance, delivery handling time). Which route would you have chosen as the best delivery route for yesterday?",
         "ai_scenario": "The DeliveryPlanner suggests the best delivery route based on the visual information of the maps including the sub-routes, delivery type, number of parcels, and delivery handling time. The DeliveryPlanner operates as a closed AI system that functions based on predetermined data sets and is therefore not updated with new data.",
-        "best_route_id": 0,
+        "best_route_index": 0,
         "best_transport": "car",
         "best_cost": 2092,
         "map_id_list": [
@@ -93,7 +93,7 @@
         "accuracy_distribution": "hhhh",
         "task_scenario": "Delivering parcels requires additional time indicated when hovering over the parcels along the delivery route. The delivery handling time creates additional costs that must be considered \u2013 the longer the waiting time, the higher the costs. You are tasked to find the best route for yesterday based on all the given information (number of parcels, delivery vehicle, distance, delivery handling time). Which route would you have chosen as the best delivery route for yesterday?",
         "ai_scenario": "The DeliveryPlanner suggests the best delivery route based on the visual information of the maps including the sub-routes, delivery type, number of parcels, and delivery handling time. The DeliveryPlanner operates as a closed AI system that functions based on predetermined data sets and is therefore not updated with new data.",
-        "best_route_id": 3,
+        "best_route_index": 3,
         "best_transport": "bike",
         "best_cost": 882,
         "map_id_list": [
@@ -114,7 +114,7 @@
         "accuracy_distribution": "hhhh",
         "task_scenario": "Delivering parcels requires additional time indicated when hovering over the parcels along the delivery route. The delivery handling time creates additional costs that must be considered \u2013 the longer the waiting time, the higher the costs. You are tasked to find the best route for yesterday based on all the given information (number of parcels, delivery vehicle, distance, delivery handling time). Which route would you have chosen as the best delivery route for yesterday?",
         "ai_scenario": "The DeliveryPlanner suggests the best delivery route based on the visual information of the maps including the sub-routes, delivery type, number of parcels, and delivery handling time. The DeliveryPlanner operates as a closed AI system that functions based on predetermined data sets and is therefore not updated with new data.",
-        "best_route_id": 0,
+        "best_route_index": 0,
         "best_transport": "car",
         "best_cost": 1539,
         "map_id_list": [

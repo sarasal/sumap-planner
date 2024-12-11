@@ -129,12 +129,13 @@ import QuestionModal from "@/components/QuestionModal.vue";
           <template #header>
             <h1 style="font-size: 28px">DeliveryPlanner Suggestion</h1>
           </template>
-          <b-text>
-            DeliveryPlanner suggests that the <span style="background-color: cyan;">{{`Route ${Number(this.current_task.best_route_id) +1}`}}</span> is the best option.
+          <b-spinner v-if="learning && this.showSpinner"></b-spinner>
+          <b-text v-if="!learning || !this.showSpinner">
+            DeliveryPlanner suggests that the <span style="background-color: cyan;">{{`Route ${Number(this.current_task.best_route_index) +1}`}}</span> is the best option.
           </b-text>
         </b-card>
 
-        <b-card v-if="!initialDecision.enabled && (!groupDecisionMaking || this.training)" style="width:100%; padding: 0;">
+        <b-card v-if="(!learning || !this.showSpinner) && !initialDecision.enabled && (!groupDecisionMaking || this.training)" style="width:100%; padding: 0;">
           <template #header>
             <h1 style="font-size: 28px">Your Final decision</h1>
           </template>
@@ -244,12 +245,14 @@ export default {
       current_task_index: 0,
       userFriendlyRouteIndex: 1,
       current_map_index: 0,
+      routeMapping: [],
       maxMapIndex: 5,
       task_info: null,
       initialDecision: {
         enabled: true,
         value: "",
         timestamp: 0,
+        initial_decision_quality: -1,
       },
       finalDecision: "",
       finalDecisionSubmissionTimestamp: null,
@@ -257,6 +260,7 @@ export default {
       userId: null,
       roomId: null,
       user_tasks: null,
+      showSpinner: false,
       route_options: [],
       taskIdList: [],
       showTrainingPopup: true,
@@ -328,11 +332,15 @@ export default {
       this.current_map_index=0;
       this.userFriendlyRouteIndex=1;
       this.readMe = false;
+      this.routeMapping = this.user_tasks[this.current_task_index].route_data_list;
       localStorage.setItem(`${this.userId}-initialDecision`, JSON.stringify(this.initialDecision));
       localStorage.current_task_index = this.current_task_index;
     },
     emitMainTaskFinished: function (){
       this.$emit('mainTasksFinished');
+    },
+    getRandomInt: function(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     },
     submitInitialDecision: function (){
       if(this.initialDecision.value === ""){
@@ -343,10 +351,20 @@ export default {
         });
         return;
       }
+
+      const initialDecisionIndex = this.routeNameToIndex(this.initialDecision.value);
       this.initialDecision.timestamp = this.getCurrentTimestamp();
       this.initialDecision.enabled = false;
+      this.initialDecision.initial_decision_quality = this.current_task.route_quality_list[initialDecisionIndex]
       localStorage.setItem(`${this.userId}-initialDecision`, JSON.stringify(this.initialDecision));
-      this.emitBackendEvent('INITIAL_SUBMISSION', this.initialDecision.timestamp, this.routeNameToIndex(this.initialDecision.value));
+      this.emitBackendEvent('INITIAL_SUBMISSION', this.initialDecision.timestamp, initialDecisionIndex);
+
+      this.showSpinner = true;
+      const miliSeconds = this.getRandomInt(7, 10) * 1000;
+
+      setInterval(function (task) {
+        task.showSpinner = false;
+      }, miliSeconds, this);
     },
     routeNameToIndex: function (name){
       return `${parseInt(name.replace('Route ', '')) -1}`;
@@ -363,10 +381,14 @@ export default {
 
       this.finalDecisionSubmissionTimestamp = this.getCurrentTimestamp();
 
+      const finalDecisionIndex = this.routeNameToIndex(this.finalDecision);
+
       this.result.responses.push({
         task_id: this.current_task.task_id,
         initial_decision: this.routeNameToIndex(this.initialDecision.value),
-        final_decision: this.routeNameToIndex(this.finalDecision),
+        final_decision: finalDecisionIndex,
+        initial_decision_quality: this.initialDecision.initial_decision_quality,
+        final_decision_quality: this.current_task.route_quality_list[finalDecisionIndex],
       });
 
       this.emitBackendEvent('FINAL_SUBMISSION', this.finalDecisionSubmissionTimestamp, this.routeNameToIndex(this.finalDecision));
@@ -848,7 +870,8 @@ export default {
     },
     map_url: function () {
       const taskIndex = (this.training) ? 0 : this.current_task_index+1;
-      const mapName = this.user_tasks != null ? `s${this.sessionId}_${this.current_task.uncertainty.substring(0,4)}_t${taskIndex}_${this.current_map_index}` : "";
+      const routeIndex = (this.demoTab) ? this.current_map_index : this.routeMapping[this.current_map_index].route_id; // todo fix this, task samples in samples directory don't have route_data_list
+      const mapName = this.user_tasks != null ? `s${this.sessionId}_${this.current_task.uncertainty.substring(0,4)}_t${taskIndex}_${routeIndex}` : "";
       return this.user_tasks != null ? `${window.location.origin}/maps/s1/${mapName}.html`: "";
     },
     route_start_time: function () {
@@ -865,6 +888,9 @@ export default {
     },
     progressBarSize: function () {
       return (this.demoTab)? 7 : 8;
+    },
+    learning : function () {
+      return (this.studyCondition != null)? this.studyCondition.includes("lear") : false;
     }
   },
   created: async function() {
@@ -878,7 +904,7 @@ export default {
       this.task_info = JSON.parse(localStorage.getItem(`${this.userId}-info`));
     }
 
-    // this.studyCondition = parseInt(JSON.parse(localStorage.getItem(`${this.userId}-info`)).study_condition);
+    this.studyCondition = JSON.parse(localStorage.getItem(`${this.userId}-info`)).study_condition;
     // this.roomId = localStorage.getItem('room-id');
 
     if (this.training || this.tutorial){
@@ -911,6 +937,7 @@ export default {
 
     this.taskIdList = this.extract_task_ids()
     this.route_options = this.generate_route_options();
+    this.routeMapping = this.user_tasks[this.current_task_index].route_data_list ;
     this.finishedLoaded=true;
   },
 }
