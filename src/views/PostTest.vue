@@ -39,13 +39,21 @@ import ProgressBar from "@/components/ProgressBar.vue";
 
     <div v-if="currentPage !== numberOfPages +1" id="my-questions" v-for="(question, index) in questions.slice(currentQuestionsIndexes.first, currentQuestionsIndexes.last)" :key="question.question" >
       <Radio
-          v-if="question.answer_list.length !== 2 && question.answer_list.length !== 0"
+          v-if="question.answer_list.length !== 2"
           :index="(currentPage-1)* 5 + index"
           :question="question.question"
           :options="question.answer_list"
           :becomeRedIfEmpty="becomeRedIfEmpty"
           @selectedChanged="selectedChanged">
       </Radio>
+<!--      <Radio-->
+<!--          v-if="question.answer_list.length !== 2 && question.answer_list.length !== 0"-->
+<!--          :index="(currentPage-1)* 5 + index"-->
+<!--          :question="question.question"-->
+<!--          :options="question.answer_list"-->
+<!--          :becomeRedIfEmpty="becomeRedIfEmpty"-->
+<!--          @selectedChanged="selectedChanged">-->
+<!--      </Radio>-->
       <Range
           v-else-if="question.answer_list.length === 2"
           :index="(currentPage-1)* 5 + index"
@@ -56,16 +64,16 @@ import ProgressBar from "@/components/ProgressBar.vue";
           :becomeRedIfEmpty="becomeRedIfEmpty"
           @selectedChanged="selectedChanged">
       </Range>
-      <b-form-group v-else-if="question.answer_list.length === 0" :label="`21. ${question.question}`" label-for="textarea-formatter" >
-        <b-form-textarea
-            id="textarea-formatter"
-            v-model="text"
-            rows="5"
-            max-rows="10"
-            placeholder="Enter your text"
-            @update="selectedChanged"
-        ></b-form-textarea>
-      </b-form-group>
+<!--      <b-form-group v-else-if="question.answer_list.length === 0" :label="`21. ${question.question}`" label-for="textarea-formatter" >-->
+<!--        <b-form-textarea-->
+<!--            id="textarea-formatter"-->
+<!--            v-model="text"-->
+<!--            rows="5"-->
+<!--            max-rows="10"-->
+<!--            placeholder="Enter your text"-->
+<!--            @update="selectedChanged"-->
+<!--        ></b-form-textarea>-->
+<!--      </b-form-group>-->
     </div>
 
 <!--    <CheckBox v-if="currentPage === 6" :questions="questions" @selectedArrayChanged="selectedArrayChanged"></CheckBox>-->
