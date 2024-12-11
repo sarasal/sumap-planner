@@ -41,7 +41,7 @@
 			"session_id": ["1"],
 			"questionnaire_type": "attention_check",
 			"question_group": "attention_check",
-			"question": "Please select >largely agree< to show you are reading carefully.",
+			"question": "Please select 'largely agree' to show you are reading carefully.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 6
 		},
@@ -114,15 +114,6 @@
 			"questionnaire_type": "sns_scale",
 			"question_group": "cognitive_abilities",
 			"question": "How good are you at calculating a 15% tip?",
-			"answer_list": ["not at all good", "extremely good"],
-			"likert_scale": 6
-		},
-		{
-			"question_id": "acpre_02",
-			"session_id": ["1"],
-			"questionnaire_type": "attention_check",
-			"question_group": "attention_check",
-			"question": "Please select >not at all good< to show you are reading carefully.",
 			"answer_list": ["not at all good", "extremely good"],
 			"likert_scale": 6
 		},
@@ -204,7 +195,16 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "I prefer to gather all the necessary information before committing to a decision.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "acpre_02",
+			"session_id": ["1"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select 'disagree' to show you are reading carefully.",
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -213,7 +213,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "I thoroughly evaluate decision alternatives before making a final choice.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -222,7 +222,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "I weigh a number of different factors when making decisions.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -231,7 +231,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "In decision-making, I take time to contemplate the pros + cons and risks + benefits of a situation.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -240,7 +240,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "Investigating the facts is an important part of my decision-making process.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -249,7 +249,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "When making decisions, I rely mainly on my gut feelings.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -258,7 +258,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "My initial hunch about decisions is generally what I follow.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -267,7 +267,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "I weigh feelings more than analysis in making decisions.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -276,7 +276,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "I make decisions based on intuition.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -285,7 +285,7 @@
 			"questionnaire_type": "decision_making_style",
 			"question_group": "decision_making_style_1",
 			"question": "I rely on my first impressions when making decisions.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -293,8 +293,8 @@
 			"session_id": ["1"],
 			"questionnaire_type": "attention_check",
 			"question_group": "attention_check",
-			"question": "Please select >strongly agree< to show you are reading carefully.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"question": "Please select 'agree' to show you are reading carefully.",
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -474,7 +474,7 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "attention_check",
 			"question_group": "attention_check",
-			"question": "Please select >neither< to show that you are reading carefully.",
+			"question": "Please select 'neither' to show that you are reading carefully.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -537,7 +537,7 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "attention_check",
 			"question_group": "attention_check",
-			"question": "Please select >largely agree< to show you are reading carefully.",
+			"question": "Please select 'largely agree' to show you are reading carefully.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -618,7 +618,7 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "attention_check",
 			"question_group": "attention_check",
-			"question": "Please seelct >completely agree< to show you are reading carefully.",
+			"question": "Please seelct 'completely agree' to show you are reading carefully.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -704,15 +704,6 @@
 			"likert_scale": 7
 		},
 		{
-			"question_id": "acpos_04",
-			"session_id": ["1","2", "3", "4"],
-			"questionnaire_type": "attention_check",
-			"question_group": "attention_check",
-			"question": "Please select >very low< to show you are reading carefully.",
-			"answer_list": ["very low", "very high"],
-			"likert_scale": 7
-		},
-		{
 			"question_id": "pa_01",
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "perceived_achievement",
@@ -728,6 +719,15 @@
 			"question_group": "task_achievement",
 			"question": "I felt capable while solving the delivery tasks.",
 			"answer_list": ["strongly disagree", "strongly agree"],
+			"likert_scale": 7
+		},
+		{
+			"question_id": "acpos_04",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "attention_check",
+			"question_group": "attention_check",
+			"question": "Please select 'agree' to show you are reading carefully.",
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
