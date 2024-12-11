@@ -37,7 +37,7 @@ import ProgressBar from "@/components/ProgressBar.vue";
 
     <b-card-text class="indent">
       <h4>
-        Before we start with the study task, we ask you to answer the following questions.
+        Before we start with the study task, we ask you to answer the following questions. The Pre-Task questions will only be asked in this session!
       </h4>
     </b-card-text>
 
