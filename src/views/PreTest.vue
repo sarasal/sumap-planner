@@ -16,11 +16,11 @@ import ProgressBar from "@/components/ProgressBar.vue";
       <b-col cols="3" v-if="!demoSession">
       </b-col>
       <b-col cols="6">
-        <progress-bar :value="currentPage-1" :max="questions.length/5" :animated="false"></progress-bar>
+        <progress-bar :value="currentPage-1" :max="Math.ceil(questions.length/5)" :animated="false"></progress-bar>
       </b-col>
       <b-col cols="3" align="right">
-        <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
-        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Continue with task</b-button>
+        <b-button v-if="currentPage !== 8" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
+        <b-button v-if="currentPage === 8" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Continue with task</b-button>
       </b-col>
     </b-row>
 
@@ -67,8 +67,8 @@ import ProgressBar from "@/components/ProgressBar.vue";
         <b-button class="mt-2" align-h="right" @click="nextTab()" pill variant="outline-success" size="lg">Next Tab</b-button>
       </b-col>
       <b-col align="right">
-        <b-button v-if="currentPage !== 4" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
-        <b-button v-if="currentPage === 4" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Continue with task</b-button>
+        <b-button v-if="currentPage !== 8" class="mt-2" align-h="right" @click="nextQuestions()" pill variant="outline-success" size="lg">Next</b-button>
+        <b-button v-if="currentPage === 8" class="mt-2" align-h="right" @click="submit()" pill variant="outline-success" size="lg">Continue with task</b-button>
       </b-col>
     </b-row>
 
@@ -180,7 +180,7 @@ export default {
   computed: {
     currentQuestionsIndexes: function (){
       const first = (this.currentPage -1) * 5;
-      const last = (this.currentPage === 4) ? this.questions.length : (this.currentPage) * 5;
+      const last = (this.currentPage === 8) ? this.questions.length : (this.currentPage) * 5;
       return {
         first: first,
         last: last
