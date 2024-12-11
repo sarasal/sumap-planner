@@ -224,7 +224,8 @@ export default {
     this.user_id = this.$route.params.userId
     this.questions = allQuestions.post_task.filter(item => item.session_id.includes(this.sessionId));
     this.answers = new Array(this.questions.length).fill(-1);
-    this.numberOfPages = Math.floor(this.questions.length/5) + Math.floor(this.questions.length%5);
+    // this.numberOfPages = Math.floor(this.questions.length/5) + Math.floor(this.questions.length%5);
+    this.numberOfPages = Math.ceil(this.questions.length/5);
   }
 }
 </script>
