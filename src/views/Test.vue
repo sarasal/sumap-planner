@@ -132,7 +132,7 @@ import QuestionModal from "@/components/QuestionModal.vue";
           </template>
           <b-spinner v-if="learning && this.showSpinner"></b-spinner>
           <b-text v-if="!learning || !this.showSpinner">
-            DeliveryPlanner suggests that the <span style="background-color: cyan;">{{`Route ${Number(this.current_task.best_route_index) +1}`}}</span> is the best option.
+            DeliveryPlanner suggests that the <span style="background-color: cyan;">{{`Route ${Number(this.current_task.ai_route_index) +1}`}}</span> is the best option.
           </b-text>
         </b-card>
 
