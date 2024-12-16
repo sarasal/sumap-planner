@@ -72,7 +72,7 @@ import QuestionModal from "@/components/QuestionModal.vue";
                   <img :src="iconsSrc.car" alt="Icon" class="icon-small" /> / <img :src="iconsSrc.eBike" alt="Icon" class="icon-small" /> <b>Delivery Vehicle</b>: Parcels are delivered either by <b>car</b> or <b>e-bike</b>. Deliveries by e-bike are rewarded with <b>50</b> points for each traveled kilometer. Deliveries by car are faster and save time but do not come an additional reward. <br/>
                 </b-list-group-item>
                 <b-list-group-item>
-                  <img :src="iconsSrc.distance" alt="Icon" class="icon-small" /> <b>Driving Distance</b>: Delivering the parcels creates costs. The longer deliveries are, the more costs are created. The length of a sub-route is displayed when hovering over a particular route. One minute of driving equals to 60 cost points. The speed of the car and e-bike is constant, with the car traveling at <b>70 km/h</b> and the e-bike at <b>45 km/h</b>. <br/>
+                  <img :src="iconsSrc.distance" alt="Icon" class="icon-small" /> <b>Driving Distance</b>: Delivering the parcels creates costs. The longer deliveries are, the more costs are created. The length of a sub-route is displayed when hovering over a particular route. <b>One minute</b> of driving equals to <b>60 cost points</b>. The speed of the car and e-bike is constant, with the car traveling at <b>70 km/h</b> and the e-bike at <b>45 km/h</b>. <br/>
                 </b-list-group-item>
                 <b-list-group-item>
                   <img :src="iconsSrc.deliveryTime" alt="Icon" class="icon-small" /> <b>Delivery Handling Time</b>: {{this.delivery_handling_time}}
