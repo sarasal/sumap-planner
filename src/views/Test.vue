@@ -289,8 +289,7 @@ export default {
       // console.log(event)
       if (event.origin === 'https://sumap.tp.salimzadeh.com') {
         console.log('Received message from iframe:', event.data);
-        // the event api should be called
-        // Here you can react to the message, update data properties, call methods, etc.
+        this.emitBackendEvent(event.data.element_type, this.getCurrentTimestamp(), event.data.element_value);
       }
     },
     nextTab: function () {
@@ -437,9 +436,11 @@ export default {
       this.gotoNextTask();
     },
     emitBackendEvent: function (type, timestamp, value){
-      if (!this.mainTasks){
+      if (!(this.mainTasks && this.training)){
         return;
       }
+
+      console.log(`Event type is: ${type}, timestamp is: ${timestamp}, value is: ${value}`);
 
       const body = {
         session_id: this.sessionId,
