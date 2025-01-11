@@ -436,6 +436,7 @@ export default {
       this.gotoNextTask();
     },
     emitBackendEvent: function (type, timestamp, value){
+      console.log(this.training);
       if (!(this.mainTasks && this.training)){
         return;
       }
