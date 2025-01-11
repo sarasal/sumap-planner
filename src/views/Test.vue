@@ -643,7 +643,7 @@ export default {
         {
           title: 'Control Buttons',
           element: this.$refs.mapControlPanel,
-          intro: 'By clicking onto the routes buttons 1 to 5 using the control buttons, you can switch between maps.',
+          intro: 'By clicking onto the routes buttons 1 to 5 using the control buttons, you can switch between maps of the different routes.',
           position: 'top',
           studyConditions: [1,2,3,4,5,6],
         },
