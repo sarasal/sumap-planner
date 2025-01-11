@@ -32,6 +32,10 @@
       </b-card-text>
 
       <b-card-text class="indent">
+        <b>For an optimal study experience, please maximize the size of your browser window.</b>
+      </b-card-text>
+
+      <b-card-text class="indent">
         During the experiment, please refrain from clicking the <b>*** BACK ***</b> button in your browser. Instead, use the <b>*** NEXT ***</b> buttons provided in the interface.
       </b-card-text>
 
