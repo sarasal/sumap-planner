@@ -630,7 +630,7 @@ export default {
           title: 'Instruction',
           element: this.$refs.youAreTasked,
           position: 'bottom',
-          intro: 'Your main task is finding the best delivery route out of five options. For the task, you always follow the same four steps:',
+          intro: 'Your main task is finding the best delivery route out of five options to minimize the cost. For the task, you always follow the same four steps:',
           studyConditions: [1,2,3,4,5,6],
         },
         {
