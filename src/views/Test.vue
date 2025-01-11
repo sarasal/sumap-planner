@@ -442,16 +442,15 @@ export default {
       }
 
       const body = {
+        session_id: this.sessionId,
         user_id: this.userId,
-        study_condition: `${this.studyCondition}`,
         task_id: this.current_task.task_id,
         event_type: type,
         timestamp: `${timestamp}`,
         event_value: `${value}`
       };
 
-      // TODO uncomment the following line
-      // this.updateBackend('submit_event', body);
+      this.updateBackend('submit_event', body);
     },
     updateBackend: async function (url, newBody){
       const rawBody = {
