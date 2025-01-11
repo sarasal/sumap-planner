@@ -363,7 +363,7 @@
 			"questionnaire_type": "task_based_trust",
 			"question_group": "",
 			"question": "I found the DeliveryPlanner advice to be trustworthy.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"answer_list": ["disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "agree"],
 			"likert_scale": 7
 		},
 		{
@@ -372,7 +372,7 @@
 			"questionnaire_type": "task_based_trust",
 			"question_group": "",
 			"question": "The DeliveryPlanner advice seemed reliable to me.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"answer_list": ["disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "agree"],
 			"likert_scale": 7
 		},
 		{
@@ -381,7 +381,7 @@
 			"questionnaire_type": "task_based_trust",
 			"question_group": "",
 			"question": "I have confidence in following the advice of the DeliveryPlanner.",
-			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
+			"answer_list": ["disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "agree"],
 			"likert_scale": 7
 		}
 	],
@@ -618,7 +618,7 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "attention_check",
 			"question_group": "attention_check",
-			"question": "Please seelct 'completely agree' to show you are reading carefully.",
+			"question": "Please select 'completely agree' to show you are reading carefully.",
 			"answer_list": ["completely disagree", "largely disagree", "slightly disagree", "neither", "slightly agree", "largely agree", "completely agree"],
 			"likert_scale": 7
 		},
@@ -709,7 +709,7 @@
 			"questionnaire_type": "perceived_achievement",
 			"question_group": "task_achievement",
 			"question": "I felt I was good at solving the delivery tasks.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -718,7 +718,7 @@
 			"questionnaire_type": "perceived_achievement",
 			"question_group": "task_achievement",
 			"question": "I felt capable while solving the delivery tasks.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		},
 		{
@@ -736,7 +736,7 @@
 			"questionnaire_type": "perceived_achievement",
 			"question_group": "task_achievement",
 			"question": "I felt a sense of mastery while solving the delivery tasks.",
-			"answer_list": ["strongly disagree", "strongly agree"],
+			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
 		}
 		
