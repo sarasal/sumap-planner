@@ -38,7 +38,7 @@ import WaitingRoom from "./WaitingRoom.vue";
 
             <b-text style="font-size: 24px">
               In addition, you will also receive a <b>PERFORMANCE BONUS</b> based on your task results:
-              <b> £0.50 </b> for finding the best route per task (<b>max. 10.00</b> for all sessions).
+              <b> £0.50 </b> for finding the best route per task (<b>max. £10.00</b> for all sessions).
               The performance bonus will be paid after all four sessions are completed, and the return bonus will
               be paid with your base participation payment shortly after each session.
             </b-text>
@@ -47,7 +47,7 @@ import WaitingRoom from "./WaitingRoom.vue";
 
             <b-text style="font-size: 24px">
               Participating in Session 1 enabled you to participate and the following sessions. We will contact you via Prolific once the next session is ready.
-              <b>Session 2</b> will be launched on <b>Dec15-16</b>, <b>Session 3</b> will be launched on <b>Dec 18-20</b>, and <b>Session 4</b> will be launched on <b>Dec 23-24</b>.
+              <b>Session 2</b> will be launched on <b>Jan 17-18</b>, <b>Session 3</b> will be launched on <b>Jan 20-21</b>, and <b>Session 4</b> will be launched on <b>Jan 23-24</b>.
             </b-text>
 
           </b-row>
