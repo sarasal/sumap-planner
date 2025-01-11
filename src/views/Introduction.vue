@@ -40,7 +40,7 @@
       </b-card-text>
 
       <b-card-text class="indent">
-        In the study, we will also gather information about your subjective experience. We encourage you to respond to all questions truthfully and to the best of your knowledge and ability.
+        In the study, we will also gather information about your experience with the system. We encourage you to respond to all questions truthfully and to the best of your knowledge and ability.
       </b-card-text>
 
 
