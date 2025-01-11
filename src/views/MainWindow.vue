@@ -198,7 +198,7 @@ export default {
         type: 'confirm',
         color: 'danger',
         title: 'Failed',
-        text: 'Unfortunately, you\'ve failed the attention checks, it is not possible to continue the study! Click on the Accept button to return to the Prolific.',
+        text: 'As you did not answer the attention check questions in the pre-task questionnaire correctly, you are not eligible to continue our study. Please click on the Accept button to return to Prolific.',
         accept:this.backToProlificRejected,
         close:this.failed,
         cancel:this.failed,
