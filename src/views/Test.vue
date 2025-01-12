@@ -287,7 +287,8 @@ export default {
     handleMessageFromIframe(event) {
       // Always check the origin for security reasons!
       // console.log(event)
-      if (event.origin === 'https://sumap.tp.salimzadeh.com') {
+      // if (event.origin === 'https://sumap.tp.salimzadeh.com') {
+      if (event.origin === 'https://dp.experiment.homes') {
         console.log('Received message from iframe:', event.data);
         this.emitBackendEvent(event.data.element_type, this.getCurrentTimestamp(), event.data.element_value);
       }
