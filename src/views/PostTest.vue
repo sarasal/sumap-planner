@@ -64,16 +64,16 @@ import ProgressBar from "@/components/ProgressBar.vue";
           :becomeRedIfEmpty="becomeRedIfEmpty"
           @selectedChanged="selectedChanged">
       </Range>
-<!--      <b-form-group v-else-if="question.answer_list.length === 0" :label="`21. ${question.question}`" label-for="textarea-formatter" >-->
-<!--        <b-form-textarea-->
-<!--            id="textarea-formatter"-->
-<!--            v-model="text"-->
-<!--            rows="5"-->
-<!--            max-rows="10"-->
-<!--            placeholder="Enter your text"-->
-<!--            @update="selectedChanged"-->
-<!--        ></b-form-textarea>-->
-<!--      </b-form-group>-->
+      <b-form-group v-else-if="question.answer_list.length === 0" :label="`40. ${question.question}`" label-for="textarea-formatter" >
+        <b-form-textarea
+            id="textarea-formatter"
+            v-model="text"
+            rows="5"
+            max-rows="10"
+            placeholder="Enter your text"
+            @update="selectedChanged"
+        ></b-form-textarea>
+      </b-form-group>
     </div>
 
 <!--    <CheckBox v-if="currentPage === 6" :questions="questions" @selectedArrayChanged="selectedArrayChanged"></CheckBox>-->
@@ -162,7 +162,7 @@ export default {
     },
     selectedChanged: function (obj){
       if(obj.index === undefined){
-        this.answers[20] = obj;
+        this.answers[39] = obj;
         return;
       }
       this.answers[obj.index] = (obj.type === 'Range')? parseInt(obj.answer) : obj.answer + 1;
