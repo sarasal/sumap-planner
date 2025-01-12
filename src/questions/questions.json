@@ -738,9 +738,17 @@
 			"question": "I felt a sense of mastery while solving the delivery tasks.",
 			"answer_list": ["strongly disagree", "disagree", "somewhat disagree", "neither", "somewhat agree", "agree", "strongly agree"],
 			"likert_scale": 7
+		},
+		{
+			"question_id": "open_01",
+			"session_id": ["1","2", "3", "4"],
+			"questionnaire_type": "open",
+			"question_group": "general",
+			"question": "Please don't hesitate to share with us your thoughts and opinions regarding this research. (optional)",
+			"answer_list": [],
+			"likert_scale": 0
 		}
 		
-
 		
 	]
 
