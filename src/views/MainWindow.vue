@@ -75,6 +75,7 @@ export default {
       userId: undefined,
       currentPage: undefined,
       studyCondition: undefined,
+      sessionId: Number(store.appConfig.CURRENT_SESSION_NUMBER),
       complexity: undefined,
       taskType: undefined,
       demoSession: store.appConfig.DEMO_SESSION.toLowerCase() === "enabled",
@@ -221,6 +222,15 @@ export default {
     const userId = this.$route.params.userId;
 
     const progress = localStorage.getItem(`${userId}-progress`);
+
+    if (progress === 'tutorial' && this.sessionId !== 1){
+      const body = {
+        'session_id' : `${this.sessionId}`,
+        'user_id': userId
+      }
+      const res = await this.updateBackend('get_user_training_task',body);
+      this.saveTrainingTask(res);
+    }
 
     // todo You may remove the following lines
     const userInfo = JSON.parse(localStorage.getItem(`${userId}-info`));

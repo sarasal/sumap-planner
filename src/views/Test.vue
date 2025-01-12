@@ -289,7 +289,6 @@ export default {
       // console.log(event)
       // if (event.origin === 'https://sumap.tp.salimzadeh.com') {
       if (event.origin === 'https://dp.experiment.homes') {
-        console.log('Received message from iframe:', event.data);
         this.emitBackendEvent(event.data.element_type, this.getCurrentTimestamp(), event.data.element_value);
       }
     },
@@ -440,8 +439,6 @@ export default {
       if (!(this.mainTasks || this.training)){
         return;
       }
-
-      console.log(`Event type is: ${type}, timestamp is: ${timestamp}, value is: ${value}`);
 
       const body = {
         session_id: this.sessionId,
@@ -874,7 +871,7 @@ export default {
       const taskIndex = (this.training) ? 0 : this.current_task_index+1;
       const routeIndex = (this.demoTab) ? this.current_map_index : this.routeMapping[this.current_map_index].route_id; // todo fix this, task samples in samples directory don't have route_data_list
       const mapName = this.user_tasks != null ? `s${this.sessionId}_${this.current_task.uncertainty.substring(0,4)}_t${taskIndex}_${routeIndex}` : "";
-      return this.user_tasks != null ? `${window.location.origin}/maps/s1/${mapName}.html`: "";
+      return this.user_tasks != null ? `${window.location.origin}/maps/s${this.sessionId}/${mapName}.html`: "";
     },
     route_start_time: function () {
       return this.user_tasks != null ? JSON.parse(this.user_tasks[this.current_task_index].route_start_time.replace(/'/g, '"')) : [];
