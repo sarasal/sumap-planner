@@ -78,8 +78,7 @@ export default {
     },
   },
   mounted: async function() {
-    // todo uncomment the following line
-    // localStorage.clear();
+    localStorage.clear();
   }
 }
 </script>
