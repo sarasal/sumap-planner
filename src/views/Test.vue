@@ -485,6 +485,10 @@ export default {
         }
       ]
 
+      if(this.sessionId !== 1){
+        steps[0].intro = steps[0].intro + '<br/><b>Note:</b> You can skip this Training by clicking on the exit button (<b-icon-x style="font-size: 1.25rem; margin-right: 0.25rem;margin-left: 0.25rem;">X</b-icon-x>) located at the top.';
+      }
+
       intro.addSteps(steps);
 
       intro.setOptions({
@@ -492,6 +496,18 @@ export default {
         'exitOnOverlayClick': false,
         'exitOnEsc': false,
         'doneLabel': 'Next'
+      });
+
+      const task = this;
+
+      intro.onbeforeexit(function() {
+        if(task.demoSession || task.sessionId !==1){
+          task.result.training_status = 'skipped'
+          task.result.start_time = -1
+          task.result.end_time = -1
+          task.$emit('trainingFinished', task.result)
+          return true;
+        }
       });
 
       intro.start();
@@ -683,6 +699,10 @@ export default {
         // },
       ];
 
+      if(this.sessionId !== 1){
+        steps[0].intro = steps[0].intro + '<br/><b>Note:</b> You can skip this tutorial at any time by clicking on the exit button (<b-icon-x style="font-size: 1.25rem; margin-right: 0.25rem;margin-left: 0.25rem;">X</b-icon-x>) located at the top.'
+      }
+
       intro.addSteps(steps);
 
       intro.setOptions({
@@ -692,7 +712,7 @@ export default {
       });
 
       intro.onbeforeexit(function() {
-        if(task.demoSession){
+        if(task.demoSession || task.sessionId !==1){
           task.$emit('tutorialFinished');
           return true;
         }
