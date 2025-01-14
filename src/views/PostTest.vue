@@ -206,7 +206,7 @@ export default {
       });
     },
     answeredAllQuestions: function (firstIndex, lastIndex){
-      for (let i = firstIndex; i < lastIndex; i++) {
+      for (let i = firstIndex; i < lastIndex -1; i++) {
         if(this.answers[i] === -1){
           return false;
         }
