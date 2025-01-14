@@ -744,7 +744,7 @@
 			"session_id": ["1","2", "3", "4"],
 			"questionnaire_type": "open",
 			"question_group": "general",
-			"question": "Please don't hesitate to share with us your thoughts and opinions regarding this research. (optional)",
+			"question": "Please don't hesitate to share with us your thoughts and opinions regarding this research.",
 			"answer_list": [],
 			"likert_scale": 0
 		}
