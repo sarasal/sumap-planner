@@ -47,7 +47,7 @@ import WaitingRoom from "./WaitingRoom.vue";
 
             <b-text style="font-size: 24px">
               Participating in Session 1 enabled you to participate and the following sessions. We will contact you via Prolific once the next session is ready.
-              <b>Session 2</b> will be launched on <b>Jan 17-18</b>, <b>Session 3</b> will be launched on <b>Jan 20-21</b>, and <b>Session 4</b> will be launched on <b>Jan 23-24</b>.
+              <b>Session 3</b> will be launched on <b>Jan 23-25</b>, and <b>Session 4</b> will be launched on <b>Jan 28-30</b>.
             </b-text>
 
           </b-row>
