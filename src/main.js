@@ -23,7 +23,7 @@ Vue.use(Vuesax)
 
 async function initApp() {
   try {
-    const configResponse = await axios.get('/config.json');
+    const configResponse = await axios.get(`/config.json?timestamp=${new Date().getTime()}`);
     mutations.setAppConfig(configResponse.data);
 
     new Vue({
