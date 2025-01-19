@@ -147,7 +147,7 @@ export default {
     getScore: function (){
       return localStorage.getItem(`${this.userId}-score`);
     },
-    saveTrainingTask: function ( res ){
+    saveTrainingTask: function ( res , userId ){
       const info = {
         session_id: res.session_id,
         task_id: res.task_id,
@@ -164,7 +164,7 @@ export default {
         route_data_list: res.route_data_list,
         route_quality_list: res.route_quality_list,
       }
-      localStorage.setItem(`${this.userId}-info`, JSON.stringify(info));
+      localStorage.setItem(`${userId}-info`, JSON.stringify(info));
     },
     done: async function ( body ){
       // TODO loading
@@ -181,7 +181,7 @@ export default {
           await this.failed();
           return
         }
-        this.saveTrainingTask(res);
+        this.saveTrainingTask(res, this.userId);
         next = (this.demoSession)? 'demo' : 'tutorial';
       }
 
@@ -229,7 +229,7 @@ export default {
         'user_id': userId
       }
       const res = await this.updateBackend('get_user_training_task',body);
-      this.saveTrainingTask(res);
+      this.saveTrainingTask(res, userId);
     }
 
     // todo You may remove the following lines
