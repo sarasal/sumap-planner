@@ -28,27 +28,43 @@ import WaitingRoom from "./WaitingRoom.vue";
             <br/>
             <br/>
 
+<!--            <b-text style="font-size: 24px">-->
+<!--              As mentioned earlier, this study includes <b> four sessions </b>. Please make sure that you return to complete-->
+<!--              all four sessions. We offer a <b>RETURN BONUS </b> that increases with each session:-->
+<!--              <b> £0.50 </b> for session 2, <b> £0.75 </b> for session 3, <b> £1.00 </b> for session 4.-->
+<!--            </b-text>-->
+
             <b-text style="font-size: 24px">
-              As mentioned earlier, this study includes <b> four sessions </b>. Please make sure that you return to complete
-              all four sessions. We offer a <b>RETURN BONUS </b> that increases with each session:
-              <b> £0.50 </b> for session 2, <b> £0.75 </b> for session 3, <b> £1.00 </b> for session 4.
+              Thank you for completing all four sessions of our study. We appreciate your effort and would like to
+              share some more insights.
+            </b-text>
+
+            <br/>
+
+<!--            <b-text style="font-size: 24px">-->
+<!--              In addition, you will also receive a <b>PERFORMANCE BONUS</b> based on your task results:-->
+<!--              <b> £0.50 </b> for finding the best route per task (<b>max. £10.00</b> for all sessions).-->
+<!--              The performance bonus will be paid after all four sessions are completed, and the return bonus will-->
+<!--              be paid with your base participation payment shortly after each session.-->
+<!--            </b-text>-->
+
+            <b-text style="font-size: 24px">
+              Here is how you performed during the tasks:
+              You selected the best route in {{this.finalScore.performance}} out of 20 times.
+              You followed the AI's advice {{this.finalScore.ai_agreement}}% of the time. This improved your performance by {{this.finalScore.correct_ai_agreement}}% when the advice was correct and reduced it by {{this.finalScore.incorrect_ai_agreement}}% when the advice was incorrect.
             </b-text>
 
             <br/>
 
             <b-text style="font-size: 24px">
-              In addition, you will also receive a <b>PERFORMANCE BONUS</b> based on your task results:
-              <b> £0.50 </b> for finding the best route per task (<b>max. £10.00</b> for all sessions).
-              The performance bonus will be paid after all four sessions are completed, and the return bonus will
-              be paid with your base participation payment shortly after each session.
+              We hope you enjoyed participating in this study. Your contributions will help us better understand how
+              people collaborate with AI systems, which could inform the design of future AI technologies.
             </b-text>
 
-            <br/>
-
-            <b-text style="font-size: 24px">
-              Participating in Session 1 enabled you to participate and the following sessions. We will contact you via Prolific once the next session is ready.
-              <b>Session 4</b> will be launched on <b>Jan 28-30</b>.
-            </b-text>
+<!--            <b-text style="font-size: 24px">-->
+<!--              Participating in Session 1 enabled you to participate and the following sessions. We will contact you via Prolific once the next session is ready.-->
+<!--              <b>Session 4</b> will be launched on <b>Jan 28-30</b>.-->
+<!--            </b-text>-->
 
           </b-row>
           <b-row>
@@ -80,6 +96,12 @@ export default {
       taskType: undefined,
       demoSession: store.appConfig.DEMO_SESSION.toLowerCase() === "enabled",
       groupDecisionMaking: String(import.meta.env.VITE_GROUP_DECISION_MAKING).toLowerCase() === "enabled",
+      finalScore: {
+        performance: null,
+        ai_agreement: null,
+        correct_ai_agreement: null,
+        incorrect_ai_agreement: null,
+      },
       pages: { // todo move it to file
         pretest:{
           show: false,
@@ -144,8 +166,8 @@ export default {
       const res = await fetch(`${window.location.origin}/api/${url}`, requestOptions);
       return await res.json();
     },
-    getScore: function (){
-      return localStorage.getItem(`${this.userId}-score`);
+    getScore: function (userId){
+      return JSON.parse(localStorage.getItem(`${userId}-score`));
     },
     saveTrainingTask: function ( res , userId ){
       const info = {
@@ -230,6 +252,10 @@ export default {
       }
       const res = await this.updateBackend('get_user_training_task',body);
       this.saveTrainingTask(res, userId);
+    }
+
+    if (progress === 'score' && this.sessionId === 4){
+      this.finalScore = this.getScore(userId);
     }
 
     // todo You may remove the following lines

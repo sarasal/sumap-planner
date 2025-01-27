@@ -428,7 +428,8 @@ export default {
 
       if(this.current_task_index === this.user_tasks.length -1) {
         this.result.end_time = this.finalDecisionSubmissionTimestamp;
-        await this.updateBackend('submit_user_tasks_responses', this.result);
+        const response = await this.updateBackend('submit_user_tasks_responses', this.result);
+        localStorage.setItem(`${this.userId}-score`, JSON.stringify(response));
         this.$emit('mainTasksFinished');
         return;
       }
@@ -467,7 +468,7 @@ export default {
       };
 
       const res = await fetch(`${window.location.origin}/api/${url}`, requestOptions);
-      if (!(url === 'submit_event' || url === 'submit_user_tasks_responses')){
+      if (url !== 'submit_event'){
         return await res.json();
       }
     },
